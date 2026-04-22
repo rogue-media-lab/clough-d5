@@ -1,6 +1,13 @@
 Rails.application.routes.draw do
-  root "posts#index"
+  root "home#index"
+
+  # Public pages
   resources :posts, only: [:index, :show]
+  get "/news", to: "posts#index", as: :news
+
+  get "/volunteer", to: "home#volunteer", as: :volunteer
+  get "/about", to: "home#about", as: :about
+  get "/events", to: "home#events", as: :events
 
   namespace :admin do
     resources :issues

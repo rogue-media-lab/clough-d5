@@ -1,24 +1,35 @@
-<nav class="sticky top-0 z-40 bg-ivory-100 border-b border-ivory-300" data-controller="navbar">
+<nav class="sticky top-0 z-40 bg-navy-900 text-white" data-controller="navbar">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex justify-between h-16">
+    <div class="flex justify-between h-16 items-center">
 
       <%# Brand %>
       <div class="flex items-center">
-        <%= link_to root_path, class: "text-ivory-900 font-bold text-lg tracking-tight hover:text-ivory-700 transition-colors" do %>
-          Clough
+        <%= link_to root_path, class: "flex items-center gap-2" do %>
+          <span class="font-display text-xl font-bold tracking-tight">Clough</span>
         <% end %>
       </div>
 
       <%# Desktop nav links %>
-      <div class="hidden sm:flex sm:items-center sm:gap-1">
-        <%= link_to "Home", root_path,
-              class: "text-ivory-700 hover:text-ivory-900 hover:bg-ivory-200 px-3 py-2 rounded-md text-sm font-medium transition-colors" %>
+      <div class="hidden md:flex items-center gap-1">
+        <%= link_to "Issues", "#issues",
+              class: "text-ivory-200 hover:text-white hover:bg-navy-800 px-3 py-2 rounded-md text-sm font-medium transition-colors" %>
+        <%= link_to "News", news_path,
+              class: "text-ivory-200 hover:text-white hover:bg-navy-800 px-3 py-2 rounded-md text-sm font-medium transition-colors" %>
+        <%= link_to "Events", events_path,
+              class: "text-ivory-200 hover:text-white hover:bg-navy-800 px-3 py-2 rounded-md text-sm font-medium transition-colors" %>
+        <%= link_to "About", about_path,
+              class: "text-ivory-200 hover:text-white hover:bg-navy-800 px-3 py-2 rounded-md text-sm font-medium transition-colors" %>
+        <%= link_to "Volunteer", volunteer_path,
+              class: "text-ivory-200 hover:text-white hover:bg-navy-800 px-3 py-2 rounded-md text-sm font-medium transition-colors" %>
+
+        <%= link_to "Get Involved", volunteer_path,
+              class: "ml-4 bg-campaign-red hover:bg-campaign-red-dark text-white px-4 py-2 rounded-md text-sm font-semibold transition-colors" %>
       </div>
 
       <%# Mobile menu button %>
-      <div class="flex items-center sm:hidden">
+      <div class="flex items-center md:hidden">
         <button data-action="click->navbar#toggle"
-                class="text-ivory-700 hover:text-ivory-900 hover:bg-ivory-200 p-2 rounded-md transition-colors"
+                class="text-ivory-200 hover:text-white hover:bg-navy-800 p-2 rounded-md transition-colors"
                 aria-label="Toggle navigation menu">
 
           <%# Hamburger icon (shown by default) %>
@@ -38,10 +49,20 @@
   </div>
 
   <%# Mobile menu (hidden by default) %>
-  <div data-navbar-target="menu" class="hidden sm:hidden border-t border-ivory-300 bg-ivory-50">
+  <div data-navbar-target="menu" class="hidden md:hidden border-t border-navy-800 bg-navy-900">
     <div class="px-2 py-2 space-y-1">
-      <%= link_to "Home", root_path,
-            class: "block text-ivory-700 hover:text-ivory-900 hover:bg-ivory-200 px-3 py-2 rounded-md text-sm font-medium transition-colors" %>
+      <%= link_to "Issues", "#issues",
+            class: "block text-ivory-200 hover:text-white hover:bg-navy-800 px-3 py-2 rounded-md text-sm font-medium transition-colors" %>
+      <%= link_to "News", news_path,
+            class: "block text-ivory-200 hover:text-white hover:bg-navy-800 px-3 py-2 rounded-md text-sm font-medium transition-colors" %>
+      <%= link_to "Events", events_path,
+            class: "block text-ivory-200 hover:text-white hover:bg-navy-800 px-3 py-2 rounded-md text-sm font-medium transition-colors" %>
+      <%= link_to "About", about_path,
+            class: "block text-ivory-200 hover:text-white hover:bg-navy-800 px-3 py-2 rounded-md text-sm font-medium transition-colors" %>
+      <%= link_to "Volunteer", volunteer_path,
+            class: "block text-ivory-200 hover:text-white hover:bg-navy-800 px-3 py-2 rounded-md text-sm font-medium transition-colors" %>
+      <%= link_to "Get Involved", volunteer_path,
+            class: "block bg-campaign-red hover:bg-campaign-red-dark text-white px-3 py-2 rounded-md text-sm font-semibold transition-colors text-center mt-2" %>
     </div>
   </div>
 </nav>
