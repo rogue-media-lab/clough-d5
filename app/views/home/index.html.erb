@@ -29,9 +29,9 @@
 
         <div class="flex justify-center">
           <div class="relative">
-            <div class="w-72 h-72 md:w-80 md:h-80 rounded-full bg-navy-800 flex items-center justify-center">
-              <span class="text-8xl">🇺🇸</span>
-            </div>
+            <%= image_tag "/andrew-clough.jpg",
+                  alt: "Andrew Clough",
+                  class: "w-72 h-72 md:w-80 md:h-80 rounded-full object-cover border-4 border-campaign-gold" %>
             <div class="absolute -bottom-4 -right-4 bg-campaign-gold text-navy-900 px-4 py-2 rounded-lg font-bold">
               District 5
             </div>
@@ -47,9 +47,9 @@
       <div class="grid md:grid-cols-2 gap-12 items-center">
         <div class="order-2 md:order-1">
           <div class="relative">
-            <div class="w-full max-w-md mx-auto aspect-[4/5] bg-navy-200 rounded-xl flex items-center justify-center">
-              <span class="text-9xl">👤</span>
-            </div>
+            <%= image_tag "/andrew-clough.jpg",
+                  alt: "Andrew Clough",
+                  class: "w-full max-w-md mx-auto aspect-[4/5] object-cover rounded-xl shadow-lg" %>
             <div class="absolute -bottom-6 -right-6 bg-campaign-red text-white px-6 py-3 rounded-lg">
               <p class="font-semibold">Rock Hill, SC</p>
               <p class="text-sm text-ivory-200">Resident</p>
