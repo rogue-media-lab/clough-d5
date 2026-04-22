@@ -57,7 +57,7 @@
             <div>
               <p class="text-sm font-medium text-ivory-900"><%= issue.title %></p>
               <p class="text-xs mt-0.5">
-                <%= if issue.active? %>
+                <% if issue.active? %>
                   <span class="text-green-700">Active</span>
                 <% else %>
                   <span class="text-yellow-600">Draft</span>
