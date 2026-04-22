@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= content_for(:title) { "Admin" } %> | <%= Rails.application.class.module_parent_name %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+  <body class="bg-ivory-50 font-sans text-ivory-900">
+    <div class="flex h-screen overflow-hidden">
+
+      <aside class="w-60 bg-ivory-900 text-ivory-100 flex flex-col flex-shrink-0">
+        <div class="px-6 py-5 border-b border-ivory-700">
+          <span class="text-base font-semibold tracking-tight">Admin</span>
+        </div>
+        <nav class="flex-1 px-3 py-5 space-y-1">
+          <%= link_to "Dashboard", admin_root_path,
+                class: "flex items-center px-3 py-2 rounded-md text-sm font-medium text-ivory-300 hover:text-ivory-50 hover:bg-ivory-700 transition-colors" %>
+          <%= link_to "Posts", admin_posts_path,
+                class: "flex items-center px-3 py-2 rounded-md text-sm font-medium text-ivory-300 hover:text-ivory-50 hover:bg-ivory-700 transition-colors" %>
+          <%= link_to "New Post", new_admin_post_path,
+                class: "flex items-center px-3 py-2 rounded-md text-sm font-medium text-ivory-300 hover:text-ivory-50 hover:bg-ivory-700 transition-colors" %>
+        </nav>
+        <div class="px-3 py-4 border-t border-ivory-700 space-y-1">
+          <%= link_to "View Site →", root_path,
+                class: "block px-3 py-2 rounded-md text-sm text-ivory-400 hover:text-ivory-200 transition-colors" %>
+          <%= button_to "Sign out", session_path(Current.session), method: :delete,
+                class: "w-full text-left px-3 py-2 rounded-md text-sm text-ivory-400 hover:text-ivory-200 transition-colors bg-transparent border-0 cursor-pointer" %>
+        </div>
+      </aside>
+
+      <div class="flex-1 flex flex-col overflow-hidden">
+        <header class="bg-white border-b border-ivory-200 px-6 py-4 flex items-center justify-between">
+          <h1 class="text-base font-semibold text-ivory-900"><%= content_for(:page_title) { "Dashboard" } %></h1>
+          <span class="text-sm text-ivory-400"><%= Current.session&.user&.email_address %></span>
+        </header>
+        <main class="flex-1 overflow-y-auto p-6">
+          <% if notice %>
+            <div class="mb-4 bg-pastel-mint border border-green-200 text-green-800 px-4 py-3 rounded-md text-sm"><%= notice %></div>
+          <% end %>
+          <% if alert %>
+            <div class="mb-4 bg-red-50 border border-red-200 text-red-800 px-4 py-3 rounded-md text-sm"><%= alert %></div>
+          <% end %>
+          <%= yield %>
+        </main>
+      </div>
+
+    </div>
+  </body>
+</html>

@@ -1,0 +1,47 @@
+<nav class="sticky top-0 z-40 bg-ivory-100 border-b border-ivory-300" data-controller="navbar">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between h-16">
+
+      <%# Brand %>
+      <div class="flex items-center">
+        <%= link_to root_path, class: "text-ivory-900 font-bold text-lg tracking-tight hover:text-ivory-700 transition-colors" do %>
+          Clough
+        <% end %>
+      </div>
+
+      <%# Desktop nav links %>
+      <div class="hidden sm:flex sm:items-center sm:gap-1">
+        <%= link_to "Home", root_path,
+              class: "text-ivory-700 hover:text-ivory-900 hover:bg-ivory-200 px-3 py-2 rounded-md text-sm font-medium transition-colors" %>
+      </div>
+
+      <%# Mobile menu button %>
+      <div class="flex items-center sm:hidden">
+        <button data-action="click->navbar#toggle"
+                class="text-ivory-700 hover:text-ivory-900 hover:bg-ivory-200 p-2 rounded-md transition-colors"
+                aria-label="Toggle navigation menu">
+
+          <%# Hamburger icon (shown by default) %>
+          <svg data-navbar-target="openIcon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+
+          <%# Close icon (hidden by default) %>
+          <svg data-navbar-target="closeIcon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <%# Mobile menu (hidden by default) %>
+  <div data-navbar-target="menu" class="hidden sm:hidden border-t border-ivory-300 bg-ivory-50">
+    <div class="px-2 py-2 space-y-1">
+      <%= link_to "Home", root_path,
+            class: "block text-ivory-700 hover:text-ivory-900 hover:bg-ivory-200 px-3 py-2 rounded-md text-sm font-medium transition-colors" %>
+    </div>
+  </div>
+</nav>

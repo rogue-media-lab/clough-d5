@@ -1,0 +1,33 @@
+<% content_for :page_title, @post.title %>
+
+<div class="max-w-3xl space-y-6">
+  <div class="flex gap-3">
+    <%= link_to "Edit", edit_admin_post_path(@post),
+          class: "px-4 py-2 bg-ivory-900 text-ivory-50 text-sm font-medium rounded-md hover:bg-ivory-700 transition-colors" %>
+    <%= link_to "All Posts", admin_posts_path,
+          class: "px-4 py-2 bg-ivory-100 text-ivory-700 text-sm font-medium rounded-md hover:bg-ivory-200 transition-colors" %>
+  </div>
+
+  <div class="bg-white rounded-lg border border-ivory-200 p-8">
+    <% if @post.cover_image.attached? %>
+      <%= image_tag @post.cover_image, class: "w-full rounded-lg object-cover mb-6 max-h-64" %>
+    <% end %>
+    <div class="flex items-center gap-2 mb-4">
+      <% if @post.published? %>
+        <span class="inline-flex px-2 py-0.5 rounded text-xs font-medium bg-pastel-mint text-green-800">
+          Published <%= @post.published_at.strftime("%b %-d, %Y") %>
+        </span>
+      <% else %>
+        <span class="inline-flex px-2 py-0.5 rounded text-xs font-medium bg-ivory-100 text-ivory-600">Draft</span>
+      <% end %>
+      <% if @post.featured? %>
+        <span class="inline-flex px-2 py-0.5 rounded text-xs font-medium bg-pastel-lavender text-purple-800">Featured</span>
+      <% end %>
+    </div>
+    <h1 class="text-2xl font-bold text-ivory-900 mb-2"><%= @post.title %></h1>
+    <p class="text-ivory-500 mb-6"><%= @post.subtitle %></p>
+    <div class="prose prose-slate max-w-none">
+      <%= @post.body %>
+    </div>
+  </div>
+</div>

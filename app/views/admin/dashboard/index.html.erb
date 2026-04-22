@@ -1,0 +1,41 @@
+<% content_for :page_title, "Dashboard" %>
+
+<div class="grid grid-cols-3 gap-6 mb-8">
+  <div class="bg-white rounded-lg border border-ivory-200 p-6">
+    <p class="text-sm text-ivory-500 mb-1">Total Posts</p>
+    <p class="text-3xl font-bold text-ivory-900"><%= @post_count %></p>
+  </div>
+  <div class="bg-white rounded-lg border border-ivory-200 p-6">
+    <p class="text-sm text-ivory-500 mb-1">Published</p>
+    <p class="text-3xl font-bold text-green-700"><%= @published_count %></p>
+  </div>
+  <div class="bg-white rounded-lg border border-ivory-200 p-6">
+    <p class="text-sm text-ivory-500 mb-1">Drafts</p>
+    <p class="text-3xl font-bold text-ivory-400"><%= @draft_count %></p>
+  </div>
+</div>
+
+<div class="bg-white rounded-lg border border-ivory-200">
+  <div class="px-6 py-4 border-b border-ivory-100 flex items-center justify-between">
+    <h2 class="text-sm font-semibold text-ivory-700">Recent Posts</h2>
+    <%= link_to "View all", admin_posts_path, class: "text-sm text-ivory-400 hover:text-ivory-900 transition-colors" %>
+  </div>
+  <ul class="divide-y divide-ivory-100">
+    <% @recent_posts.each do |post| %>
+      <li class="px-6 py-4 flex items-center justify-between">
+        <div>
+          <p class="text-sm font-medium text-ivory-900"><%= post.title %></p>
+          <p class="text-xs text-ivory-400 mt-0.5">
+            <%= post.published? ? "Published #{post.published_at.strftime('%b %-d, %Y')}" : "Draft" %>
+          </p>
+        </div>
+        <%= link_to "Edit", edit_admin_post_path(post), class: "text-xs text-ivory-400 hover:text-ivory-900 transition-colors" %>
+      </li>
+    <% end %>
+    <% if @recent_posts.empty? %>
+      <li class="px-6 py-8 text-center text-sm text-ivory-400">
+        No posts yet. <%= link_to "Create one", new_admin_post_path, class: "text-ivory-700 underline" %>
+      </li>
+    <% end %>
+  </ul>
+</div>

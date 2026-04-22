@@ -1,0 +1,26 @@
+<div class="max-w-2xl mx-auto px-4 py-10">
+  <article>
+    <% if @post.cover_image.attached? %>
+      <%= image_tag @post.cover_image, class: "w-full rounded-xl object-cover max-h-80 mb-8" %>
+    <% end %>
+
+    <header class="mb-8">
+      <p class="text-xs text-ivory-400 uppercase tracking-widest mb-3">
+        <%= @post.published_at.strftime("%B %-d, %Y") %>
+      </p>
+      <h1 class="text-3xl md:text-4xl font-bold text-ivory-900 mb-4"><%= @post.title %></h1>
+      <% if @post.subtitle.present? %>
+        <p class="text-xl text-ivory-500"><%= @post.subtitle %></p>
+      <% end %>
+    </header>
+
+    <div class="prose prose-slate max-w-none">
+      <%= @post.body %>
+    </div>
+
+    <footer class="mt-12 pt-8 border-t border-ivory-200">
+      <%= link_to "← Back to all posts", posts_path,
+            class: "text-sm text-ivory-500 hover:text-ivory-900 transition-colors" %>
+    </footer>
+  </article>
+</div>
