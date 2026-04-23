@@ -25,6 +25,9 @@ class HomeController < ApplicationController
   end
 
   def events
+    @featured_event = Event.upcoming.order(:date).first
+    @upcoming_events = Event.upcoming.order(:date).group_by { |e| e.date.beginning_of_month }
+    @past_events = Event.past.order(date: :desc)
   end
 
   private

@@ -1,103 +1,107 @@
 <% content_for :title, "Events - Clough for SC5" %>
 
-<%# Hero Section with Background Image %>
-<div class="relative bg-navy-900 text-white overflow-hidden">
-  <div class="absolute inset-0">
-    <%# Placeholder for a real image %>
-    <div class="absolute inset-0 bg-black opacity-40"></div>
-  </div>
-  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-32 text-center">
-    <p class="text-campaign-gold font-semibold tracking-wider uppercase mb-4">Events</p>
-    <h1 class="font-display text-5xl md:text-6xl font-bold mb-4">
-      Join Us on the Trail
-    </h1>
-    <p class="text-xl text-ivory-100 max-w-2xl mx-auto">
-      Meet Andrew, hear his vision for District 5, and get involved in the campaign.
-    </p>
+<%# Hero Section %>
+<div class="bg-navy-900 text-white py-16 md:py-24 bg-cover bg-center" style="background-image: url(<%= image_path 'event-hero-bg.jpg' %>);">
+  <div class="bg-navy-900 bg-opacity-80 py-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="font-display text-5xl md:text-6xl font-bold mb-4">
+        Upcoming Events
+      </h1>
+      <p class="text-xl text-navy-200 max-w-2xl mx-auto">
+        Join Andrew at events across District 5. Your voice matters.
+      </p>
+    </div>
   </div>
 </div>
 
-<%# Featured Event Section %>
-<section class="-mt-16 md:-mt-24 z-10 relative">
-  <div class="max-w-4xl mx-auto px-4">
-    <div class="bg-white rounded-2xl shadow-xl border border-ivory-100 grid md:grid-cols-3 overflow-hidden">
-      <div class="md:col-span-1 bg-navy-100 flex items-center justify-center p-6">
-        <%# Placeholder for an actual image %>
-        <div class="w-full h-48 bg-navy-200 rounded-lg flex items-center justify-center">
-          <span class="text-7xl">🎉</span>
+<%# Featured Event %>
+<% if @featured_event %>
+<section class="py-16 md:py-24 bg-ivory-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+      <div class="order-2 lg:order-1">
+        <div class="aspect-w-16 aspect-h-9 rounded-xl overflow-hidden shadow-lg">
+          <%= image_tag 'featured-event.jpg', class: "w-full h-full object-cover" %>
         </div>
       </div>
-      <div class="md:col-span-2 p-8">
-        <p class="text-campaign-red font-semibold tracking-wider uppercase mb-2">Featured Event</p>
-        <h2 class="font-display text-3xl font-bold text-navy-900 mb-2">Campaign Kickoff Rally</h2>
-        <p class="text-navy-600 mb-4">
-          This is the big one! Join us for the official launch of the campaign with food, music, and 
-          a special announcement from Andrew.
+      <div class="order-1 lg:order-2">
+        <p class="text-campaign-red font-semibold tracking-wider uppercase mb-4">Featured Event</p>
+        <h2 class="font-display text-4xl font-bold text-navy-900 mb-4">
+          <%= @featured_event.title %>
+        </h2>
+        <p class="text-navy-600 text-lg mb-6">
+          <%= @featured_event.description %>
         </p>
-        <div class="flex flex-wrap gap-x-6 gap-y-2 text-sm text-navy-700 mb-6">
-          <span class="flex items-center gap-2 font-medium">📍 Rock Hill Convention Center</span>
-          <span class="flex items-center gap-2 font-medium">🗓️ Saturday, May 15th, 2026</span>
-          <span class="flex items-center gap-2 font-medium">🕕 6:00 PM - 8:00 PM</span>
+        <div class="flex flex-wrap gap-x-6 gap-y-2 text-navy-700 mb-8">
+          <div class="flex items-center gap-2">
+            <svg class="w-5 h-5 text-campaign-red" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+            <span><%= @featured_event.date.strftime("%A, %B %d, %Y") %></span>
+          </div>
+          <div class="flex items-center gap-2">
+            <svg class="w-5 h-5 text-campaign-red" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            <span><%= @featured_event.location %></span>
+          </div>
         </div>
-        <a href="#" class="inline-block bg-campaign-red hover:bg-red-700 text-white px-8 py-3 rounded-lg font-semibold transition-colors">
-          Get Tickets
-        </a>
+        <%= link_to "View Details & RSVP", "#", class: "bg-campaign-red hover:bg-red-700 text-white px-8 py-4 rounded-lg font-semibold transition-colors" %>
       </div>
     </div>
   </div>
 </section>
+<% end %>
 
 <%# Calendar Section %>
 <section class="py-16 md:py-24">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center mb-12">
-      <h2 class="font-display text-4xl font-bold text-navy-900">May 2026</h2>
+      <h2 class="font-display text-4xl font-bold text-navy-900">Event Calendar</h2>
     </div>
-    
-    <%# Calendar Grid - This is a simplified representation %>
-    <div class="grid grid-cols-7 gap-px bg-ivory-200 border border-ivory-200 rounded-lg overflow-hidden">
-      <%# Calendar Header %>
-      <% ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].each do |day| %>
-        <div class="bg-ivory-50 p-2 text-center text-sm font-semibold text-navy-600"><%= day %></div>
-      <% end %>
-      
-      <%# Calendar Body - Placeholder structure %>
-      <% (1..31).to_a.each do |day| %>
-        <div class="bg-white p-2 min-h-[120px] aspect-square relative">
-          <div class="text-sm text-navy-800 font-medium"><%= day %></div>
-          <%# Example of an event card %>
-          <% if day == 22 %>
-            <div class="bg-campaign-red text-white p-2 rounded-md text-xs mt-1 cursor-pointer hover:bg-red-700">
-              <p class="font-bold truncate">Town Hall</p>
-              <p class="truncate">York County Library</p>
+
+    <% @upcoming_events.each do |month, events| %>
+      <div class="mb-12">
+        <h3 class="font-display text-2xl font-bold text-navy-900 mb-6"><%= month.strftime("%B %Y") %></h3>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <% events.each do |event| %>
+            <div class="bg-white border border-ivory-200 rounded-xl shadow-sm hover:shadow-lg transition-shadow overflow-hidden flex flex-col">
+              <div class="p-6 flex-grow">
+                <div class="flex items-start justify-between mb-4">
+                    <div class="text-center bg-ivory-100 rounded-lg px-3 py-1">
+                      <div class="font-bold text-campaign-red text-2xl"><%= event.date.strftime("%d") %></div>
+                      <div class="text-xs uppercase text-navy-600"><%= event.date.strftime("%b") %></div>
+                    </div>
+                    <div class="text-right">
+                      <p class="font-semibold text-navy-600"><%= event.date.strftime("%l:%M %p") %></p>
+                    </div>
+                </div>
+                <h4 class="font-display text-xl font-bold text-navy-900 mb-2"><%= event.title %></h4>
+                <p class="text-sm text-navy-600 mb-4"><%= event.description %></p>
+              </div>
+              <div class="bg-ivory-50 p-4 border-t border-ivory-200">
+                <div class="flex items-center justify-between text-sm">
+                  <div class="flex items-center gap-1.5 text-navy-600">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                    <span><%= event.location %></span>
+                  </div>
+                  <%= link_to "RSVP", "#", class: "font-semibold text-campaign-red hover:text-red-700" %>
+                </div>
+              </div>
             </div>
           <% end %>
         </div>
-      <% end %>
-    </div>
-    
-    <div class="text-center mt-12">
-      <div class="inline-flex items-center gap-4">
-        <button class="text-navy-500 hover:text-navy-800">← April</button>
-        <button class="text-navy-500 hover:text-navy-800">June →</button>
       </div>
-    </div>
+    <% end %>
   </div>
 </section>
 
 
+
 <%# Host an Event CTA %>
-<section class="bg-ivory-50 py-16">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="bg-navy-900 text-white rounded-2xl p-8 md:p-12 text-center">
-      <h2 class="font-display text-3xl font-bold mb-4">Host Your Own Event</h2>
-      <p class="text-ivory-200 mb-6 max-w-2xl mx-auto">
-        Interested in hosting a meet-and-greet in your neighborhood or a house party for friends?
-        We'd love to bring Andrew to you. Let us know!
-      </p>
-      <%= link_to "Contact Us to Host", volunteer_path,
-            class: "inline-block bg-campaign-red hover:bg-red-700 text-white px-8 py-3 rounded-lg font-semibold transition-colors" %>
-    </div>
+<section class="bg-navy-900 text-white py-16 md:py-20">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <h2 class="font-display text-3xl md:text-4xl font-bold mb-4">Host a House Party</h2>
+    <p class="text-navy-200 text-lg mb-8 mx-auto max-w-2xl">
+      Interested in hosting a meet-and-greet or house party? We'd love to come speak to your group. It's a great way to introduce Andrew to your friends and neighbors.
+    </p>
+    <%= link_to "Learn More & Contact Us", volunteer_path, class: "bg-campaign-red hover:bg-red-700 text-white px-8 py-4 rounded-lg font-semibold transition-colors" %>
   </div>
 </section>
 
