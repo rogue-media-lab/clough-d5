@@ -24,6 +24,11 @@ class HomeController < ApplicationController
   def about
   end
 
+  def news
+    @featured_article = NewsArticle.published.find_by(featured: true)
+    @articles = NewsArticle.published.where.not(id: @featured_article&.id).order(published_date: :desc)
+  end
+
   def events
     @featured_event = Event.upcoming.order(:date).first
     @upcoming_events = Event.upcoming.order(:date).group_by { |e| e.date.beginning_of_month }
