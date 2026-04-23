@@ -36,8 +36,8 @@ end
 
 puts "Posts: #{Post.count} total"
 
-# Volunteer interests
-["Phone Banking", "Canvassing", "Event Support", "Digital Outreach", "Yard Signs", "Data Entry"].each do |name|
+# Volunteer interests - matches Paper design volunteer page roles
+["Canvassing", "Phone & Text Banking", "Yard Signs", "Social Media", "Host a House Party", "Events & Rallies"].each do |name|
   VolunteerInterest.find_or_create_by!(name: name)
 end
 puts "Volunteer interests: #{VolunteerInterest.count} total"

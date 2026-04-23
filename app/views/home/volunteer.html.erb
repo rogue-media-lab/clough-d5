@@ -1,98 +1,257 @@
 <% content_for :title, "Volunteer - Clough for SC5" %>
 
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
-  <div class="text-center mb-12">
-    <p class="text-campaign-red font-semibold tracking-wider uppercase mb-4">Get Involved</p>
-    <h1 class="font-display text-5xl md:text-6xl font-bold text-navy-900 mb-6">
-      Volunteer With Us
-    </h1>
-    <p class="text-xl text-navy-600 max-w-2xl mx-auto">
-      Join the team and help bring conservative leadership to District 5.
-    </p>
-  </div>
-
-  <div class="grid md:grid-cols-2 gap-12 items-start">
-    <div class="bg-ivory-50 rounded-xl p-8">
-      <h2 class="font-display text-2xl font-bold text-navy-900 mb-6">Ways to Volunteer</h2>
-      <ul class="space-y-6">
-        <li class="flex gap-4">
-          <div class="flex-shrink-0 w-12 h-12 bg-campaign-red text-white rounded-lg flex items-center justify-center text-xl">📞</div>
-          <div>
-            <h3 class="font-semibold text-navy-900">Phone Banking</h3>
-            <p class="text-navy-600 text-sm">Call voters in District 5 to spread the message.</p>
-          </div>
-        </li>
-        <li class="flex gap-4">
-          <div class="flex-shrink-0 w-12 h-12 bg-campaign-red text-white rounded-lg flex items-center justify-center text-xl">🚗</div>
-          <div>
-            <h3 class="font-semibold text-navy-900">Canvassing</h3>
-            <p class="text-navy-600 text-sm">Knock on doors and talk to your neighbors.</p>
-          </div>
-        </li>
-        <li class="flex gap-4">
-          <div class="flex-shrink-0 w-12 h-12 bg-campaign-red text-white rounded-lg flex items-center justify-center text-xl">📋</div>
-          <div>
-            <h3 class="font-semibold text-navy-900">Event Support</h3>
-            <p class="text-navy-600 text-sm">Help at rallies, town halls, and meet-and-greets.</p>
-          </div>
-        </li>
-        <li class="flex gap-4">
-          <div class="flex-shrink-0 w-12 h-12 bg-campaign-red text-white rounded-lg flex items-center justify-center text-xl">💻</div>
-          <div>
-            <h3 class="font-semibold text-navy-900">Digital Outreach</h3>
-            <p class="text-navy-600 text-sm">Share content on social media and online.</p>
-          </div>
-        </li>
-      </ul>
-    </div>
-
-    <div class="bg-white rounded-xl shadow-lg p-8 border border-ivory-100">
-      <h2 class="font-display text-2xl font-bold text-navy-900 mb-6">Sign Up to Volunteer</h2>
+<!-- Hero Section -->
+<div class="bg-navy-900 text-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
+    <div class="max-w-3xl">
+      <p class="text-campaign-gold font-semibold tracking-wider uppercase mb-4">Get Involved</p>
+      <h1 class="font-display text-5xl md:text-6xl font-bold mb-6">
+        Be part of<br/>something real.
+      </h1>
+      <p class="text-xl text-navy-200 mb-10 max-w-xl">
+        Every door knocked, every call made, every yard sign planted — it all adds up.
+      </p>
       
-      <%= form_with model: @volunteer_submission, url: volunteer_submissions_path, class: "space-y-4" do |form| %>
-        <% if @volunteer_submission.errors.any? %>
-          <div class="bg-red-50 text-red-600 p-3 rounded-lg text-sm">
-            <%= @volunteer_submission.errors.full_messages.join(", ") %>
-          </div>
-        <% end %>
-        
-        <div>
-          <%= form.label :name, "Full Name", class: "block text-sm font-medium text-navy-700 mb-1" %>
-          <%= form.text_field :name, class: "w-full px-4 py-2 border border-ivory-300 rounded-lg focus:ring-2 focus:ring-campaign-red focus:border-transparent", placeholder: "Your name", required: true %>
+      <!-- Progress Bar -->
+      <div class="bg-navy-800 rounded-lg p-6 mb-8 max-w-md">
+        <div class="flex justify-between text-sm text-navy-300 mb-2">
+          <span>1,812 volunteers</span>
+          <span>2,000 goal</span>
         </div>
-        <div>
-          <%= form.label :email, "Email", class: "block text-sm font-medium text-navy-700 mb-1" %>
-          <%= form.email_field :email, class: "w-full px-4 py-2 border border-ivory-300 rounded-lg focus:ring-2 focus:ring-campaign-red focus:border-transparent", placeholder: "your@email.com", required: true %>
+        <div class="h-3 bg-navy-800 rounded-full overflow-hidden">
+          <div class="h-full bg-campaign-red rounded-full" style="width: 90.6%"></div>
         </div>
-        <div>
-          <%= form.label :phone, "Phone", class: "block text-sm font-medium text-navy-700 mb-1" %>
-          <%= form.telephone_field :phone, class: "w-full px-4 py-2 border border-ivory-300 rounded-lg focus:ring-2 focus:ring-campaign-red focus:border-transparent", placeholder: "(555) 123-4567" %>
-        </div>
-        <div>
-          <%= form.label :area_code, "Zip Code", class: "block text-sm font-medium text-navy-700 mb-1" %>
-          <%= form.text_field :area_code, class: "w-full px-4 py-2 border border-ivory-300 rounded-lg focus:ring-2 focus:ring-campaign-red focus:border-transparent", placeholder: "29732" %>
-        </div>
-        
-        <% if @interests.any? %>
-          <div>
-            <label class="block text-sm font-medium text-navy-700 mb-2">I'm interested in:</label>
-            <div class="space-y-2">
-              <%= collection_check_boxes(:volunteer_submission, :interest_ids, @interests, :id, :name) do |b| %>
-                <label class="flex items-center gap-2">
-                  <%= b.check_box(class: "rounded text-campaign-red") %>
-                  <span class="text-navy-700"><%= b.label %></span>
-                </label>
-              <% end %>
-            </div>
-          </div>
-        <% end %>
-        
-        <div>
-          <%= form.label :message, "Message (optional)", class: "block text-sm font-medium text-navy-700 mb-1" %>
-          <%= form.text_area :message, rows: 3, class: "w-full px-4 py-2 border border-ivory-300 rounded-lg focus:ring-2 focus:ring-campaign-red focus:border-transparent", placeholder: "Any questions or comments?" %>
-        </div>
-        <%= form.submit "Sign Up to Volunteer", class: "w-full bg-campaign-red hover:bg-red-700 text-white py-3 rounded-lg font-semibold transition-colors cursor-pointer" %>
-      <% end %>
+        <p class="text-sm text-navy-300 mt-2">188 more to reach our goal</p>
+      </div>
+      
+      <div class="flex gap-4">
+        <a href="#join" class="bg-campaign-red hover:bg-red-700 text-white px-8 py-4 rounded-lg font-semibold transition-colors">
+          Volunteer
+        </a>
+        <a href="#" class="border-2 border-white hover:bg-white hover:text-navy-900 text-white px-8 py-4 rounded-lg font-semibold transition-colors">
+          Donate
+        </a>
+      </div>
     </div>
   </div>
 </div>
+
+<!-- How You Can Help Section -->
+<div class="bg-ivory-50 py-16 md:py-24">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12">
+      <p class="text-campaign-red font-semibold tracking-wider uppercase mb-4">How You Can Help</p>
+      <h2 class="font-display text-4xl md:text-5xl font-bold text-navy-900 mb-4">
+        Pick your role.
+      </h2>
+      <p class="text-navy-600 max-w-2xl mx-auto">
+        Every role matters. Do as much or as little as you can — any help makes a difference.
+      </p>
+    </div>
+    
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Canvassing -->
+      <div class="bg-white rounded-xl p-8 shadow-sm border border-ivory-100 hover:shadow-md transition-shadow">
+        <div class="w-12 h-12 bg-campaign-red/10 rounded-lg flex items-center justify-center mb-4">
+          <svg class="w-6 h-6 text-campaign-red" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+          </svg>
+        </div>
+        <h3 class="font-display text-xl font-bold text-navy-900 mb-2">Canvassing</h3>
+        <p class="text-navy-600 text-sm mb-4">
+          Walk neighborhoods and talk to voters face-to-face. The most effective way to reach people.
+        </p>
+        <span class="text-campaign-red text-sm font-medium">Learn more →</span>
+      </div>
+      
+      <!-- Phone & Text Banking -->
+      <div class="bg-white rounded-xl p-8 shadow-sm border border-ivory-100 hover:shadow-md transition-shadow">
+        <div class="w-12 h-12 bg-campaign-red/10 rounded-lg flex items-center justify-center mb-4">
+          <svg class="w-6 h-6 text-campaign-red" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+          </svg>
+        </div>
+        <h3 class="font-display text-xl font-bold text-navy-900 mb-2">Phone & Text Banking</h3>
+        <p class="text-navy-600 text-sm mb-4">
+          Reach voters from your own home. Phone calls for older voters, texts for younger.
+        </p>
+        <span class="text-campaign-red text-sm font-medium">Learn more →</span>
+      </div>
+      
+      <!-- Yard Signs -->
+      <div class="bg-white rounded-xl p-8 shadow-sm border border-ivory-100 hover:shadow-md transition-shadow">
+        <div class="w-12 h-12 bg-campaign-red/10 rounded-lg flex items-center justify-center mb-4">
+          <svg class="w-6 h-6 text-campaign-red" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/>
+          </svg>
+        </div>
+        <h3 class="font-display text-xl font-bold text-navy-900 mb-2">Yard Signs</h3>
+        <p class="text-navy-600 text-sm mb-4">
+          Put a sign in your yard or help distribute them across the district.
+        </p>
+        <span class="text-campaign-red text-sm font-medium">Learn more →</span>
+      </div>
+      
+      <!-- Social Media -->
+      <div class="bg-white rounded-xl p-8 shadow-sm border border-ivory-100 hover:shadow-md transition-shadow">
+        <div class="w-12 h-12 bg-campaign-red/10 rounded-lg flex items-center justify-center mb-4">
+          <svg class="w-6 h-6 text-campaign-red" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/>
+          </svg>
+        </div>
+        <h3 class="font-display text-xl font-bold text-navy-900 mb-2">Social Media</h3>
+        <p class="text-navy-600 text-sm mb-4">
+          Share posts, write your own story about why you support Andrew.
+        </p>
+        <span class="text-campaign-red text-sm font-medium">Learn more →</span>
+      </div>
+      
+      <!-- Host a House Party -->
+      <div class="bg-white rounded-xl p-8 shadow-sm border border-ivory-100 hover:shadow-md transition-shadow">
+        <div class="w-12 h-12 bg-campaign-red/10 rounded-lg flex items-center justify-center mb-4">
+          <svg class="w-6 h-6 text-campaign-red" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+          </svg>
+        </div>
+        <h3 class="font-display text-xl font-bold text-navy-900 mb-2">Host a House Party</h3>
+        <p class="text-navy-600 text-sm mb-4">
+          Invite neighbors over and bring Andrew to your living room. We provide the materials.
+        </p>
+        <span class="text-campaign-red text-sm font-medium">Learn more →</span>
+      </div>
+      
+      <!-- Events & Rallies -->
+      <div class="bg-white rounded-xl p-8 shadow-sm border border-ivory-100 hover:shadow-md transition-shadow">
+        <div class="w-12 h-12 bg-campaign-red/10 rounded-lg flex items-center justify-center mb-4">
+          <svg class="w-6 h-6 text-campaign-red" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+          </svg>
+        </div>
+        <h3 class="font-display text-xl font-bold text-navy-900 mb-2">Events & Rallies</h3>
+        <p class="text-navy-600 text-sm mb-4">
+          Help set up, greet attendees, and run the show at Coffee with Clough events.
+        </p>
+        <span class="text-campaign-red text-sm font-medium">Learn more →</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Join the Campaign Form Section -->
+<div id="join" class="bg-navy-900 py-16 md:py-24">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid lg:grid-cols-2 gap-12 items-start">
+      <!-- Left: Message -->
+      <div class="text-white">
+        <p class="text-campaign-gold font-semibold tracking-wider uppercase mb-4">Get Involved</p>
+        <h2 class="font-display text-4xl md:text-5xl font-bold mb-6">
+          Ready to help?<br/>Let's talk.
+        </h2>
+        <p class="text-navy-200 text-lg mb-8">
+          Fill in your details and check off whatever you're interested in. We'll be in touch soon.
+        </p>
+        <div class="flex gap-4">
+          <div class="flex items-center gap-2">
+            <svg class="w-5 h-5 text-campaign-red" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+            </svg>
+            <span class="text-navy-200">No experience needed</span>
+          </div>
+        </div>
+        <div class="flex gap-4 mt-2">
+          <div class="flex items-center gap-2">
+            <svg class="w-5 h-5 text-campaign-red" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+            </svg>
+            <span class="text-navy-200">Flexible scheduling</span>
+          </div>
+        </div>
+        <div class="flex gap-4 mt-2">
+          <div class="flex items-center gap-2">
+            <svg class="w-5 h-5 text-campaign-red" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+            </svg>
+            <span class="text-navy-200">All skill levels welcome</span>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Right: Form -->
+      <div class="bg-white rounded-xl p-8">
+        <h3 class="font-display text-2xl font-bold text-navy-900 mb-6">Join the Campaign</h3>
+        
+        <%= form_with model: @volunteer_submission, url: volunteer_submissions_path, class: "space-y-4" do |form| %>
+          <% if @volunteer_submission.errors.any? %>
+            <div class="bg-red-50 text-red-600 p-3 rounded-lg text-sm">
+              <%= @volunteer_submission.errors.full_messages.join(", ") %>
+            </div>
+          <% end %>
+          
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div>
+              <%= form.label :name, "First Name", class: "block text-sm font-medium text-navy-700 mb-1" %>
+              <%= form.text_field :name, class: "w-full px-4 py-3 border border-ivory-300 rounded-lg focus:ring-2 focus:ring-campaign-red focus:border-transparent", placeholder: "First name", required: true %>
+            </div>
+            <div>
+              <%= form.label :phone, "Phone Number", class: "block text-sm font-medium text-navy-700 mb-1" %>
+              <%= form.telephone_field :phone, class: "w-full px-4 py-3 border border-ivory-300 rounded-lg focus:ring-2 focus:ring-campaign-red focus:border-transparent", placeholder: "(555) 123-4567", required: true %>
+            </div>
+          </div>
+          
+          <div>
+            <%= form.label :email, "Email Address", class: "block text-sm font-medium text-navy-700 mb-1" %>
+            <%= form.email_field :email, class: "w-full px-4 py-3 border border-ivory-300 rounded-lg focus:ring-2 focus:ring-campaign-red focus:border-transparent", placeholder: "your@email.com", required: true %>
+          </div>
+          
+          <div>
+            <%= form.label :area_code, "Zip Code", class: "block text-sm font-medium text-navy-700 mb-1" %>
+            <%= form.text_field :area_code, class: "w-full px-4 py-3 border border-ivory-300 rounded-lg focus:ring-2 focus:ring-campaign-red focus:border-transparent", placeholder: "29732" %>
+          </div>
+          
+          <% if @interests.any? %>
+            <div>
+              <label class="block text-sm font-medium text-navy-700 mb-2">I want to help with:</label>
+              <div class="grid sm:grid-cols-2 gap-2">
+                <%= collection_check_boxes(:volunteer_submission, :interest_ids, @interests, :id, :name) do |b| %>
+                  <label class="flex items-center gap-2 p-2 rounded-lg hover:bg-ivory-50 cursor-pointer">
+                    <%= b.check_box(class: "rounded text-campaign-red focus:ring-campaign-red") %>
+                    <span class="text-navy-700 text-sm"><%= b.label %></span>
+                  </label>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+          
+          <div>
+            <%= form.label :message, "Message (optional)", class: "block text-sm font-medium text-navy-700 mb-1" %>
+            <%= form.text_area :message, rows: 2, class: "w-full px-4 py-3 border border-ivory-300 rounded-lg focus:ring-2 focus:ring-campaign-red focus:border-transparent", placeholder: "Any questions or comments?" %>
+          </div>
+          
+          <%= form.submit "Count Me In", class: "w-full bg-campaign-red hover:bg-red-700 text-white py-4 rounded-lg font-semibold transition-colors cursor-pointer text-lg" %>
+          
+          <p class="text-xs text-navy-500 text-center">
+            Your information is private and will never be sold.
+          </p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="bg-navy-950 text-navy-300 py-12">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="border-t border-navy-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+      <div class="text-center md:text-left">
+        <p class="text-sm">Paid for by the Committee to Elect Andrew Clough.</p>
+        <p class="text-sm">Not authorized by any candidate or candidate's committee.</p>
+      </div>
+      <div class="flex gap-6">
+        <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+        <a href="#" class="hover:text-white transition-colors">Contact</a>
+      </div>
+      <p class="text-sm">© 2025 Clough for SC5. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
