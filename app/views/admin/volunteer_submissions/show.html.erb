@@ -1,0 +1,55 @@
+<% content_for :title, "Volunteer Submission" %>
+
+<div class="mx-auto md:w-2/3 w-full">
+  <h1 class="font-bold text-4xl mb-5"><%= @submission.name %></h1>
+
+  <div class="bg-white shadow rounded-lg p-6">
+    <div class="mb-4">
+      <label class="block text-gray-500 text-sm font-bold mb-2">Email</label>
+      <p class="text-gray-900"><%= @submission.email %></p>
+    </div>
+
+    <div class="mb-4">
+      <label class="block text-gray-500 text-sm font-bold mb-2">Phone</label>
+      <p class="text-gray-900"><%= @submission.phone.presence || "Not provided" %></p>
+    </div>
+
+    <div class="mb-4">
+      <label class="block text-gray-500 text-sm font-bold mb-2">Area Code</label>
+      <p class="text-gray-900"><%= @submission.area_code.presence || "Not provided" %></p>
+    </div>
+
+    <div class="mb-4">
+      <label class="block text-gray-500 text-sm font-bold mb-2">Status</label>
+      <p class="text-gray-900"><%= @submission.submission_status %></p>
+    </div>
+
+    <div class="mb-4">
+      <label class="block text-gray-500 text-sm font-bold mb-2">Interests</label>
+      <% if @submission.interests.any? %>
+        <div class="flex flex-wrap gap-2">
+          <% @submission.interests.each do |interest| %>
+            <span class="inline-block bg-gray-100 rounded-full px-3 py-1 text-sm font-semibold text-gray-700"><%= interest.name %></span>
+          <% end %>
+        </div>
+      <% else %>
+        <p class="text-gray-500">No interests selected</p>
+      <% end %>
+    </div>
+
+    <div class="mb-4">
+      <label class="block text-gray-500 text-sm font-bold mb-2">Message</label>
+      <p class="text-gray-900 whitespace-pre-wrap"><%= @submission.message.presence || "No message" %></p>
+    </div>
+
+    <div class="mb-4">
+      <label class="block text-gray-500 text-sm font-bold mb-2">Submitted</label>
+      <p class="text-gray-900"><%= @submission.created_at.strftime("%B %d, %Y at %I:%M %p") %></p>
+    </div>
+  </div>
+
+  <div class="mt-6 flex gap-4">
+    <%= link_to "Edit Status", edit_admin_volunteer_submission_path(@submission), class: "rounded-md px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white font-medium" %>
+    <%= link_to "Back to submissions", admin_volunteer_submissions_path, class: "ml-auto rounded-md py-3 px-3.5 inline-block font-medium text-gray-500 hover:text-gray-800" %>
+  </div>
+</div>

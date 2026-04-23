@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get "/news", to: "posts#index", as: :news
 
   get "/volunteer", to: "home#volunteer", as: :volunteer
+  post "/volunteer", to: "home#create_volunteer_submission", as: :volunteer_submissions
   get "/about", to: "home#about", as: :about
   get "/events", to: "home#events", as: :events
 
@@ -13,7 +14,13 @@ Rails.application.routes.draw do
     resources :issues
     root "dashboard#index"
     resources :posts
+    resources :volunteer_interests
+    resources :volunteer_submissions
   end
+
+  # Public volunteer submission
+  resources :volunteer_submissions, only: [:create]
+  resources :volunteer_interests, only: []
   # Error pages
   match "/404", to: "errors#not_found",             via: :all
   match "/422", to: "errors#unprocessable_entity",  via: :all

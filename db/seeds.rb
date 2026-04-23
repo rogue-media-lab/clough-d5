@@ -35,3 +35,9 @@ end
 end
 
 puts "Posts: #{Post.count} total"
+
+# Volunteer interests
+["Phone Banking", "Canvassing", "Event Support", "Digital Outreach", "Yard Signs", "Data Entry"].each do |name|
+  VolunteerInterest.find_or_create_by!(name: name)
+end
+puts "Volunteer interests: #{VolunteerInterest.count} total"

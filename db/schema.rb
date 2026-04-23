@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_04_22_013637) do
+ActiveRecord::Schema[8.1].define(version: 2026_04_23_004033) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -93,8 +93,44 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_22_013637) do
     t.index ["email_address"], name: "index_users_on_email_address", unique: true
   end
 
+  create_table "volunteer_interests", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.string "name"
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "volunteer_interests_volunteer_submissions", id: false, force: :cascade do |t|
+    t.bigint "volunteer_interest_id", null: false
+    t.bigint "volunteer_submission_id", null: false
+  end
+
+  create_table "volunteer_submission_interests", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "volunteer_interest_id", null: false
+    t.bigint "volunteer_submission_id", null: false
+    t.index ["volunteer_interest_id"], name: "index_volunteer_submission_interests_on_volunteer_interest_id"
+    t.index ["volunteer_submission_id"], name: "idx_on_volunteer_submission_id_ba6cecb055"
+  end
+
+  create_table "volunteer_submissions", force: :cascade do |t|
+    t.string "area_code"
+    t.datetime "created_at", null: false
+    t.string "email"
+    t.text "message"
+    t.string "name"
+    t.string "phone"
+    t.integer "status"
+    t.integer "submission_status"
+    t.datetime "updated_at", null: false
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "posts", "users"
   add_foreign_key "sessions", "users"
+  add_foreign_key "volunteer_interests_volunteer_submissions", "volunteer_interests", name: "fk_volunteer_interests"
+  add_foreign_key "volunteer_interests_volunteer_submissions", "volunteer_submissions", name: "fk_volunteer_submissions"
+  add_foreign_key "volunteer_submission_interests", "volunteer_interests"
+  add_foreign_key "volunteer_submission_interests", "volunteer_submissions"
 end
