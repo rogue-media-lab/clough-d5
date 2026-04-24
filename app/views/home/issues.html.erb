@@ -1,0 +1,61 @@
+<% content_for :title, "Issues - Clough for SC5" %>
+
+<div style="background-color: #0F2044; width: 100%; box-sizing: border-box;">
+  <div style="max-width: 1440px; margin-inline: auto; display: flex; flex-direction: column; gap: 16px; padding: 72px 120px 64px;">
+    <div style="align-items: center; display: flex; gap: 12px;">
+      <div style="background-color: #C8902A; height: 32px; width: 3px;"></div>
+      <div style="color: #C8902A; font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;">
+        Where Andrew Stands
+      </div>
+    </div>
+    <div style="color: #FFFFFF; font-family: 'Playfair Display', serif; font-size: 52px; font-weight: 700; line-height: 1.15;">
+      The Issues
+    </div>
+    <div style="color: rgba(255, 255, 255, 0.7); font-family: 'Inter', sans-serif; font-size: 18px; line-height: 1.6; max-width: 580px;">
+      District 5 deserves a representative who shows up with a plan, not talking points. Here's where Andrew stands — and what he'll fight for in Congress.
+    </div>
+  </div>
+</div>
+
+<div style="background-color: #F9F8F6; width: 100%; box-sizing: border-box;">
+  <div style="max-width: 1440px; margin-inline: auto; padding: 64px 120px 48px;">
+    <% @issues.each_slice(2) do |pair| %>
+      <div style="display: flex; flex-wrap: wrap; gap: 24px;">
+        <% pair.each do |issue| %>
+          <a href="<%= issue_path(issue) %>" style="text-decoration: none; color: inherit; background-color: #FFFFFF; border-radius: 8px; border-top: 4px solid #C8902A; flex: 1 1 360px; display: flex; flex-direction: column; gap: 16px; padding: 40px 36px; transition: box-shadow 0.2s;" onmouseover="this.style.boxShadow='0 4px 12px rgba(0,0,0,0.1)'" onmouseout="this.style.boxShadow='none'">
+            <div style="align-items: center; display: flex; gap: 14px;">
+              <div style="align-items: center; background-color: #F3F0EA; border-radius: 8px; display: flex; height: 44px; justify-content: center; width: 44px; flex-shrink: 0;">
+                <% if issue.icon.present? %>
+                  <span style="font-size: 20px;"><%= issue.icon %></span>
+                <% else %>
+                  <div style="background-color: #C8902A; border-radius: 2px; height: 20px; width: 20px;"></div>
+                <% end %>
+              </div>
+              <div style="color: #0F2044; font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700;">
+                <%= issue.title %>
+              </div>
+            </div>
+            <div style="color: #6B7280; font-family: 'Inter', sans-serif; font-size: 15px; line-height: 1.65; flex: 1;">
+              <% if issue.tagline.present? %>
+                <%= issue.tagline %>
+              <% else %>
+                <%= truncate(strip_tags(issue.description.to_s), length: 180) %>
+              <% end %>
+            </div>
+            <div style="color: #C8902A; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 500; margin-top: auto;">
+              Read more &rarr;
+            </div>
+          </a>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% if @issues.empty? %>
+      <div style="text-align: center; padding: 80px 20px;">
+        <div style="color: #9CA3AF; font-family: 'Inter', sans-serif; font-size: 18px;">
+          No issues have been published yet. Check back soon.
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

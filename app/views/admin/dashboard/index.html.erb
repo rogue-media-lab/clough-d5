@@ -1,81 +1,58 @@
 <% content_for :page_title, "Dashboard" %>
+<% content_for :page_subtitle, "Welcome back. Here's what's happening." %>
 
-<div class="grid grid-cols-3 gap-6 mb-8">
-  <div class="bg-white rounded-lg border border-ivory-200 p-6">
-    <p class="text-sm text-ivory-500 mb-1">Total Posts</p>
-    <p class="text-3xl font-bold text-ivory-900"><%= @post_count %></p>
-  </div>
-  <div class="bg-white rounded-lg border border-ivory-200 p-6">
-    <p class="text-sm text-ivory-500 mb-1">Published</p>
-    <p class="text-3xl font-bold text-green-700"><%= @published_count %></p>
-  </div>
-  <div class="bg-white rounded-lg border border-ivory-200 p-6">
-    <p class="text-sm text-ivory-500 mb-1">Drafts</p>
-    <p class="text-3xl font-bold text-ivory-400"><%= @draft_count %></p>
-  </div>
+<div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-bottom: 32px;">
+    <div style="background-color: #FFFFFF; border-radius: 8px; border: 1px solid #E5E7EB; padding: 24px;">
+        <p style="font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 500; color: #6B7280; text-transform: uppercase;">Total Issues</p>
+        <p style="font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 700; color: #0F2044;"><%= @issue_count %></p>
+    </div>
+    <div style="background-color: #FFFFFF; border-radius: 8px; border: 1px solid #E5E7EB; padding: 24px;">
+        <p style="font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 500; color: #6B7280; text-transform: uppercase;">Active Issues</p>
+        <p style="font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 700; color: #16A34A;"><%= @active_issue_count %></p>
+    </div>
+    <div style="background-color: #FFFFFF; border-radius: 8px; border: 1px solid #E5E7EB; padding: 24px;">
+        <p style="font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 500; color: #6B7280; text-transform: uppercase;">Total Posts</p>
+        <p style="font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 700; color: #0F2044;"><%= @post_count %></p>
+    </div>
+    <div style="background-color: #FFFFFF; border-radius: 8px; border: 1px solid #E5E7EB; padding: 24px;">
+        <p style="font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 500; color: #6B7280; text-transform: uppercase;">Draft Posts</p>
+        <p style="font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 700; color: #CA8A04;"><%= @draft_count %></p>
+    </div>
 </div>
 
-<div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-  <div class="bg-white rounded-lg border border-ivory-200">
-    <div class="px-6 py-4 border-b border-ivory-100 flex items-center justify-between">
-      <h2 class="text-sm font-semibold text-ivory-700">Recent Posts</h2>
-      <%= link_to "View all", admin_posts_path, class: "text-sm text-ivory-400 hover:text-ivory-900 transition-colors" %>
-    </div>
-    <ul class="divide-y divide-ivory-100">
-      <% @recent_posts.each do |post| %>
-        <li class="px-6 py-4 flex items-center justify-between">
-          <div>
-            <p class="text-sm font-medium text-ivory-900"><%= post.title %></p>
-            <p class="text-xs text-ivory-400 mt-0.5">
-              <%= post.published? ? "Published #{post.published_at.strftime('%b %-d, %Y')}" : "Draft" %>
-            </p>
-          </div>
-          <%= link_to "Edit", edit_admin_post_path(post), class: "text-xs text-ivory-400 hover:text-ivory-900 transition-colors" %>
-        </li>
-      <% end %>
-      <% if @recent_posts.empty? %>
-        <li class="px-6 py-8 text-center text-sm text-ivory-400">
-          No posts yet. <%= link_to "Create one", new_admin_post_path, class: "text-ivory-700 underline" %>
-        </li>
-      <% end %>
-    </ul>
-  </div>
-
-  <div class="bg-white rounded-lg border border-ivory-200">
-    <div class="px-6 py-4 border-b border-ivory-100 flex items-center justify-between">
-      <h2 class="text-sm font-semibold text-ivory-700">Issues</h2>
-      <div class="flex gap-4 text-xs">
-        <span class="text-green-700"><%= @active_issue_count %> active</span>
-        <span class="text-yellow-600"><%= @draft_issue_count %> draft</span>
-      </div>
-    </div>
-    <ul class="divide-y divide-ivory-100">
-      <% @recent_issues.each do |issue| %>
-        <li class="px-6 py-4 flex items-center justify-between">
-          <div class="flex items-center gap-3">
-            <span class="text-lg"><%= issue.icon %></span>
-            <div>
-              <p class="text-sm font-medium text-ivory-900"><%= issue.title %></p>
-              <p class="text-xs mt-0.5">
-                <% if issue.active? %>
-                  <span class="text-green-700">Active</span>
-                <% else %>
-                  <span class="text-yellow-600">Draft</span>
-                <% end %>
-                <% if issue.featured? %>
-                  <span class="ml-2 text-blue-600">Featured</span>
-                <% end %>
-              </p>
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+    <div style="background-color: #FFFFFF; border-radius: 8px; border: 1px solid #E5E7EB;">
+        <div style="padding: 16px 24px; border-bottom: 1px solid #E5E7EB; display: flex; justify-content: space-between; align-items: center;">
+            <h2 style="font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; color: #374151;">Recent Issues</h2>
+            <%= link_to "View all", admin_issues_path, style: "font-family: 'Inter', sans-serif; font-size: 12px; color: #6B7280; text-decoration: none;" %>
+        </div>
+        <div>
+            <% @recent_issues.each do |issue| %>
+            <div style="padding: 16px 24px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #E5E7EB;">
+                <div>
+                    <p style="font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 500; color: #111827;"><%= issue.title %></p>
+                    <p style="font-family: 'Inter', sans-serif; font-size: 12px; color: #6B7280;"><%= issue.status %>, <%= issue.featured? ? 'Featured' : 'Not Featured' %></p>
+                </div>
+                <%= link_to "Edit", edit_admin_issue_path(issue), style: "font-family: 'Inter', sans-serif; font-size: 12px; color: #6B7280; text-decoration: none;" %>
             </div>
-          </div>
-          <%= link_to "Edit", edit_admin_issue_path(issue), class: "text-xs text-ivory-400 hover:text-ivory-900 transition-colors" %>
-        </li>
-      <% end %>
-      <% if @recent_issues.empty? %>
-        <li class="px-6 py-8 text-center text-sm text-ivory-400">
-          No issues yet. <%= link_to "Create one", new_admin_issue_path, class: "text-ivory-700 underline" %>
-        </li>
-      <% end %>
-    </ul>
-  </div>
+            <% end %>
+        </div>
+    </div>
+    <div style="background-color: #FFFFFF; border-radius: 8px; border: 1px solid #E5E7EB;">
+        <div style="padding: 16px 24px; border-bottom: 1px solid #E5E7EB; display: flex; justify-content: space-between; align-items: center;">
+            <h2 style="font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; color: #374151;">Recent Posts</h2>
+            <%= link_to "View all", admin_posts_path, style: "font-family: 'Inter', sans-serif; font-size: 12px; color: #6B7280; text-decoration: none;" %>
+        </div>
+        <div>
+            <% @recent_posts.each do |post| %>
+            <div style="padding: 16px 24px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #E5E7EB;">
+                <div>
+                    <p style="font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 500; color: #111827;"><%= post.title %></p>
+                    <p style="font-family: 'Inter', sans-serif; font-size: 12px; color: #6B7280;"><%= post.published? ? "Published on #{post.published_at.strftime('%b %-d, %Y')}" : "Draft" %></p>
+                </div>
+                <%= link_to "Edit", edit_admin_post_path(post), style: "font-family: 'Inter', sans-serif; font-size: 12px; color: #6B7280; text-decoration: none;" %>
+            </div>
+            <% end %>
+        </div>
+    </div>
 </div>

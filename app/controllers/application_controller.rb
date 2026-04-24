@@ -5,4 +5,10 @@ class ApplicationController < ActionController::Base
 
   # Changes to the importmap will invalidate the etag for HTML responses
   stale_when_importmap_changes
+
+  private
+
+  def after_authentication_url
+    session.delete(:return_to_after_authenticating) || (Current.user&.admin? ? admin_root_url : root_url)
+  end
 end

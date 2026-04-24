@@ -1,0 +1,89 @@
+<% content_for :title, "#{@issue.title} - Clough for SC5" %>
+
+<%# Hero Section %>
+<div style="background-color: #0F2044; width: 100%; box-sizing: border-box;">
+  <div style="max-width: 1440px; margin-inline: auto; display: flex; flex-direction: column; gap: 16px; padding: 72px 120px 64px;">
+    <div style="align-items: center; display: flex; gap: 12px;">
+      <div style="background-color: #C8902A; height: 32px; width: 3px;"></div>
+      <div style="color: #C8902A; font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;">
+        Where Andrew Stands
+      </div>
+    </div>
+    <div style="align-items: center; display: flex; gap: 16px;">
+      <% if @issue.icon.present? %>
+        <div style="align-items: center; background-color: rgba(200, 144, 42, 0.15); border-radius: 12px; display: flex; height: 56px; justify-content: center; width: 56px; flex-shrink: 0;">
+          <span style="font-size: 28px;"><%= @issue.icon %></span>
+        </div>
+      <% end %>
+      <div style="color: #FFFFFF; font-family: 'Playfair Display', serif; font-size: 48px; font-weight: 700; line-height: 1.15;">
+        <%= @issue.title %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%# Content Section %>
+<div style="background-color: #F9F8F6; width: 100%; box-sizing: border-box;">
+  <div style="max-width: 1100px; margin-inline: auto; padding: 64px 120px;">
+    <%# Back link %>
+    <div style="margin-bottom: 40px;">
+      <a href="<%= issues_path %>" style="color: #C8902A; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 500; text-decoration: none;">
+        &larr; Back to All Issues
+      </a>
+    </div>
+
+    <div style="display: flex; gap: 48px; align-items: flex-start;">
+      <%# Main content column %>
+      <div style="flex: 1; min-width: 0;">
+        <%# Tagline / Quote %>
+        <% if @issue.tagline.present? %>
+          <div style="border-left: 3px solid #C8902A; padding-left: 24px; margin-bottom: 36px;">
+            <p style="color: #374151; font-family: 'Playfair Display', serif; font-size: 20px; font-style: italic; line-height: 1.6; margin: 0;">
+              "<%= @issue.tagline %>"
+            </p>
+          </div>
+        <% end %>
+
+        <%# Issue content from rich text editor %>
+        <div style="color: #374151; font-family: 'Inter', sans-serif; font-size: 17px; line-height: 1.8;">
+          <%= @issue.description %>
+        </div>
+
+        <%# Bottom CTA %>
+        <div style="border-top: 1px solid #E5E5E5; margin-top: 48px; padding-top: 40px; display: flex; justify-content: center;">
+          <a href="<%= volunteer_path %>" style="background-color: #C8902A; color: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600; padding: 14px 36px; border-radius: 8px; text-decoration: none; display: inline-block;">
+            Help Fight for This &rarr;
+          </a>
+        </div>
+      </div>
+
+      <%# Platform at a Glance sidebar %>
+      <% if @issue.summary.present? %>
+        <div style="flex: 0 0 340px; background-color: #EBF4FA; border-radius: 12px; padding: 32px;">
+          <h3 style="color: #0F2044; font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; margin: 0 0 20px 0;">
+            Platform at a Glance
+          </h3>
+          <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 16px;">
+            <% @issue.summary.each_line.map(&:strip).reject(&:blank?).each do |line| %>
+              <% if line.include?(":") %>
+                <% label, desc = line.split(":", 2) %>
+                <li style="display: flex; gap: 10px; align-items: flex-start;">
+                  <span style="color: #C8902A; font-size: 10px; margin-top: 6px; flex-shrink: 0;">&#9679;</span>
+                  <span>
+                    <strong style="color: #0F2044; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600;"><%= label.strip %>:</strong>
+                    <span style="color: #4B5563; font-family: 'Inter', sans-serif; font-size: 14px; line-height: 1.5;"><%= desc.strip %></span>
+                  </span>
+                </li>
+              <% else %>
+                <li style="display: flex; gap: 10px; align-items: flex-start;">
+                  <span style="color: #C8902A; font-size: 10px; margin-top: 6px; flex-shrink: 0;">&#9679;</span>
+                  <span style="color: #4B5563; font-family: 'Inter', sans-serif; font-size: 14px; line-height: 1.5;"><%= line %></span>
+                </li>
+              <% end %>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

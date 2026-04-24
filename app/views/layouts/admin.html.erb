@@ -1,52 +1,62 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for(:title) { "Admin" } %> | <%= Rails.application.class.module_parent_name %></title>
+    <title><%= content_for?(:page_title) ? yield(:page_title) : "Admin" %> | Clough for SC5</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
-  </head>
-  <body class="bg-ivory-50 font-sans text-ivory-900">
-    <div class="flex h-screen overflow-hidden">
+    
 
-      <aside class="w-60 bg-ivory-900 text-ivory-100 flex flex-col flex-shrink-0">
-        <div class="px-6 py-5 border-b border-ivory-700">
-          <span class="text-base font-semibold tracking-tight">Admin</span>
+    <style>
+      .dropdown .dropbtn {
+        cursor: pointer;
+      }
+      .dropdown:hover .dropdown-content {
+        display: block;
+      }
+    </style>
+  </head>
+  <body class="font-sans">
+    <div style="display: flex; height: 100vh;">
+      <aside style="width: 280px; background-color: #0F2044; padding: 24px; display: flex; flex-direction: column; flex-shrink: 0; color: #FFFFFF;">
+        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 40px;">
+          <div style="width: 32px; height: 32px; border-radius: 50%; border: 2px solid #C8902A; display: flex; align-items: center; justify-content: center;">
+            <div style="width: 8px; height: 8px; border-radius: 50%; background-color: #C8902A;"></div>
+          </div>
+          <div style="color: #FFFFFF; font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700;">Clough for SC5</div>
         </div>
-        <nav class="flex-1 px-3 py-5 space-y-1">
-          <%= link_to "Dashboard", admin_root_path,
-                class: "flex items-center px-3 py-2 rounded-md text-sm font-medium text-ivory-300 hover:text-ivory-50 hover:bg-ivory-700 transition-colors" %>
-          <%= link_to "Posts", admin_posts_path,
-                class: "flex items-center px-3 py-2 rounded-md text-sm font-medium text-ivory-300 hover:text-ivory-50 hover:bg-ivory-700 transition-colors" %>
-          <%= link_to "New Post", new_admin_post_path,
-                class: "flex items-center px-3 py-2 rounded-md text-sm font-medium text-ivory-300 hover:text-ivory-50 hover:bg-ivory-700 transition-colors" %>
+        <nav style="display: flex; flex-direction: column; gap: 8px;">
+          <%= link_to "Dashboard", admin_root_path, class: "#{(request.path == admin_root_path) ? 'bg-campaign-gold' : ''} rounded-lg px-4 py-3 text-white" %>
+          <%= link_to "Issues", admin_issues_path, class: "#{(request.path.starts_with?(admin_issues_path)) ? 'bg-campaign-gold' : ''} rounded-lg px-4 py-3 text-white" %>
+          <%= link_to "Posts", admin_posts_path, class: "#{(request.path.starts_with?(admin_posts_path)) ? 'bg-campaign-gold' : ''} rounded-lg px-4 py-3 text-white" %>
+          <%= link_to "Volunteer Submissions", admin_volunteer_submissions_path, class: "#{(request.path.starts_with?(admin_volunteer_submissions_path)) ? 'bg-campaign-gold' : ''} rounded-lg px-4 py-3 text-white" %>
         </nav>
-        <div class="px-3 py-4 border-t border-ivory-700 space-y-1">
-          <%= link_to "View Site →", root_path,
-                class: "block px-3 py-2 rounded-md text-sm text-ivory-400 hover:text-ivory-200 transition-colors" %>
-          <%= button_to "Sign out", session_path(Current.session), method: :delete,
-                class: "w-full text-left px-3 py-2 rounded-md text-sm text-ivory-400 hover:text-ivory-200 transition-colors bg-transparent border-0 cursor-pointer" %>
+        <div style="margin-top: auto; border-top: 1px solid #1E2D4A; padding-top: 16px;">
+            <p class="text-sm text-gray-400"><%= Current.user.email_address %></p>
+            <%= button_to "Sign out", session_path(Current.session), method: :delete, class: "w-full text-left text-sm text-gray-400 hover:text-white mt-2" %>
         </div>
       </aside>
 
-      <div class="flex-1 flex flex-col overflow-hidden">
-        <header class="bg-white border-b border-ivory-200 px-6 py-4 flex items-center justify-between">
-          <h1 class="text-base font-semibold text-ivory-900"><%= content_for(:page_title) { "Dashboard" } %></h1>
-          <span class="text-sm text-ivory-400"><%= Current.session&.user&.email_address %></span>
+      <div style="flex: 1; background-color: #F9F8F6; padding: 40px; overflow-y: auto;">
+        <header style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px;">
+          <div>
+            <h1 style="font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 700; color: #0F2044;"><%= content_for(:page_title) %></h1>
+            <p style="font-family: 'Inter', sans-serif; font-size: 14px; color: #6B7280;"><%= content_for(:page_subtitle) %></p>
+          </div>
+          <div class="dropdown" style="position: relative; display: inline-block;">
+            <button class="dropbtn" style="background-color: #C8902A; color: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; padding: 12px 20px; border-radius: 6px; border: none; cursor: pointer;">Create New</button>
+            <div class="dropdown-content" style="display: none; position: absolute; background-color: #f1f1f1; min-width: 160px; box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); z-index: 1; right: 0;">
+              <%= link_to 'New Issue', new_admin_issue_path, style: "color: black; padding: 12px 16px; text-decoration: none; display: block;" %>
+              <%= link_to 'New Post', new_admin_post_path, style: "color: black; padding: 12px 16px; text-decoration: none; display: block;" %>
+            </div>
+          </div>
         </header>
-        <main class="flex-1 overflow-y-auto p-6">
-          <% if notice %>
-            <div class="mb-4 bg-pastel-mint border border-green-200 text-green-800 px-4 py-3 rounded-md text-sm"><%= notice %></div>
-          <% end %>
-          <% if alert %>
-            <div class="mb-4 bg-red-50 border border-red-200 text-red-800 px-4 py-3 rounded-md text-sm"><%= alert %></div>
-          <% end %>
+        <main>
           <%= yield %>
         </main>
       </div>
-
     </div>
   </body>
 </html>

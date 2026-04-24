@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_04_23_014211) do
+ActiveRecord::Schema[8.1].define(version: 2026_04_24_020110) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -71,6 +71,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_23_014211) do
     t.string "icon"
     t.integer "position"
     t.integer "status"
+    t.text "summary"
+    t.text "tagline"
     t.string "title"
     t.datetime "updated_at", null: false
   end

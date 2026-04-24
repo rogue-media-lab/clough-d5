@@ -1,368 +1,184 @@
-<% content_for :title, "Andrew Clough - Republican Candidate for SC District 5" %>
+<% content_for :title, "Clough for SC5" %>
 
-<main>
-  <%# ===== HERO SECTION ===== %>
-  <section class="relative bg-navy-900 text-white overflow-hidden">
-    <div class="absolute inset-0 bg-gradient-to-r from-navy-900 via-navy-800 to-navy-900"></div>
-    <div class="absolute inset-0 opacity-10">
-      <div class="absolute top-0 right-0 w-96 h-96 bg-campaign-red rounded-full blur-3xl"></div>
-      <div class="absolute bottom-0 left-0 w-64 h-64 bg-campaign-gold rounded-full blur-3xl"></div>
-    </div>
-
-    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-32">
-      <div class="grid md:grid-cols-2 gap-12 items-center">
-        <div class="text-center md:text-left">
-          <p class="text-campaign-gold font-semibold tracking-wider uppercase mb-4">Republican Candidate</p>
-          <h1 class="font-display text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6">
-            Andrew Clough
-          </h1>
-          <p class="text-xl md:text-2xl text-ivory-200 mb-8">
-            Conservative leadership for South Carolina District 5
-          </p>
-          <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-            <%= link_to "Get Involved", volunteer_path,
-                  class: "bg-campaign-red hover:bg-campaign-red-dark text-white px-8 py-3 rounded-lg font-semibold text-lg transition-colors" %>
-            <%= link_to "Meet Andrew", "#about",
-                  class: "border-2 border-ivory-300 hover:border-white text-ivory-100 hover:text-white px-8 py-3 rounded-lg font-semibold text-lg transition-colors" %>
+<%# Hero Section %>
+<div style="background-color: #0F2044; width: 100%; box-sizing: border-box;">
+  <div style="max-width: 1440px; margin-inline: auto; display: flex; flex-shrink: 0; min-height: 780px; overflow: clip;">
+    <div style="flex-basis: 0%; flex-grow: 1; flex-shrink: 1; display: flex; flex-direction: column; justify-content: center; padding-inline: 80px;">
+      <div style="align-items: center; display: flex; gap: 12px; margin-bottom: 28px;">
+        <div style="background-color: #C8902A; height: 2px; width: 40px;"></div>
+        <div style="color: #C8902A; font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase;">
+          South Carolina District 5
+        </div>
+      </div>
+      <div style="color: #FFFFFF; font-family: 'Playfair Display', serif; font-size: 74px; font-weight: 700; line-height: 1.05; margin-bottom: 24px; white-space: pre-wrap;">People<br />Over<br />Politics.</div>
+      <div style="color: #94A3B8; font-family: 'Inter', sans-serif; font-size: 18px; line-height: 1.7; margin-bottom: 48px; max-width: 440px;">
+        Andrew Clough is running for South Carolina District 5 to put community first — bringing honest, accountable leadership back to Columbia.
+      </div>
+      <div style="align-items: center; display: flex; gap: 16px;">
+        <div style="background-color: #C8902A; border-radius: 4px; padding: 16px 36px;">
+          <div style="color: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;">
+            Volunteer
           </div>
         </div>
-
-        <div class="flex justify-center">
-          <div class="relative">
-            <%= image_tag "/andrew-cloughA.jpg",
-                  alt: "Andrew Clough",
-                  class: "w-72 h-72 md:w-80 md:h-80 rounded-full object-cover object-[center] border-4 border-campaign-gold" %>
-            <div class="absolute -bottom-4 -right-4 bg-campaign-gold text-navy-900 px-4 py-2 rounded-lg font-bold">
-              District 5
-            </div>
+        <div style="border: 1.5px solid rgba(255, 255, 255, 0.3); border-radius: 4px; padding: 16px 36px;">
+          <div style="color: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;">
+            Donate
           </div>
         </div>
       </div>
     </div>
-  </section>
+    <div style="align-items: flex-end; display: flex; flex-shrink: 0; justify-content: center; width: 560px;">
+      <%= image_tag 'home-hero-bg.jpg', style: "object-fit: cover; object-position: center 15%; border-top-left-radius: 8px; border-top-right-radius: 8px; height: 680px; width: 480px;" %>
+    </div>
+  </div>
+</div>
 
-  <%# ===== MEET ANDREW ===== %>
-  <section id="about" class="py-16 md:py-24 bg-ivory-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid md:grid-cols-2 gap-12 items-center">
-        <div class="order-2 md:order-1">
-          <div class="relative">
-            <%= image_tag "/andrew-clough.jpg",
-                  alt: "Andrew Clough",
-                  class: "w-full max-w-md mx-auto aspect-[4/5] object-cover rounded-xl shadow-lg" %>
-            <div class="absolute -bottom-6 -right-6 bg-campaign-red text-white px-6 py-3 rounded-lg">
-              <p class="font-semibold">Rock Hill, SC</p>
-              <p class="text-sm text-ivory-200">Resident</p>
-            </div>
-          </div>
+<%# About Section %>
+<div style="background-color: #FFFFFF; width: 100%; box-sizing: border-box;">
+  <div style="max-width: 1440px; margin-inline: auto; display: flex; align-items: center; gap: 100px; padding: 120px 80px;">
+    <div style="height: 560px; position: relative; width: 460px; flex-shrink: 0;">
+      <%= image_tag 'home-about-bg.jpg', style: "border-radius: 6px; height: 540px; width: 460px; object-fit: cover;" %>
+      <div style="align-items: center; background-color: #0F2044; border-radius: 4px; bottom: 0; left: -20px; display: flex; flex-direction: column; gap: 4px; height: 120px; justify-content: center; position: absolute; width: 120px;">
+        <div style="color: #C8902A; font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; line-height: 34px;">SC</div>
+        <div style="color: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.1em; line-height: 12px;">DISTRICT 5</div>
+      </div>
+    </div>
+    <div style="flex-basis: 0%; flex-grow: 1; display: flex; flex-direction: column;">
+      <div style="align-items: center; display: flex; gap: 12px; margin-bottom: 20px;">
+        <div style="background-color: #C8902A; height: 2px; width: 40px;"></div>
+        <div style="color: #C8902A; font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase;">About Andrew</div>
+      </div>
+      <div style="color: #0F2044; font-family: 'Playfair Display', serif; font-size: 46px; font-weight: 700; line-height: 1.1; margin-bottom: 28px; white-space: pre-wrap;">A neighbor.<br />A voice.<br />A leader.</div>
+      <div style="color: #4B5563; font-family: 'Inter', sans-serif; font-size: 17px; line-height: 1.8; margin-bottom: 20px;">Andrew Clough has lived and worked in District 5 for over a decade. He understands the challenges families face because he faces them too — rising costs, underfunded schools, and a government that too often feels out of reach.</div>
+      <div style="color: #4B5563; font-family: 'Inter', sans-serif; font-size: 17px; line-height: 1.8; margin-bottom: 40px;">Andrew believes in transparent government, investing in education, and building an economy that works for everyone — not just those at the top.</div>
+      <div style="display: flex; gap: 48px;">
+        <div style="display: flex; flex-direction: column; gap: 4px;">
+          <div style="color: #C8902A; font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 700; line-height: 44px;">10+</div>
+          <div style="color: #6B7280; font-family: 'Inter', sans-serif; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase;">Years in District 5</div>
         </div>
-
-        <div class="order-1 md:order-2">
-          <p class="text-campaign-red font-semibold tracking-wider uppercase mb-4">Meet Andrew</p>
-          <h2 class="font-display text-4xl md:text-5xl font-bold text-navy-900 mb-6">
-            A Conservative Voice for District 5
-          </h2>
-          <div class="space-y-4 text-navy-700 leading-relaxed">
-            <p>
-              Andrew Clough is a lifelong conservative and proud resident of Rock Hill, South Carolina.
-              With deep roots in the community, Andrew understands the values and concerns of District 5 families.
-            </p>
-            <p>
-              As your representative, Andrew will fight for lower taxes, better education, and less government
-              interference in your daily lives. He believes in limited government, fiscal responsibility,
-              and putting South Carolina families first.
-            </p>
-            <p>
-              Andrew is committed to bringing common-sense leadership back to Columbia and ensuring
-              that your voice is heard in the Statehouse.
-            </p>
-          </div>
-          <div class="mt-8 pt-6 border-t border-ivory-200">
-            <%= link_to "Read More About Andrew", about_path,
-                  class: "text-campaign-red hover:text-campaign-red-dark font-semibold transition-colors inline-flex items-center gap-2" %>
-            <span>→</span>
-          </div>
+        <div style="background-color: #E5E7EB; width: 1px;"></div>
+        <div style="display: flex; flex-direction: column; gap: 4px;">
+          <div style="color: #C8902A; font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 700; line-height: 44px;">5</div>
+          <div style="color: #6B7280; font-family: 'Inter', sans-serif; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase;">Core Priorities</div>
+        </div>
+        <div style="background-color: #E5E7EB; width: 1px;"></div>
+        <div style="display: flex; flex-direction: column; gap: 4px;">
+          <div style="color: #C8902A; font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 700; line-height: 44px;">1</div>
+          <div style="color: #6B7280; font-family: 'Inter', sans-serif; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase;">Goal: Serve You</div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</div>
 
-  <%# ===== PRIORITY ISSUES ===== %>
-  <section id="issues" class="py-16 md:py-24 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12">
-        <p class="text-campaign-red font-semibold tracking-wider uppercase mb-4">The Issues</p>
-        <h2 class="font-display text-4xl md:text-5xl font-bold text-navy-900 mb-4">
-          What Andrew Stands For
-        </h2>
-        <p class="text-lg text-navy-600 max-w-2xl mx-auto">
-          Five priorities. One mission. A District 5 that works for them all.
-        </p>
+<%# Issues Section %>
+<div id="issues" style="background-color: #F5F4F1; width: 100%; box-sizing: border-box;">
+  <div style="max-width: 1440px; margin-inline: auto; padding: 120px 80px;">
+    <div style="display: flex; align-items: center; flex-direction: column; margin-bottom: 60px;">
+      <div style="align-items: center; display: flex; gap: 12px; margin-bottom: 20px;">
+        <div style="background-color: #C8902A; height: 2px; width: 40px;"></div>
+        <div style="color: #C8902A; font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase;">The Issues</div>
+        <div style="background-color: #C8902A; height: 2px; width: 40px;"></div>
       </div>
-
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <% @featured_issues.each do |issue| %>
-          <div class="bg-ivory-50 rounded-xl p-6 border border-ivory-100 hover:shadow-lg transition-shadow">
-            <div class="text-4xl mb-4"><%= issue.icon %></div>
-            <h3 class="font-display text-xl font-bold text-navy-900 mb-3"><%= issue.title %></h3>
-            <p class="text-navy-600 text-sm leading-relaxed"><%= issue.description %></p>
-          </div>
-        <% end %>
-
-        <% if @featured_issues.empty? %>
-          <div class="bg-ivory-50 rounded-xl p-6 border border-ivory-100">
-            <div class="text-4xl mb-4">💰</div>
-            <h3 class="font-display text-xl font-bold text-navy-900 mb-3">Fiscal Responsibility</h3>
-            <p class="text-navy-600 text-sm leading-relaxed">Lower taxes and responsible spending to keep more money in your pocket.</p>
-          </div>
-          <div class="bg-ivory-50 rounded-xl p-6 border border-ivory-100">
-            <div class="text-4xl mb-4">📚</div>
-            <h3 class="font-display text-xl font-bold text-navy-900 mb-3">Education Excellence</h3>
-            <p class="text-navy-600 text-sm leading-relaxed">Better schools and more choices for parents and students.</p>
-          </div>
-          <div class="bg-ivory-50 rounded-xl p-6 border border-ivory-100">
-            <div class="text-4xl mb-4">🏛️</div>
-            <h3 class="font-display text-xl font-bold text-navy-900 mb-3">Strong Leadership</h3>
-            <p class="text-navy-600 text-sm leading-relaxed">Common-sense solutions and proven conservative values.</p>
-          </div>
-        <% end %>
-      </div>
-
-      <div class="text-center mt-12">
-        <%= link_to "View All Issues", "#",
-              class: "inline-flex items-center gap-2 text-campaign-red hover:text-campaign-red-dark font-semibold transition-colors" %>
-        <span>→</span>
-      </div>
+      <div style="color: #0F2044; font-family: 'Playfair Display', serif; font-size: 50px; font-weight: 700; line-height: 1.1; margin-bottom: 16px; text-align: center;">What Andrew Stands For</div>
+      <div style="color: #6B7280; font-family: 'Inter', sans-serif; font-size: 17px; line-height: 1.7; max-width: 560px; text-align: center;">Five priorities. One mission. A District 5 that works for the people who live here.</div>
     </div>
-  </section>
 
-  <%# ===== GET INVOLVED ===== %>
-  <section class="py-16 md:py-24 bg-navy-900 text-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid md:grid-cols-2 gap-12 items-center">
-        <div>
-          <p class="text-campaign-gold font-semibold tracking-wider uppercase mb-4">Get Involved</p>
-          <h2 class="font-display text-4xl md:text-5xl font-bold mb-6">
-            Join the Movement
-          </h2>
-          <p class="text-lg text-ivory-200 mb-8">
-            We can't do this alone. Join fellow conservatives in District 5 who are
-            ready to make a difference. Your voice, your time, and your support matter.
-          </p>
-          <div class="flex flex-wrap gap-4">
-            <%= link_to "Volunteer", volunteer_path,
-                  class: "bg-campaign-red hover:bg-campaign-red-dark text-white px-6 py-3 rounded-lg font-semibold transition-colors" %>
-            <%= link_to "Request a Yard Sign", "#",
-                  class: "border-2 border-ivory-300 hover:border-white text-ivory-100 hover:text-white px-6 py-3 rounded-lg font-semibold transition-colors" %>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px;">
+      <% @active_issues.each do |issue| %>
+        <a href="<%= issue_path(issue) %>" style="text-decoration: none; color: inherit; background-color: #FFFFFF; border-radius: 8px; border-top: 4px solid <%= issue.featured? ? '#C8902A' : '#0F2044' %>; padding: 40px 36px; display: flex; flex-direction: column; transition: box-shadow 0.2s;" onmouseover="this.style.boxShadow='0 4px 12px rgba(0,0,0,0.1)'" onmouseout="this.style.boxShadow='none'">
+          <div style="align-items: center; background-color: #0F2044; border-radius: 6px; display: flex; height: 48px; justify-content: center; margin-bottom: 24px; width: 48px; flex-shrink: 0;">
+            <% if issue.icon.present? %>
+              <%= issue_icon(issue.icon) %>
+            <% end %>
           </div>
+          <div style="color: #0F2044; font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; margin-bottom: 12px;"><%= issue.title %></div>
+          <div style="color: #6B7280; font-family: 'Inter', sans-serif; font-size: 14px; line-height: 1.8; flex-grow: 1;"><%= truncate(strip_tags(issue.description.to_s), length: 150) %></div>
+          <div style="align-items: center; display: flex; gap: 8px; margin-top: 20px;">
+            <div style="background-color: #C8902A; height: 2px; width: 24px;"></div>
+            <div style="color: #C8902A; font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;">Learn More</div>
+          </div>
+        </a>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<%# Get Involved Section %>
+<div style="background-color: #0F2044; width: 100%; box-sizing: border-box;">
+  <div style="max-width: 1440px; margin-inline: auto; display: flex; align-items: center; gap: 100px; padding: 120px 80px;">
+    <div style="flex-basis: 0%; flex-grow: 1; flex-shrink: 1; display: flex; flex-direction: column;">
+      <div style="align-items: center; display: flex; gap: 12px; margin-bottom: 20px;">
+        <div style="background-color: #C8902A; height: 2px; width: 40px;"></div>
+        <div style="color: #C8902A; font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase;">Get Involved</div>
+      </div>
+      <div style="color: #FFFFFF; font-family: 'Playfair Display', serif; font-size: 50px; font-weight: 700; line-height: 1.1; margin-bottom: 24px;">Change starts with you.</div>
+      <div style="color: #94A3B8; font-family: 'Inter', sans-serif; font-size: 17px; line-height: 1.8; margin-bottom: 48px;">Campaigns are powered by people. Knock doors, make calls, share the word — every hour you give moves us closer to a District 5 that works for everyone.</div>
+      <div style="display: flex; gap: 32px;">
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <div style="align-items: center; display: flex; gap: 10px;"><div style="background-color: #C8902A; border-radius: 50%; height: 8px; width: 8px; flex-shrink: 0;"></div><div style="color: #CBD5E1; font-family: 'Inter', sans-serif; font-size: 15px;">Canvassing</div></div>
+          <div style="align-items: center; display: flex; gap: 10px;"><div style="background-color: #C8902A; border-radius: 50%; height: 8px; width: 8px; flex-shrink: 0;"></div><div style="color: #CBD5E1; font-family: 'Inter', sans-serif; font-size: 15px;">Phone Banking</div></div>
+          <div style="align-items: center; display: flex; gap: 10px;"><div style="background-color: #C8902A; border-radius: 50%; height: 8px; width: 8px; flex-shrink: 0;"></div><div style="color: #CBD5E1; font-family: 'Inter', sans-serif; font-size: 15px;">Events & Rallies</div></div>
         </div>
-
-        <div class="grid grid-cols-2 gap-4">
-          <div class="bg-navy-800 rounded-xl p-6 text-center">
-            <div class="text-4xl font-bold text-campaign-gold mb-2">100+</div>
-            <p class="text-ivory-300">Volunteers</p>
-          </div>
-          <div class="bg-navy-800 rounded-xl p-6 text-center">
-            <div class="text-4xl font-bold text-campaign-gold mb-2">500+</div>
-            <p class="text-ivory-300">Yard Signs</p>
-          </div>
-          <div class="bg-navy-800 rounded-xl p-6 text-center">
-            <div class="text-4xl font-bold text-campaign-gold mb-2">50+</div>
-            <p class="text-ivory-300">Events</p>
-          </div>
-          <div class="bg-navy-800 rounded-xl p-6 text-center">
-            <div class="text-4xl font-bold text-campaign-gold mb-2">24k+</div>
-            <p class="text-ivory-300">Supporters</p>
-          </div>
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <div style="align-items: center; display: flex; gap: 10px;"><div style="background-color: #C8902A; border-radius: 50%; height: 8px; width: 8px; flex-shrink: 0;"></div><div style="color: #CBD5E1; font-family: 'Inter', sans-serif; font-size: 15px;">Social Media</div></div>
+          <div style="align-items: center; display: flex; gap: 10px;"><div style="background-color: #C8902A; border-radius: 50%; height: 8px; width: 8px; flex-shrink: 0;"></div><div style="color: #CBD5E1; font-family: 'Inter', sans-serif; font-size: 15px;">Yard Signs</div></div>
+          <div style="align-items: center; display: flex; gap: 10px;"><div style="background-color: #C8902A; border-radius: 50%; height: 8px; width: 8px; flex-shrink: 0;"></div><div style="color: #CBD5E1; font-family: 'Inter', sans-serif; font-size: 15px;">Fundraising</div></div>
         </div>
       </div>
     </div>
-  </section>
-
-  <%# ===== LATEST NEWS ===== %>
-  <section class="py-16 md:py-24 bg-ivory-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12">
-        <p class="text-campaign-red font-semibold tracking-wider uppercase mb-4">Latest News</p>
-        <h2 class="font-display text-4xl md:text-5xl font-bold text-navy-900 mb-4">
-          Campaign Updates
-        </h2>
+    <div style="background-color: #FFFFFF; border-radius: 8px; padding: 48px; width: 500px; flex-shrink: 0; display: flex; flex-direction: column; gap: 20px;">
+      <div style="color: #0F2044; font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; margin-bottom: 8px;">Join the Campaign</div>
+      <div style="display: flex; gap: 16px;">
+        <div style="flex-grow: 1; display: flex; flex-direction: column; gap: 8px;">
+          <div style="color: #374151; font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600; text-transform: uppercase;">First Name</div>
+          <div style="background-color: #F9FAFB; border: 1.5px solid #E5E7EB; border-radius: 4px; height: 48px;"></div>
+        </div>
+        <div style="flex-grow: 1; display: flex; flex-direction: column; gap: 8px;">
+          <div style="color: #374151; font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600; text-transform: uppercase;">Last Name</div>
+          <div style="background-color: #F9FAFB; border: 1.5px solid #E5E7EB; border-radius: 4px; height: 48px;"></div>
+        </div>
       </div>
-
-      <div class="grid md:grid-cols-3 gap-6">
-        <article class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
-          <div class="aspect-video bg-navy-200 flex items-center justify-center">
-            <span class="text-5xl">📰</span>
-          </div>
-          <div class="p-6">
-            <p class="text-sm text-navy-500 mb-2">April 2026</p>
-            <h3 class="font-display text-lg font-bold text-navy-900 mb-2">
-              Campaign Launch
-            </h3>
-            <p class="text-navy-600 text-sm mb-4">
-              Andrew Clough officially launches his campaign for SC District 5.
-            </p>
-            <%= link_to "Read More →", news_path,
-                  class: "text-campaign-red hover:text-campaign-red-dark text-sm font-semibold" %>
-          </div>
-        </article>
-
-        <article class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
-          <div class="aspect-video bg-navy-200 flex items-center justify-center">
-            <span class="text-5xl">🤝</span>
-          </div>
-          <div class="p-6">
-            <p class="text-sm text-navy-500 mb-2">Coming Soon</p>
-            <h3 class="font-display text-lg font-bold text-navy-900 mb-2">
-              Community Events
-            </h3>
-            <p class="text-navy-600 text-sm mb-4">
-              Join us at upcoming town halls and meet-and-greets across District 5.
-            </p>
-            <%= link_to "View Events →", events_path,
-                  class: "text-campaign-red hover:text-campaign-red-dark text-sm font-semibold" %>
-          </div>
-        </article>
-
-        <article class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
-          <div class="aspect-video bg-navy-200 flex items-center justify-center">
-            <span class="text-5xl">📣</span>
-          </div>
-          <div class="p-6">
-            <p class="text-sm text-navy-500 mb-2">Stay Tuned</p>
-            <h3 class="font-display text-lg font-bold text-navy-900 mb-2">
-              Policy Announcements
-            </h3>
-            <p class="text-navy-600 text-sm mb-4">
-              Detailed policy positions coming soon. Sign up to be the first to know.
-            </p>
-            <%= link_to "Learn More →", about_path,
-                  class: "text-campaign-red hover:text-campaign-red-dark text-sm font-semibold" %>
-          </div>
-        </article>
+      <div style="display: flex; flex-direction: column; gap: 8px;">
+        <div style="color: #374151; font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600; text-transform: uppercase;">Email Address</div>
+        <div style="background-color: #F9FAFB; border: 1.5px solid #E5E7EB; border-radius: 4px; height: 48px;"></div>
       </div>
+      <div style="display: flex; flex-direction: column; gap: 8px;">
+        <div style="color: #374151; font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600; text-transform: uppercase;">Zip Code</div>
+        <div style="background-color: #F9FAFB; border: 1.5px solid #E5E7EB; border-radius: 4px; height: 48px;"></div>
+      </div>
+      <div style="align-items: center; background-color: #C8902A; border-radius: 4px; display: flex; height: 52px; justify-content: center; margin-top: 8px;">
+        <div style="color: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;">Sign Me Up</div>
+      </div>
+      <div style="color: #9CA3AF; font-family: 'Inter', sans-serif; font-size: 12px; text-align: center;">Your information is private and will never be sold.</div>
+    </div>
+  </div>
+</div>
 
-      <div class="text-center mt-12">
-        <%= link_to "View All News", news_path,
-              class: "inline-flex items-center gap-2 text-campaign-red hover:text-campaign-red-dark font-semibold transition-colors" %>
-        <span>→</span>
+<%# Donate Section %>
+<div style="background-color: #C8902A; width: 100%; box-sizing: border-box;">
+  <div style="max-width: 1440px; margin-inline: auto; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 100px 80px;">
+    <div style="color: #FFFFFF; font-family: 'Playfair Display', serif; font-size: 54px; font-weight: 700; line-height: 1.1; margin-bottom: 20px; text-align: center;">Fuel the Movement.</div>
+    <div style="color: rgba(255,255,255,0.85); font-family: 'Inter', sans-serif; font-size: 18px; line-height: 1.7; margin-bottom: 48px; max-width: 560px; text-align: center;">Every dollar stays in District 5 — going toward outreach, events, and getting our message out to neighbors who are ready for real change.</div>
+    <div style="display: flex; gap: 16px; margin-bottom: 48px;">
+      <div style="background-color: rgba(255,255,255,0.2); border: 1.5px solid rgba(255,255,255,0.5); border-radius: 4px; padding: 14px 28px;">
+        <div style="color: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 700;">$25</div>
+      </div>
+      <div style="background-color: rgba(255,255,255,0.2); border: 1.5px solid rgba(255,255,255,0.5); border-radius: 4px; padding: 14px 28px;">
+        <div style="color: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 700;">$50</div>
+      </div>
+      <div style="background-color: rgba(255,255,255,0.2); border: 1.5px solid rgba(255,255,255,0.5); border-radius: 4px; padding: 14px 28px;">
+        <div style="color: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 700;">$100</div>
+      </div>
+      <div style="background-color: rgba(255,255,255,0.2); border: 1.5px solid rgba(255,255,255,0.5); border-radius: 4px; padding: 14px 28px;">
+        <div style="color: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 700;">$250</div>
+      </div>
+      <div style="background-color: rgba(255,255,255,0.2); border: 1.5px solid rgba(255,255,255,0.5); border-radius: 4px; padding: 14px 28px;">
+        <div style="color: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 700;">Other</div>
       </div>
     </div>
-  </section>
-
-  <%# ===== UPCOMING EVENTS ===== %>
-  <section class="py-16 md:py-24 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12">
-        <p class="text-campaign-red font-semibold tracking-wider uppercase mb-4">Events</p>
-        <h2 class="font-display text-4xl md:text-5xl font-bold text-navy-900 mb-4">
-          Upcoming Events
-        </h2>
-        <p class="text-lg text-navy-600">
-          Join Andrew at events across District 5
-        </p>
-      </div>
-
-      <div class="space-y-4 max-w-3xl mx-auto">
-        <div class="flex gap-4 p-4 border border-ivory-200 rounded-xl hover:shadow-md transition-shadow">
-          <div class="flex-shrink-0 bg-campaign-red text-white rounded-lg p-3 text-center w-16">
-            <div class="text-xl font-bold">15</div>
-            <div class="text-xs uppercase">May</div>
-          </div>
-          <div class="flex-1">
-            <h3 class="font-semibold text-navy-900">Campaign Kickoff Rally</h3>
-            <p class="text-sm text-navy-600">Rock Hill • 6:00 PM</p>
-          </div>
-          <%= link_to "RSVP", events_path,
-                class: "self-center text-campaign-red hover:text-campaign-red-dark font-semibold text-sm" %>
-        </div>
-
-        <div class="flex gap-4 p-4 border border-ivory-200 rounded-xl hover:shadow-md transition-shadow">
-          <div class="flex-shrink-0 bg-navy-700 text-white rounded-lg p-3 text-center w-16">
-            <div class="text-xl font-bold">22</div>
-            <div class="text-xs uppercase">May</div>
-          </div>
-          <div class="flex-1">
-            <h3 class="font-semibold text-navy-900">Town Hall Meeting</h3>
-            <p class="text-sm text-navy-600">York • 7:00 PM</p>
-          </div>
-          <%= link_to "RSVP", events_path,
-                class: "self-center text-campaign-red hover:text-campaign-red-dark font-semibold text-sm" %>
-        </div>
-
-        <div class="flex gap-4 p-4 border border-ivory-200 rounded-xl hover:shadow-md transition-shadow">
-          <div class="flex-shrink-0 bg-navy-700 text-white rounded-lg p-3 text-center w-16">
-            <div class="text-xl font-bold">05</div>
-            <div class="text-xs uppercase">Jun</div>
-          </div>
-          <div class="flex-1">
-            <h3 class="font-semibold text-navy-900">Community Picnic</h3>
-            <p class="text-sm text-navy-600">Chester • 12:00 PM</p>
-          </div>
-          <%= link_to "RSVP", events_path,
-                class: "self-center text-campaign-red hover:text-campaign-red-dark font-semibold text-sm" %>
-        </div>
-      </div>
-
-      <div class="text-center mt-12">
-        <%= link_to "View All Events", events_path,
-              class: "inline-flex items-center gap-2 text-campaign-red hover:text-campaign-red-dark font-semibold transition-colors" %>
-        <span>→</span>
-      </div>
+    <div style="background-color: #0F2044; border-radius: 4px; padding: 18px 60px;">
+      <div style="color: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;">Donate Now</div>
     </div>
-  </section>
-
-  <%# ===== FOOTER ===== %>
-  <footer class="bg-navy-950 text-white py-12">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid md:grid-cols-4 gap-8">
-        <div class="md:col-span-2">
-          <h3 class="font-display text-2xl font-bold mb-4">Clough for SC5</h3>
-          <p class="text-ivory-300 mb-6 max-w-md">
-            Conservative leadership for South Carolina District 5. Join us in
-            making our community stronger, freer, and more prosperous.
-          </p>
-          <div class="flex gap-4">
-            <a href="#" class="text-ivory-300 hover:text-white transition-colors">
-              <span class="sr-only">Facebook</span>
-              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-            </a>
-            <a href="#" class="text-ivory-300 hover:text-white transition-colors">
-              <span class="sr-only">Twitter</span>
-              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-            </a>
-            <a href="#" class="text-ivory-300 hover:text-white transition-colors">
-              <span class="sr-only">Instagram</span>
-              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-            </a>
-          </div>
-        </div>
-
-        <div>
-          <h4 class="font-semibold mb-4">Quick Links</h4>
-          <ul class="space-y-2">
-            <li><%= link_to "Home", root_path, class: "text-ivory-300 hover:text-white transition-colors" %></li>
-            <li><%= link_to "Issues", "#issues", class: "text-ivory-300 hover:text-white transition-colors" %></li>
-            <li><%= link_to "News", news_path, class: "text-ivory-300 hover:text-white transition-colors" %></li>
-            <li><%= link_to "Events", events_path, class: "text-ivory-300 hover:text-white transition-colors" %></li>
-            <li><%= link_to "About", about_path, class: "text-ivory-300 hover:text-white transition-colors" %></li>
-          </ul>
-        </div>
-
-        <div>
-          <h4 class="font-semibold mb-4">Get Involved</h4>
-          <ul class="space-y-2">
-            <li><%= link_to "Volunteer", volunteer_path, class: "text-ivory-300 hover:text-white transition-colors" %></li>
-            <li><a href="#" class="text-ivory-300 hover:text-white transition-colors">Request Yard Sign</a></li>
-            <li><a href="#" class="text-ivory-300 hover:text-white transition-colors">Donate</a></li>
-            <li><a href="#" class="text-ivory-300 hover:text-white transition-colors">Contact Us</a></li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="mt-12 pt-8 border-t border-navy-800 text-center text-ivory-400 text-sm">
-        <p>© 2026 Clough for SC5. Paid for by Clough for SC5.</p>
-      </div>
-    </div>
-  </footer>
-</main>
+  </div>
+</div>

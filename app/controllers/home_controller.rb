@@ -24,6 +24,14 @@ class HomeController < ApplicationController
   def about
   end
 
+  def issues
+    @issues = Issue.active.order(:position)
+  end
+
+  def show_issue
+    @issue = Issue.active.find(params[:id])
+  end
+
   def news
     @featured_article = NewsArticle.published.find_by(featured: true)
     @articles = NewsArticle.published.where.not(id: @featured_article&.id).order(published_date: :desc)

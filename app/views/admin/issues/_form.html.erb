@@ -17,7 +17,19 @@
 
   <div class="my-5">
     <%= form.label :description, class: "block font-medium text-gray-700" %>
-    <%= form.text_area :description, rows: 4, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500" %>
+    <%= form.rich_text_area :description, class: "mt-1 block w-full border border-gray-700" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :tagline, "Tagline / Quote", class: "block font-medium text-gray-700" %>
+    <p class="text-sm text-gray-500 mb-1">Short italic quote displayed at the top of the issue detail page</p>
+    <%= form.text_area :tagline, rows: 2, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :summary, "Platform at a Glance", class: "block font-medium text-gray-700" %>
+    <p class="text-sm text-gray-500 mb-1">Key highlights - enter one item per line for the summary sidebar</p>
+    <%= form.text_area :summary, rows: 6, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500", placeholder: "Family Relief: Annual tax dividend for local families\nSmall Business: 2-year tax holiday for new entrepreneurs\nLocal Control: Communities keep more of their tax growth" %>
   </div>
 
   <div class="my-5">

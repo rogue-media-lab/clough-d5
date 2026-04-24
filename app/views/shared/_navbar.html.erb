@@ -11,7 +11,7 @@
 
       <%# Desktop nav links %>
       <div class="hidden md:flex items-center gap-1">
-        <%= link_to "Issues", "#issues",
+        <%= link_to "Issues", issues_path,
               class: "text-ivory-200 hover:text-white hover:bg-navy-800 px-3 py-2 rounded-md text-sm font-medium transition-colors" %>
         <%= link_to "News", news_path,
               class: "text-ivory-200 hover:text-white hover:bg-navy-800 px-3 py-2 rounded-md text-sm font-medium transition-colors" %>
@@ -51,7 +51,7 @@
   <%# Mobile menu (hidden by default) %>
   <div data-navbar-target="menu" class="hidden md:hidden border-t border-navy-800 bg-navy-900">
     <div class="px-2 py-2 space-y-1">
-      <%= link_to "Issues", "#issues",
+      <%= link_to "Issues", issues_path,
             class: "block text-ivory-200 hover:text-white hover:bg-navy-800 px-3 py-2 rounded-md text-sm font-medium transition-colors" %>
       <%= link_to "News", news_path,
             class: "block text-ivory-200 hover:text-white hover:bg-navy-800 px-3 py-2 rounded-md text-sm font-medium transition-colors" %>
