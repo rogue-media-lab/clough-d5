@@ -1,4 +1,12 @@
 
+# Admin User
+User.find_or_create_by!(email_address: "admin@cloughforsc.com") do |user|
+  user.password = "CloughRocks!"
+  user.admin = true
+end
+
+puts "Admin user: admin@cloughforsc.com"
+
 # News
 NewsArticle.destroy_all
 NewsFeed.destroy_all
