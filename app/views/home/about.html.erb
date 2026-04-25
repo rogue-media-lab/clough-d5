@@ -1,172 +1,110 @@
 <% content_for :title, "About Andrew Clough - Clough for SC5" %>
 
-<div style="background-color: #0F2044; width: 100%; box-sizing: border-box;">
-  <div style="max-width: 1440px; margin-inline: auto; display: flex; font-size: 12px; min-height: 520px; padding-inline: 120px;">
-    <div style="box-sizing: border-box; display: flex; flex-basis: 0%; flex-direction: column; flex-grow: 1; flex-shrink: 1; gap: 20px; justify-content: center; padding-bottom: 80px; padding-right: 60px; padding-top: 80px;">
-      <div style="align-items: center; box-sizing: border-box; display: flex; gap: 12px;">
-        <div style="background-color: #C8902A; box-sizing: border-box; flex-shrink: 0; height: 32px; width: 3px;"></div>
-        <div style="box-sizing: border-box; color: #C8902A; display: inline-block; font-family: 'Inter', system-ui, sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0.1em; line-height: 16px; text-transform: uppercase;">
-          About Andrew
-        </div>
+<%# Hero Section %>
+<section class="bg-navy-900 w-full">
+  <div class="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-10 lg:gap-0 px-6 py-12 lg:px-20 lg:py-20">
+    <div class="flex-1 flex flex-col gap-5 lg:pr-16">
+      <div class="flex items-center gap-3">
+        <div class="bg-campaign-gold h-8 w-[3px]"></div>
+        <span class="text-campaign-gold font-sans text-xs font-semibold tracking-[0.1em] uppercase">About Andrew</span>
       </div>
-      <div style="box-sizing: border-box; color: #FFFFFF; font-family: 'Playfair Display', system-ui, sans-serif; font-size: 52px; font-weight: 700; line-height: 1.15; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; margin-top: 0px; white-space: pre-wrap;">
+      <h1 class="text-white font-display text-3xl sm:text-4xl lg:text-[52px] font-bold leading-[1.15]">
         Built by District 5.<br />Running for District 5.
-      </div>
-      <div style="box-sizing: border-box; color: rgba(255, 255, 255, 0.7); font-family: 'Inter', system-ui, sans-serif; font-size: 18px; line-height: 1.65; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; margin-top: 0px; max-width: 520px;">
+      </h1>
+      <p class="text-white/70 font-sans text-base lg:text-lg leading-relaxed max-w-lg">
         Andrew Clough is a husband, father, and Rock Hill native who has spent his career serving this community. He's running for Congress because District 5 deserves a voice that actually shows up.
-      </div>
-      <div style="box-sizing: border-box; display: flex; gap: 16px; margin-top: 8px;">
-        <div style="background-color: #C8902A; border-radius: 4px; box-sizing: border-box; padding-block: 14px; padding-inline: 28px;">
-          <div style="box-sizing: border-box; color: #FFFFFF; font-family: 'Inter', system-ui, sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 0.02em; line-height: 18px;">
-            Join the Campaign
-          </div>
-        </div>
-        <div style="border-color: rgba(255, 255, 255, 0.3); border-radius: 4px; border-style: solid; border-width: 1.5px; box-sizing: border-box; padding-block: 14px; padding-inline: 28px;">
-          <div style="box-sizing: border-box; color: #FFFFFF; font-family: 'Inter', system-ui, sans-serif; font-size: 14px; font-weight: 600; line-height: 18px;">
-            Read His Story
-          </div>
-        </div>
+      </p>
+      <div class="flex flex-wrap gap-4 mt-2">
+        <%= link_to "Join the Campaign", volunteer_path, class: "bg-campaign-gold text-white font-sans text-sm font-bold px-7 py-3.5 rounded transition-colors hover:bg-campaign-gold-dark" %>
+        <a href="#his-story" class="border border-white/30 text-white font-sans text-sm font-semibold px-7 py-3.5 rounded transition-colors hover:bg-white/10">Read His Story</a>
       </div>
     </div>
-<div style="align-items: center; background-color: rgba(255, 255, 255, 0.06); box-sizing: border-box; display: flex; flex-shrink: 0; justify-content: center; width: 420px;">
-    <%= image_tag 'andrew-cloughA.jpg', style: "width: 300px; height: 380px; object-fit: cover; border-radius: 4px; border: 2px solid rgba(200, 144, 42, 0.3);" %>
+    <div class="w-full lg:w-[420px] bg-white/[0.06] flex items-center justify-center py-10 lg:py-0">
+      <%= image_tag 'andrew-cloughA.jpg', class: "w-[280px] lg:w-[300px] h-[350px] lg:h-[380px] object-cover rounded border-2 border-campaign-gold/30" %>
+    </div>
   </div>
-  </div>
-</div>
+</section>
 
-<div style="background-color: #FFFFFF; width: 100%; box-sizing: border-box;">
-  <div style="max-width: 1440px; margin-inline: auto; display: flex; gap: 80px; padding-block: 80px; padding-inline: 120px;">
-    <div style="box-sizing: border-box; display: flex; flex-basis: 0%; flex-direction: column; flex-grow: 1; flex-shrink: 1; gap: 32px;">
-      <div style="align-items: center; box-sizing: border-box; display: flex; gap: 12px;">
-        <div style="background-color: #C8902A; box-sizing: border-box; flex-shrink: 0; height: 28px; width: 3px;"></div>
-        <div style="box-sizing: border-box; color: #C8902A; display: inline-block; font-family: 'Inter', system-ui, sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0.1em; line-height: 16px; text-transform: uppercase;">
-          His Story
-        </div>
+<%# His Story Section %>
+<section id="his-story" class="bg-white w-full">
+  <div class="max-w-7xl mx-auto flex flex-col lg:flex-row gap-10 lg:gap-20 px-6 py-16 lg:px-20 lg:py-20">
+    <div class="flex-1 flex flex-col gap-8">
+      <div class="flex items-center gap-3">
+        <div class="bg-campaign-gold h-7 w-[3px]"></div>
+        <span class="text-campaign-gold font-sans text-xs font-semibold tracking-[0.1em] uppercase">His Story</span>
       </div>
-      <div style="box-sizing: border-box; color: #0F2044; font-family: 'Playfair Display', system-ui, sans-serif; font-size: 36px; font-weight: 700; line-height: 1.2; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; margin-top: 0px;">
-        A life rooted in this district
-      </div>
-      <div style="box-sizing: border-box; color: #6B7280; font-family: 'Inter', system-ui, sans-serif; font-size: 16px; line-height: 1.75; margin-bottom: 1em; margin-left: 0px; margin-right: 0px; margin-top: 0px;">
-        Andrew Clough grew up in Rock Hill, went to school here, and built his family here. He's watched this district grow — and he's watched Washington ignore it. Textile mills closing. The VA clinic stretched thin. Young families leaving because they can't afford to stay.
-      </div>
-<div style="box-sizing: border-box; color: #6B7280; font-family: 'Inter', system-ui, sans-serif; font-size: 16px; line-height: 1.75; margin-bottom: 1em; margin-left: 0px; margin-right: 0px; margin-top: 0px;">
-        He spent years in community service, understanding firsthand how decisions made in Washington play out on the streets of York County. He knows that the people of District 5 aren't looking for a career politician — they're looking for someone who will actually fight for them.
-      </div>
-      <div style="box-sizing: border-box; color: #6B7280; font-family: 'Inter', system-ui, sans-serif; font-size: 16px; line-height: 1.75; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; margin-top: 0px;">
-        Andrew is running as a Democrat because he believes in an economy that works for working people, healthcare that doesn't bankrupt families, and a government that tells the truth. He's not backed by PACs. He's backed by neighbors.
+      <h2 class="text-navy-900 font-display text-3xl lg:text-[36px] font-bold leading-[1.2]">A life rooted in this district</h2>
+      <div class="flex flex-col gap-6 text-gray-500 font-sans text-base lg:text-lg leading-[1.75]">
+        <p>Andrew Clough grew up in Rock Hill, went to school here, and built his family here. He's watched this district grow — and he's watched Washington ignore it. Textile mills closing. The VA clinic stretched thin. Young families leaving because they can't afford to stay.</p>
+        <p>He spent years in community service, understanding firsthand how decisions made in Washington play out on the streets of York County. He knows that the people of District 5 aren't looking for a career politician — they're looking for someone who will actually fight for them.</p>
+        <p>Andrew is running as a Democrat because he believes in an economy that works for working people, healthcare that doesn't bankrupt families, and a government that tells the truth. He's not backed by PACs. He's backed by neighbors.</p>
       </div>
     </div>
-<div style="box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 24px; width: 360px;">
-      <div style="background-color: #F9F8F6; border-left-color: #C8902A; border-left-style: solid; border-left-width: 4px; border-radius: 8px; box-sizing: border-box; padding-block: 28px; padding-inline: 24px;">
-        <div style="box-sizing: border-box; color: #0F2044; font-family: 'Playfair Display', system-ui, sans-serif; font-size: 20px; font-style: italic; line-height: 1.5; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; margin-top: 0px;">
-          "District 5 has been overlooked for too long. I'm running because I refuse to accept that as normal."
-        </div>
-        <div style="box-sizing: border-box; color: #6B7280; font-family: 'Inter', system-ui, sans-serif; font-size: 13px; font-weight: 600; line-height: 16px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; margin-top: 16px;">
-          — Andrew Clough
-        </div>
-      </div>
-      <div style="background-color: #F9F8F6; border-radius: 8px; box-sizing: border-box; display: flex; flex-direction: column; gap: 16px; padding-block: 28px; padding-inline: 24px;">
-        <div style="box-sizing: border-box; color: #C8902A; display: inline-block; font-family: 'Inter', system-ui, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; line-height: 14px; text-transform: uppercase;">
-          Fast Facts
-        </div>
-        <div style="box-sizing: border-box; display: flex; flex-direction: column; gap: 12px;">
-          <div style="box-sizing: border-box; display: flex; gap: 12px;">
-            <div style="box-sizing: border-box; color: #9CA3AF; display: inline-block; flex-shrink: 0; font-family: 'Inter', system-ui, sans-serif; font-size: 14px; line-height: 18px; width: 80px;">
-              Home
-            </div>
-            <div style="box-sizing: border-box; color: #374151; display: inline-block; font-family: 'Inter', system-ui, sans-serif; font-size: 14px; font-weight: 500; line-height: 18px;">
-              Rock Hill, SC
-            </div>
+    <div class="w-full lg:w-[360px] flex flex-col gap-6">
+      <blockquote class="bg-ivory-50 border-l-4 border-campaign-gold rounded-lg p-7">
+        <p class="text-navy-900 font-display text-xl italic leading-relaxed">"District 5 has been overlooked for too long. I'm running because I refuse to accept that as normal."</p>
+        <cite class="block text-gray-500 font-sans text-sm font-semibold not-italic mt-4">— Andrew Clough</cite>
+      </blockquote>
+      <div class="bg-ivory-50 rounded-lg p-7 flex flex-col gap-4">
+        <span class="text-campaign-gold font-sans text-[11px] font-bold tracking-[0.1em] uppercase">Fast Facts</span>
+        <div class="flex flex-col gap-3">
+          <div class="flex gap-3">
+            <span class="text-gray-400 font-sans text-sm w-20 flex-shrink-0">Home</span>
+            <span class="text-gray-700 font-sans text-sm font-medium">Rock Hill, SC</span>
           </div>
-          <div style="box-sizing: border-box; display: flex; gap: 12px;">
-            <div style="box-sizing: border-box; color: #9CA3AF; display: inline-block; flex-shrink: 0; font-family: 'Inter', system-ui, sans-serif; font-size: 14px; line-height: 18px; width: 80px;">
-              Party
-            </div>
-            <div style="box-sizing: border-box; color: #374151; display: inline-block; font-family: 'Inter', system-ui, sans-serif; font-size: 14px; font-weight: 500; line-height: 18px;">
-              Democrat
-            </div>
+          <div class="flex gap-3">
+            <span class="text-gray-400 font-sans text-sm w-20 flex-shrink-0">Party</span>
+            <span class="text-gray-700 font-sans text-sm font-medium">Democrat</span>
           </div>
-          <div style="box-sizing: border-box; display: flex; gap: 12px;">
-            <div style="box-sizing: border-box; color: #9CA3AF; display: inline-block; flex-shrink: 0; font-family: 'Inter', system-ui, sans-serif; font-size: 14px; line-height: 18px; width: 80px;">
-              District
-            </div>
-            <div style="box-sizing: border-box; color: #374151; display: inline-block; font-family: 'Inter', system-ui, sans-serif; font-size: 14px; font-weight: 500; line-height: 18px;">
-              SC-05
-            </div>
+          <div class="flex gap-3">
+            <span class="text-gray-400 font-sans text-sm w-20 flex-shrink-0">District</span>
+            <span class="text-gray-700 font-sans text-sm font-medium">SC-05</span>
           </div>
-          <div style="box-sizing: border-box; display: flex; gap: 12px;">
-            <div style="box-sizing: border-box; color: #9CA3AF; display: inline-block; flex-shrink: 0; font-family: 'Inter', system-ui, sans-serif; font-size: 14px; line-height: 18px; width: 80px;">
-              Primary
-            </div>
-            <div style="box-sizing: border-box; color: #374151; display: inline-block; font-family: 'Inter', system-ui, sans-serif; font-size: 14px; font-weight: 500; line-height: 18px;">
-              June 2026
-            </div>
+          <div class="flex gap-3">
+            <span class="text-gray-400 font-sans text-sm w-20 flex-shrink-0">Primary</span>
+            <span class="text-gray-700 font-sans text-sm font-medium">June 2026</span>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+</section>
 
-<div style="background-color: #F9F8F6; width: 100%; box-sizing: border-box;">
-  <div style="max-width: 1440px; margin-inline: auto; display: flex; flex-direction: column; gap: 48px; padding-block: 80px; padding-inline: 120px;">
-    <div style="align-items: center; box-sizing: border-box; display: flex; gap: 12px;">
-      <div style="background-color: #C8902A; box-sizing: border-box; flex-shrink: 0; height: 28px; width: 3px;"></div>
-      <div style="box-sizing: border-box; color: #C8902A; display: inline-block; font-family: 'Inter', system-ui, sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0.1em; line-height: 16px; text-transform: uppercase;">
-        Values
+<%# Values Section %>
+<section class="bg-ivory-50 w-full">
+  <div class="max-w-7xl mx-auto px-6 py-16 lg:px-20 lg:py-20 flex flex-col gap-12">
+    <div class="flex items-center gap-3">
+      <div class="bg-campaign-gold h-7 w-[3px]"></div>
+      <span class="text-campaign-gold font-sans text-xs font-semibold tracking-[0.1em] uppercase">Values</span>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="flex flex-col gap-3">
+        <h3 class="text-navy-900 font-display text-2xl font-bold">Community First</h3>
+        <p class="text-gray-500 font-sans text-base leading-relaxed">Every decision Andrew makes in Congress will start with one question: does this help the people of District 5? Not donors. Not party leadership. Neighbors.</p>
+      </div>
+      <div class="flex flex-col gap-3">
+        <h3 class="text-navy-900 font-display text-2xl font-bold">Straight Talk</h3>
+        <p class="text-gray-500 font-sans text-base leading-relaxed">Andrew says what he means. No hedging, no spin. If he disagrees with something, he'll say so. District 5 has had enough of politicians who talk around every answer.</p>
+      </div>
+      <div class="flex flex-col gap-3">
+        <h3 class="text-navy-900 font-display text-2xl font-bold">Show Up</h3>
+        <p class="text-gray-500 font-sans text-base leading-relaxed">Being a congressman means being present. Town halls, school visits, coffee meetups — Andrew will be in the district regularly, not just at election time.</p>
       </div>
     </div>
-    <div style="box-sizing: border-box; display: flex; gap: 32px;">
-      <div style="box-sizing: border-box; display: flex; flex-basis: 0%; flex-direction: column; flex-grow: 1; flex-shrink: 1; gap: 12px;">
-        <div style="box-sizing: border-box; color: #0F2044; font-family: 'Playfair Display', system-ui, sans-serif; font-size: 24px; font-weight: 700; line-height: 30px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; margin-top: 0px;">
-          Community First
-        </div>
-        <div style="box-sizing: border-box; color: #6B7280; font-family: 'Inter', system-ui, sans-serif; font-size: 15px; line-height: 1.65; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; margin-top: 0px;">
-          Every decision Andrew makes in Congress will start with one question: does this help the people of District 5? Not donors. Not party leadership. Neighbors.
-        </div>
-      </div>
-<div style="box-sizing: border-box; display: flex; flex-basis: 0%; flex-direction: column; flex-grow: 1; flex-shrink: 1; gap: 12px;">
-        <div style="box-sizing: border-box; color: #0F2044; font-family: 'Playfair Display', system-ui, sans-serif; font-size: 24px; font-weight: 700; line-height: 30px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; margin-top: 0px;">
-          Straight Talk
-        </div>
-        <div style="box-sizing: border-box; color: #6B7280; font-family: 'Inter', system-ui, sans-serif; font-size: 15px; line-height: 1.65; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; margin-top: 0px;">
-          Andrew says what he means. No hedging, no spin. If he disagrees with something, he'll say so. District 5 has had enough of politicians who talk around every answer.
-        </div>
-      </div>
-      <div style="box-sizing: border-box; display: flex; flex-basis: 0%; flex-direction: column; flex-grow: 1; flex-shrink: 1; gap: 12px;">
-        <div style="box-sizing: border-box; color: #0F2044; font-family: 'Playfair Display', system-ui, sans-serif; font-size: 24px; font-weight: 700; line-height: 30px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; margin-top: 0px;">
-          Show Up
-        </div>
-        <div style="box-sizing: border-box; color: #6B7280; font-family: 'Inter', system-ui, sans-serif; font-size: 15px; line-height: 1.65; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; margin-top: 0px;">
-          Being a congressman means being present. Town halls, school visits, coffee meetups — Andrew will be in the district regularly, not just at election time.
-        </div>
-      </div>
-    </div>  </div>
-</div>
+  </div>
+</section>
 
-<div style="background-color: #0F2044; width: 100%; box-sizing: border-box;">
-  <div style="max-width: 1440px; margin-inline: auto; align-items: center; display: flex; justify-content: space-between; padding-block: 80px; padding-inline: 120px;">
-    <div style="box-sizing: border-box; display: flex; flex-direction: column; gap: 12px; max-width: 560px;">
-      <div style="box-sizing: border-box; color: #C8902A; display: inline-block; font-family: 'Inter', system-ui, sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0.1em; line-height: 16px; text-transform: uppercase;">
-        Get Involved
-      </div>
-      <div style="box-sizing: border-box; color: #FFFFFF; font-family: 'Playfair Display', system-ui, sans-serif; font-size: 36px; font-weight: 700; line-height: 1.2; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; margin-top: 0px;">
-        This campaign runs on neighbors, not donors.
-      </div>
-      <div style="box-sizing: border-box; color: rgba(255, 255, 255, 0.65); font-family: 'Inter', system-ui, sans-serif; font-size: 16px; line-height: 1.65; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; margin-top: 0px;">
-        Door knocking, phone banking, hosting a coffee — every hour you give makes a real difference in a district this competitive. Andrew needs you.
-      </div>
+<%# CTA Section %>
+<section class="bg-navy-900 w-full">
+  <div class="max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-8 px-6 py-16 lg:px-20 lg:py-20">
+    <div class="flex flex-col gap-3 max-w-lg">
+      <span class="text-campaign-gold font-sans text-xs font-semibold tracking-[0.1em] uppercase">Get Involved</span>
+      <h2 class="text-white font-display text-2xl sm:text-3xl lg:text-[36px] font-bold leading-[1.2]">This campaign runs on neighbors, not donors.</h2>
+      <p class="text-white/65 font-sans text-base leading-relaxed">Door knocking, phone banking, hosting a coffee — every hour you give makes a real difference in a district this competitive. Andrew needs you.</p>
     </div>
-    <div style="box-sizing: border-box; display: flex; flex-direction: column; gap: 12px;">
-      <div style="background-color: #C8902A; border-radius: 4px; box-sizing: border-box; padding-block: 16px; padding-inline: 40px;">
-        <div style="box-sizing: border-box; color: #FFFFFF; font-family: 'Inter', system-ui, sans-serif; font-size: 15px; font-weight: 700; line-height: 18px; text-align: center;">
-          Volunteer Now
-        </div>
-      </div>
-      <div style="border-color: rgba(255, 255, 255, 0.3); border-radius: 4px; border-style: solid; border-width: 1.5px; box-sizing: border-box; padding-block: 16px; padding-inline: 40px;">
-        <div style="box-sizing: border-box; color: #FFFFFF; font-family: 'Inter', system-ui, sans-serif; font-size: 15px; font-weight: 600; line-height: 18px; text-align: center;">
-          Donate
-        </div>
-      </div>
-    </div>  </div>
-</div>
+    <div class="flex flex-col sm:flex-row lg:flex-col gap-4 w-full sm:w-auto">
+      <%= link_to "Volunteer Now", volunteer_path, class: "bg-campaign-gold text-white font-sans text-sm font-bold px-10 py-4 rounded text-center transition-colors hover:bg-campaign-gold-dark" %>
+      <a href="#donate" class="border border-white/30 text-white font-sans text-sm font-semibold px-10 py-4 rounded text-center transition-colors hover:bg-white/10">Donate</a>
+    </div>
+  </div>
+</section>

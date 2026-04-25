@@ -1,228 +1,200 @@
 <% content_for :title, "Volunteer - Clough for SC5" %>
 
-<div style="background-color: #0F2044; width: 100%; box-sizing: border-box;">
-  <div style="max-width: 1440px; margin-inline: auto; display: flex; align-items: center; gap: 120px; padding: 80px;">
-    <div style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
-      <div style="align-items: center; display: flex; gap: 12px;">
-        <div style="background-color: #C8902A; height: 2px; width: 40px;"></div>
-        <div style="color: #C8902A; font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;">
-          Get Involved
-        </div>
+<%# Hero Section %>
+<section class="bg-navy-900 w-full">
+  <div class="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-10 lg:gap-[120px] px-6 py-12 lg:px-20 lg:py-20">
+    <div class="flex-1 flex flex-col gap-5">
+      <div class="flex items-center gap-3">
+        <div class="bg-campaign-gold h-0.5 w-10"></div>
+        <span class="text-campaign-gold font-sans text-xs font-semibold tracking-[0.1em] uppercase">Get Involved</span>
       </div>
-      <div style="color: #FFFFFF; font-family: 'Playfair Display', serif; font-size: 56px; font-weight: 700; line-height: 1.1; white-space: pre-wrap;">
+      <h1 class="text-white font-display text-4xl sm:text-5xl lg:text-[56px] font-bold leading-[1.1]">
         Be part of<br />something real.
-      </div>
-      <div style="color: rgba(255, 255, 255, 0.65); font-family: 'Inter', sans-serif; font-size: 16px; line-height: 1.7; max-width: 460px;">
+      </h1>
+      <p class="text-white/65 font-sans text-base leading-relaxed max-w-lg">
         Every door knocked, every call made, every yard sign planted — it adds up. Andrew can't win this without neighbors who believe District 5 deserves better. That's you.
+      </p>
+    </div>
+    <div class="w-full lg:w-[440px] bg-white/[0.07] rounded-xl p-6 sm:p-10 flex flex-col gap-6">
+      <div class="flex justify-between items-end">
+        <div class="flex flex-col gap-1">
+          <span class="text-white font-display text-4xl lg:text-[48px] font-bold leading-none">312</span>
+          <span class="text-white/50 font-sans text-sm">volunteers and counting</span>
+        </div>
+        <div class="flex flex-col gap-1 items-end">
+          <span class="text-campaign-gold font-sans text-sm font-semibold">Goal: 500</span>
+          <span class="text-white/40 font-sans text-xs">before primary</span>
+        </div>
+      </div>
+      <div class="flex flex-col gap-2">
+        <div class="bg-white/12 rounded-full h-2 w-full overflow-hidden">
+          <div class="bg-campaign-gold rounded-full h-full w-[62%]"></div>
+        </div>
+        <span class="text-white/40 font-sans text-xs">188 more to reach our goal</span>
+      </div>
+      <div class="border-t border-white/10 pt-6 flex gap-4">
+        <div class="flex-1 flex flex-col gap-1">
+          <span class="text-white font-display text-2xl font-bold">6</span>
+          <span class="text-white/45 font-sans text-xs">counties represented</span>
+        </div>
+        <div class="flex-1 flex flex-col gap-1">
+          <span class="text-white font-display text-2xl font-bold">1,400+</span>
+          <span class="text-white/45 font-sans text-xs">doors knocked</span>
+        </div>
       </div>
     </div>
-    <div style="background-color: rgba(255, 255, 255, 0.07); border-radius: 12px; display: flex; flex-direction: column; gap: 24px; padding: 40px; width: 440px; flex-shrink: 0;">
-      <div style="display: flex; justify-content: space-between; align-items: flex-end;">
-        <div style="display: flex; flex-direction: column; gap: 4px;">
-          <div style="color: #FFFFFF; font-family: 'Playfair Display', serif; font-size: 48px; font-weight: 700; line-height: 1;">
-            312
-          </div>
-          <div style="color: rgba(255, 255, 255, 0.5); font-family: 'Inter', sans-serif; font-size: 14px;">
-            volunteers and counting
+  </div>
+</section>
+
+<%# Role Cards Section %>
+<section class="bg-ivory-50 w-full">
+  <div class="max-w-7xl mx-auto px-6 py-16 lg:px-20 lg:py-20 flex flex-col gap-12">
+    <div class="flex flex-col gap-2">
+      <div class="flex items-center gap-3">
+        <div class="bg-campaign-gold h-0.5 w-10"></div>
+        <span class="text-campaign-gold font-sans text-xs font-semibold tracking-[0.1em] uppercase">How You Can Help</span>
+      </div>
+      <h2 class="text-navy-900 font-display text-3xl lg:text-[36px] font-bold">Pick your role.</h2>
+      <p class="text-gray-500 font-sans text-base leading-relaxed max-w-lg">Every role matters. Do as much or as little as you can — an hour a week moves the needle. Sign up below and we'll match you to opportunities in your area.</p>
+    </div>
+
+    <div class="flex flex-col gap-6">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <%# Row 1 - Gold top border %>
+        <div class="bg-white rounded-lg border-t-4 border-campaign-gold p-6 lg:p-8 flex flex-col gap-4">
+          <h3 class="text-navy-900 font-display text-xl font-bold">Canvassing</h3>
+          <p class="text-gray-500 font-sans text-sm leading-[1.65] flex-1">Walk neighborhoods and talk to voters face-to-face. The most effective thing a campaign can do. We provide the list, the script, and the training.</p>
+          <div class="flex items-center gap-2 mt-auto pt-1">
+            <div class="bg-campaign-gold h-0.5 w-4"></div>
+            <span class="text-campaign-gold font-sans text-[11px] font-semibold tracking-[0.1em] uppercase">Most impactful</span>
           </div>
         </div>
-        <div style="display: flex; flex-direction: column; gap: 4px; align-items: flex-end;">
-          <div style="color: #C8902A; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600;">
-            Goal: 500
+        <div class="bg-white rounded-lg border-t-4 border-campaign-gold p-6 lg:p-8 flex flex-col gap-4">
+          <h3 class="text-navy-900 font-display text-xl font-bold">Phone & Text Banking</h3>
+          <p class="text-gray-500 font-sans text-sm leading-[1.65] flex-1">Reach voters from your own home. Phone calls for older voters, text banking for everyone else. A few hours on a weekend goes a long way.</p>
+          <div class="flex items-center gap-2 mt-auto pt-1">
+            <div class="bg-campaign-gold h-0.5 w-4"></div>
+            <span class="text-campaign-gold font-sans text-[11px] font-semibold tracking-[0.1em] uppercase">Do it from home</span>
           </div>
-          <div style="color: rgba(255, 255, 255, 0.4); font-family: 'Inter', sans-serif; font-size: 12px;">
-            before primary
+        </div>
+        <div class="bg-white rounded-lg border-t-4 border-campaign-gold p-6 lg:p-8 flex flex-col gap-4">
+          <h3 class="text-navy-900 font-display text-xl font-bold">Yard Signs</h3>
+          <p class="text-gray-500 font-sans text-sm leading-[1.65] flex-1">Put a sign in your yard or help distribute them across the district. Visibility builds name recognition — especially in the final weeks before the primary.</p>
+          <div class="flex items-center gap-2 mt-auto pt-1">
+            <div class="bg-campaign-gold h-0.5 w-4"></div>
+            <span class="text-campaign-gold font-sans text-[11px] font-semibold tracking-[0.1em] uppercase">Lowest time commitment</span>
           </div>
         </div>
       </div>
-      <div style="display: flex; flex-direction: column; gap: 8px;">
-        <div style="background-color: rgba(255, 255, 255, 0.12); border-radius: 99px; height: 8px; overflow: clip; width: 100%;">
-          <div style="background-color: #C8902A; border-radius: 99px; height: 100%; width: 62%;"></div>
-        </div>
-        <div style="color: rgba(255, 255, 255, 0.4); font-family: 'Inter', sans-serif; font-size: 12px;">
-          188 more to reach our goal
-        </div>
-      </div>
-      <div style="border-top: 1px solid rgba(255, 255, 255, 0.1); display: flex; padding-top: 24px;">
-        <div style="flex: 1; display: flex; flex-direction: column; gap: 4px;">
-          <div style="color: #FFFFFF; font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700;">
-            6
-          </div>
-          <div style="color: rgba(255, 255, 255, 0.45); font-family: 'Inter', sans-serif; font-size: 12px;">
-            counties represented
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <%# Row 2 - Navy top border %>
+        <div class="bg-white rounded-lg border-t-4 border-navy-900 p-6 lg:p-8 flex flex-col gap-4">
+          <h3 class="text-navy-900 font-display text-xl font-bold">Social Media</h3>
+          <p class="text-gray-500 font-sans text-sm leading-[1.65] flex-1">Share posts, write your own story about why you support Andrew, and help expand the campaign's reach beyond what advertising can do.</p>
+          <div class="flex items-center gap-2 mt-auto pt-1">
+            <div class="bg-gray-500 h-0.5 w-4"></div>
+            <span class="text-gray-500 font-sans text-[11px] font-semibold tracking-[0.1em] uppercase">Anytime, anywhere</span>
           </div>
         </div>
-        <div style="flex: 1; display: flex; flex-direction: column; gap: 4px;">
-          <div style="color: #FFFFFF; font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700;">
-            1,400+
+        <div class="bg-white rounded-lg border-t-4 border-navy-900 p-6 lg:p-8 flex flex-col gap-4">
+          <h3 class="text-navy-900 font-display text-xl font-bold">Host a House Party</h3>
+          <p class="text-gray-500 font-sans text-sm leading-[1.65] flex-1">Invite neighbors over and bring Andrew to your living room. House parties are how grassroots campaigns build real, lasting support in a community.</p>
+          <div class="flex items-center gap-2 mt-auto pt-1">
+            <div class="bg-gray-500 h-0.5 w-4"></div>
+            <span class="text-gray-500 font-sans text-[11px] font-semibold tracking-[0.1em] uppercase">High impact</span>
           </div>
-          <div style="color: rgba(255, 255, 255, 0.45); font-family: 'Inter', sans-serif; font-size: 12px;">
-            doors knocked
+        </div>
+        <div class="bg-white rounded-lg border-t-4 border-navy-900 p-6 lg:p-8 flex flex-col gap-4">
+          <h3 class="text-navy-900 font-display text-xl font-bold">Events & Rallies</h3>
+          <p class="text-gray-500 font-sans text-sm leading-[1.65] flex-1">Help set up, greet attendees, and run the show at Coffee with Clough events and town halls. Energy at events is contagious — we need good people in the room.</p>
+          <div class="flex items-center gap-2 mt-auto pt-1">
+            <div class="bg-gray-500 h-0.5 w-4"></div>
+            <span class="text-gray-500 font-sans text-[11px] font-semibold tracking-[0.1em] uppercase">In-person</span>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+</section>
 
-<div style="background-color: #F9F8F6; width: 100%; box-sizing: border-box;">
-  <div style="max-width: 1440px; margin-inline: auto; display: flex; flex-direction: column; gap: 48px; padding: 80px;">
-    <div style="display: flex; flex-direction: column; gap: 8px;">
-      <div style="align-items: center; display: flex; gap: 12px;">
-        <div style="background-color: #C8902A; height: 2px; width: 40px;"></div>
-        <div style="color: #C8902A; font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;">
-          How You Can Help
+<%# Sign Up Form Section %>
+<section class="bg-navy-900 w-full">
+  <div class="max-w-7xl mx-auto flex flex-col lg:flex-row items-start gap-10 lg:gap-[120px] px-6 py-16 lg:px-20 lg:py-20">
+    <div class="flex-1 flex flex-col gap-7">
+      <div class="flex flex-col gap-2">
+        <div class="flex items-center gap-3">
+          <div class="bg-campaign-gold h-0.5 w-10"></div>
+          <span class="text-campaign-gold font-sans text-xs font-semibold tracking-[0.1em] uppercase">Sign Up</span>
         </div>
+        <h2 class="text-white font-display text-3xl sm:text-4xl lg:text-[40px] font-bold leading-[1.1]">Ready to help?<br />Let's talk.</h2>
       </div>
-      <div style="color: #0F2044; font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 700;">
-        Pick your role.
-      </div>
-      <div style="color: #6B7280; font-family: 'Inter', sans-serif; font-size: 15px; line-height: 1.6; max-width: 560px;">
-        Every role matters. Do as much or as little as you can — an hour a week moves the needle. Sign up below and we'll match you to opportunities in your area.
-      </div>
+      <p class="text-white/60 font-sans text-base leading-relaxed">
+        Fill in your details and check off whatever you're interested in. A member of the campaign team will reach out within 48 hours to get you plugged in.
+      </p>
     </div>
-    <div style="display: flex; flex-direction: column; gap: 24px;">
-      <div style="display: flex; gap: 24px;">
-        <div style="background-color: #FFFFFF; border-radius: 8px; border-top: 4px solid #C8902A; flex: 1; padding: 32px; display: flex; flex-direction: column; gap: 14px;">
-          <div style="color: #0F2044; font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700;">Canvassing</div>
-          <div style="color: #6B7280; font-family: 'Inter', sans-serif; font-size: 14px; line-height: 1.65; flex-grow: 1;">Walk neighborhoods and talk to voters face-to-face. The most effective thing a campaign can do. We provide the list, the script, and the training.</div>
-          <div style="align-items: center; display: flex; gap: 6px; margin-top: auto; padding-top: 4px;">
-            <div style="background-color: #C8902A; height: 1.5px; width: 16px;"></div>
-            <div style="color: #C8902A; font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;">Most impactful</div>
-          </div>
-        </div>
-        <div style="background-color: #FFFFFF; border-radius: 8px; border-top: 4px solid #C8902A; flex: 1; padding: 32px; display: flex; flex-direction: column; gap: 14px;">
-          <div style="color: #0F2044; font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700;">Phone & Text Banking</div>
-          <div style="color: #6B7280; font-family: 'Inter', sans-serif; font-size: 14px; line-height: 1.65; flex-grow: 1;">Reach voters from your own home. Phone calls for older voters, text banking for everyone else. A few hours on a weekend goes a long way.</div>
-          <div style="align-items: center; display: flex; gap: 6px; margin-top: auto; padding-top: 4px;">
-            <div style="background-color: #C8902A; height: 1.5px; width: 16px;"></div>
-            <div style="color: #C8902A; font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;">Do it from home</div>
-          </div>
-        </div>
-        <div style="background-color: #FFFFFF; border-radius: 8px; border-top: 4px solid #C8902A; flex: 1; padding: 32px; display: flex; flex-direction: column; gap: 14px;">
-          <div style="color: #0F2044; font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700;">Yard Signs</div>
-          <div style="color: #6B7280; font-family: 'Inter', sans-serif; font-size: 14px; line-height: 1.65; flex-grow: 1;">Put a sign in your yard or help distribute them across the district. Visibility builds name recognition — especially in the final weeks before the primary.</div>
-          <div style="align-items: center; display: flex; gap: 6px; margin-top: auto; padding-top: 4px;">
-            <div style="background-color: #C8902A; height: 1.5px; width: 16px;"></div>
-            <div style="color: #C8902A; font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;">Lowest time commitment</div>
-          </div>
-        </div>
-      </div>
-      <div style="display: flex; gap: 24px;">
-        <div style="background-color: #FFFFFF; border-radius: 8px; border-top: 4px solid #0F2044; flex: 1; padding: 32px; display: flex; flex-direction: column; gap: 14px;">
-          <div style="color: #0F2044; font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700;">Social Media</div>
-          <div style="color: #6B7280; font-family: 'Inter', sans-serif; font-size: 14px; line-height: 1.65; flex-grow: 1;">Share posts, write your own story about why you support Andrew, and help expand the campaign's reach beyond what advertising can do.</div>
-          <div style="align-items: center; display: flex; gap: 6px; margin-top: auto; padding-top: 4px;">
-            <div style="background-color: #6B7280; height: 1.5px; width: 16px;"></div>
-            <div style="color: #6B7280; font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;">Anytime, anywhere</div>
-          </div>
-        </div>
-        <div style="background-color: #FFFFFF; border-radius: 8px; border-top: 4px solid #0F2044; flex: 1; padding: 32px; display: flex; flex-direction: column; gap: 14px;">
-          <div style="color: #0F2044; font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700;">Host a House Party</div>
-          <div style="color: #6B7280; font-family: 'Inter', sans-serif; font-size: 14px; line-height: 1.65; flex-grow: 1;">Invite neighbors over and bring Andrew to your living room. House parties are how grassroots campaigns build real, lasting support in a community.</div>
-          <div style="align-items: center; display: flex; gap: 6px; margin-top: auto; padding-top: 4px;">
-            <div style="background-color: #6B7280; height: 1.5px; width: 16px;"></div>
-            <div style="color: #6B7280; font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;">High impact</div>
-          </div>
-        </div>
-        <div style="background-color: #FFFFFF; border-radius: 8px; border-top: 4px solid #0F2044; flex: 1; padding: 32px; display: flex; flex-direction: column; gap: 14px;">
-          <div style="color: #0F2044; font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700;">Events & Rallies</div>
-          <div style="color: #6B7280; font-family: 'Inter', sans-serif; font-size: 14px; line-height: 1.65; flex-grow: 1;">Help set up, greet attendees, and run the show at Coffee with Clough events and town halls. Energy at events is contagious — we need good people in the room.</div>
-          <div style="align-items: center; display: flex; gap: 6px; margin-top: auto; padding-top: 4px;">
-            <div style="background-color: #6B7280; height: 1.5px; width: 16px;"></div>
-            <div style="color: #6B7280; font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;">In-person</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+    <div class="w-full lg:w-[560px] bg-white rounded-xl p-6 sm:p-12 flex flex-col gap-5">
+      <%= form_with model: @volunteer_submission, url: volunteer_submissions_path, method: :post do |form| %>
+        <h3 class="text-navy-900 font-display text-2xl font-bold">Join the Campaign</h3>
 
-<div style="background-color: #0F2044; width: 100%; box-sizing: border-box;">
-  <div style="max-width: 1440px; margin-inline: auto; display: flex; align-items: flex-start; gap: 120px; padding: 80px;">
-    <div style="flex: 1; display: flex; flex-direction: column; gap: 28px; padding-top: 8px;">
-        <div style="display: flex; flex-direction: column; gap: 8px;">
-            <div style="align-items: center; display: flex; gap: 12px;">
-                <div style="background-color: #C8902A; height: 2px; width: 40px;"></div>
-                <div style="color: #C8902A; font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;">Sign Up</div>
-            </div>
-            <div style="color: #FFFFFF; font-family: 'Playfair Display', serif; font-size: 40px; font-weight: 700; line-height: 1.1; white-space: pre-wrap;">Ready to help?<br />Let's talk.</div>
+        <div class="flex flex-col sm:flex-row gap-4 mt-5">
+          <div class="flex-1 flex flex-col gap-1.5">
+            <%= form.label :name, "First Name", class: "text-gray-500 font-sans text-[11px] font-semibold uppercase" %>
+            <%= form.text_field :name, class: "bg-ivory-50 border border-gray-200 rounded h-11 px-3 w-full" %>
+          </div>
+          <div class="flex-1 flex flex-col gap-1.5">
+            <%= form.label :last_name, "Last Name", class: "text-gray-500 font-sans text-[11px] font-semibold uppercase" %>
+            <%= form.text_field :last_name, class: "bg-ivory-50 border border-gray-200 rounded h-11 px-3 w-full" %>
+          </div>
         </div>
-        <div style="color: rgba(255, 255, 255, 0.6); font-family: 'Inter', sans-serif; font-size: 15px; line-height: 1.75;">
-            Fill in your details and check off whatever you're interested in. A member of the campaign team will reach out within 48 hours to get you plugged in.
+
+        <div class="flex flex-col gap-1.5 mt-5">
+          <%= form.label :email, "Email Address", class: "text-gray-500 font-sans text-[11px] font-semibold uppercase" %>
+          <%= form.email_field :email, class: "bg-ivory-50 border border-gray-200 rounded h-11 px-3 w-full" %>
         </div>
-    </div>
-    <div style="background-color: #FFFFFF; border-radius: 12px; padding: 48px; width: 560px; flex-shrink: 0; display: flex; flex-direction: column; gap: 20px;">
-        <%= form_with model: @volunteer_submission, url: volunteer_submissions_path, method: :post do |form| %>
-            <div style="color: #0F2044; font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700;">Join the Campaign</div>
-            
-            <div style="display: flex; gap: 16px; margin-top: 20px;">
-                <div style="flex: 1; display: flex; flex-direction: column; gap: 6px;">
-                <%= form.label :name, "First Name", style: "color: #6B7280; font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 600; text-transform: uppercase;" %>
-                <%= form.text_field :name, style: "background-color: #F9F8F6; border: 1.5px solid #E5E7EB; border-radius: 6px; height: 44px; width: 100%;" %>
-                </div>
-                <div style="flex: 1; display: flex; flex-direction: column; gap: 6px;">
-                <%= form.label :last_name, style: "color: #6B7280; font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 600; text-transform: uppercase;" %>
-                <%= form.text_field :last_name, style: "background-color: #F9F8F6; border: 1.5px solid #E5E7EB; border-radius: 6px; height: 44px; width: 100%;" %>
-                </div>
-            </div>
 
-            <div style="display: flex; flex-direction: column; gap: 6px; margin-top: 20px;">
-                <%= form.label :email, "Email Address", style: "color: #6B7280; font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 600; text-transform: uppercase;" %>
-                <%= form.email_field :email, style: "background-color: #F9F8F6; border: 1.5px solid #E5E7EB; border-radius: 6px; height: 44px; width: 100%;" %>
-            </div>
+        <div class="flex flex-col sm:flex-row gap-4 mt-5">
+          <div class="flex-1 flex flex-col gap-1.5">
+            <%= form.label :phone, "Phone (optional)", class: "text-gray-500 font-sans text-[11px] font-semibold uppercase" %>
+            <%= form.telephone_field :phone, class: "bg-ivory-50 border border-gray-200 rounded h-11 px-3 w-full" %>
+          </div>
+          <div class="w-full sm:w-[140px] flex flex-col gap-1.5">
+            <%= form.label :area_code, "ZIP Code", class: "text-gray-500 font-sans text-[11px] font-semibold uppercase" %>
+            <%= form.text_field :area_code, class: "bg-ivory-50 border border-gray-200 rounded h-11 px-3 w-full" %>
+          </div>
+        </div>
 
-            <div style="display: flex; gap: 16px; margin-top: 20px;">
-                <div style="flex: 1; display: flex; flex-direction: column; gap: 6px;">
-                <%= form.label :phone, "Phone (optional)", style: "color: #6B7280; font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 600; text-transform: uppercase;" %>
-                <%= form.telephone_field :phone, style: "background-color: #F9F8F6; border: 1.5px solid #E5E7EB; border-radius: 6px; height: 44px; width: 100%;" %>
-                </div>
-                <div style="width: 140px; display: flex; flex-direction: column; gap: 6px;">
-                <%= form.label :area_code, "ZIP Code", style: "color: #6B7280; font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 600; text-transform: uppercase;" %>
-                <%= form.text_field :area_code, style: "background-color: #F9F8F6; border: 1.5px solid #E5E7EB; border-radius: 6px; height: 44px; width: 100%;" %>
-                </div>
-            </div>
+        <div class="flex flex-col gap-3 pt-6">
+          <span class="text-gray-500 font-sans text-[11px] font-semibold uppercase">I want to help with…</span>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <% @interests.each do |interest| %>
+              <div class="interest-checkbox flex items-center gap-3 bg-ivory-50 border border-gray-200 rounded px-4 py-3 cursor-pointer hover:border-campaign-gold transition-colors">
+                <%= check_box_tag "volunteer_submission[interest_ids][]", interest.id, @volunteer_submission.interest_ids.include?(interest.id), { id: "interest_#{interest.id}", class: "sr-only peer" } %>
+                <label for="interest_<%= interest.id %>" class="flex items-center gap-3 w-full cursor-pointer">
+                  <div class="custom-checkbox h-[18px] w-[18px] border-2 border-gray-200 rounded bg-white flex items-center justify-center flex-shrink-0 peer-checked:bg-campaign-gold peer-checked:border-campaign-gold">
+                    <span class="hidden text-white text-xs">✓</span>
+                  </div>
+                  <span class="text-gray-700 font-sans text-sm"><%= interest.name %></span>
+                </label>
+              </div>
+            <% end %>
+          </div>
+        </div>
 
-            <div style="display: flex; flex-direction: column; gap: 10px; padding-top: 24px;">
-                <div style="color: #6B7280; font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 600; text-transform: uppercase;">I want to help with…</div>
-                <div style="display: flex; flex-direction: column; gap: 10px;">
-                    <% @interests.each_slice(2) do |interest_row| %>
-                        <div style="display: flex; gap: 16px;">
-                            <% interest_row.each do |interest| %>
-                                <div class="interest-checkbox" style="align-items: center; background-color: #F9F8F6; border: 1.5px solid #E5E7EB; border-radius: 6px; display: flex; gap: 10px; padding: 10px 14px; flex-basis: 0; flex-grow: 1;">
-                                    <%= check_box_tag "volunteer_submission[interest_ids][]", interest.id, @volunteer_submission.interest_ids.include?(interest.id), { id: "interest_#{interest.id}", style: "display: none;"} %>
-                                    <label for="interest_<%= interest.id %>" style="display: flex; align-items: center; gap: 10px; width: 100%; cursor: pointer;">
-                                        <div class="custom-checkbox" style="height: 18px; width: 18px; border: 2px solid #E5E7EB; border-radius: 4px; background-color: #FFFFFF; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-                                            <span style="display: none; color: #FFFFFF;">✓</span>
-                                        </div>
-                                        <span style="color: #374151; font-family: 'Inter', sans-serif; font-size: 14px;"><%= interest.name %></span>
-                                    </label>
-                                </div>
-                            <% end %>
-                            <%# Add a spacer div if there's only one item in the row to maintain layout %>
-                            <% if interest_row.length == 1 %>
-                                <div style="flex-basis: 0; flex-grow: 1;"></div>
-                            <% end %>
-                        </div>
-                    <% end %>
-                </div>
-            </div>
-
-            <div style="margin-top: 24px;">
-                <%= form.submit "Count Me In", style: "background-color: #C8902A; color: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; border: none; border-radius: 4px; padding: 18px; width: 100%; cursor: pointer;" %>
-            </div>
-            <div style="color: #9CA3AF; font-family: 'Inter', sans-serif; font-size: 12px; text-align: center; margin-top: 20px;">Your information is private and will never be sold.</div>
-        <% end %>
+        <div class="mt-6">
+          <%= form.submit "Count Me In", class: "bg-campaign-gold hover:bg-campaign-gold-dark text-white font-sans text-sm font-bold tracking-wider uppercase border-0 rounded px-6 py-[18px] w-full cursor-pointer transition-colors" %>
+        </div>
+        <p class="text-gray-400 font-sans text-xs text-center mt-5">Your information is private and will never be sold.</p>
+      <% end %>
     </div>
   </div>
-</div>
+</section>
 
 <style>
-.interest-checkbox input[type="checkbox"]:checked + .custom-checkbox {
-    background-color: #C8902A;
-    border-color: #C8902A;
+.interest-checkbox input[type="checkbox"]:checked + label .custom-checkbox {
+  background-color: #C8902A;
+  border-color: #C8902A;
 }
-.interest-checkbox input[type="checkbox"]:checked + .custom-checkbox span {
-    display: inline;
+.interest-checkbox input[type="checkbox"]:checked + label .custom-checkbox span {
+  display: inline;
 }
 </style>

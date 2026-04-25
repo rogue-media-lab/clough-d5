@@ -1,184 +1,174 @@
 <% content_for :title, "Clough for SC5" %>
 
 <%# Hero Section %>
-<div style="background-color: #0F2044; width: 100%; box-sizing: border-box;">
-  <div style="max-width: 1440px; margin-inline: auto; display: flex; flex-shrink: 0; min-height: 780px; overflow: clip;">
-    <div style="flex-basis: 0%; flex-grow: 1; flex-shrink: 1; display: flex; flex-direction: column; justify-content: center; padding-inline: 80px;">
-      <div style="align-items: center; display: flex; gap: 12px; margin-bottom: 28px;">
-        <div style="background-color: #C8902A; height: 2px; width: 40px;"></div>
-        <div style="color: #C8902A; font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase;">
+<section class="bg-navy-900 w-full overflow-hidden">
+  <div class="max-w-7xl mx-auto flex flex-col lg:flex-row min-h-[600px] lg:min-h-[780px]">
+    <div class="flex-1 flex flex-col justify-center px-6 py-12 lg:px-20">
+      <div class="flex items-center gap-3 mb-7">
+        <div class="bg-campaign-gold h-0.5 w-10"></div>
+        <span class="text-campaign-gold font-sans text-xs font-semibold tracking-[0.15em] uppercase">
           South Carolina District 5
-        </div>
+        </span>
       </div>
-      <div style="color: #FFFFFF; font-family: 'Playfair Display', serif; font-size: 74px; font-weight: 700; line-height: 1.05; margin-bottom: 24px; white-space: pre-wrap;">People<br />Over<br />Politics.</div>
-      <div style="color: #94A3B8; font-family: 'Inter', sans-serif; font-size: 18px; line-height: 1.7; margin-bottom: 48px; max-width: 440px;">
+      <h1 class="text-white font-display text-4xl sm:text-5xl lg:text-7xl font-bold leading-[1.05] mb-6">
+        People<br class="hidden sm:block" />Over<br class="hidden sm:block" />Politics.
+      </h1>
+      <p class="text-slate-400 font-sans text-base sm:text-lg leading-relaxed mb-10 max-w-lg">
         Andrew Clough is running for South Carolina District 5 to put community first — bringing honest, accountable leadership back to Columbia.
-      </div>
-      <div style="align-items: center; display: flex; gap: 16px;">
-        <div style="background-color: #C8902A; border-radius: 4px; padding: 16px 36px;">
-          <div style="color: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;">
-            Volunteer
-          </div>
-        </div>
-        <div style="border: 1.5px solid rgba(255, 255, 255, 0.3); border-radius: 4px; padding: 16px 36px;">
-          <div style="color: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;">
-            Donate
-          </div>
-        </div>
+      </p>
+      <div class="flex flex-wrap gap-4">
+        <%= link_to "Volunteer", volunteer_path, class: "bg-campaign-gold hover:bg-campaign-gold-dark text-white font-sans text-sm font-bold tracking-wider uppercase px-9 py-4 rounded transition-colors" %>
+        <%= link_to "Donate", "#donate", class: "border border-white/30 hover:bg-white/10 text-white font-sans text-sm font-bold tracking-wider uppercase px-9 py-4 rounded transition-colors" %>
       </div>
     </div>
-    <div style="align-items: flex-end; display: flex; flex-shrink: 0; justify-content: center; width: 560px;">
-      <%= image_tag 'home-hero-bg.jpg', style: "object-fit: cover; object-position: center 15%; border-top-left-radius: 8px; border-top-right-radius: 8px; height: 680px; width: 480px;" %>
+    <div class="hidden lg:flex items-end justify-center flex-shrink-0 w-[480px]">
+      <%= image_tag 'home-hero-bg.jpg', class: "object-cover object-center [object-position:center_15%] rounded-t-lg h-[680px] w-full" %>
     </div>
   </div>
-</div>
+</section>
 
 <%# About Section %>
-<div style="background-color: #FFFFFF; width: 100%; box-sizing: border-box;">
-  <div style="max-width: 1440px; margin-inline: auto; display: flex; align-items: center; gap: 100px; padding: 120px 80px;">
-    <div style="height: 560px; position: relative; width: 460px; flex-shrink: 0;">
-      <%= image_tag 'home-about-bg.jpg', style: "border-radius: 6px; height: 540px; width: 460px; object-fit: cover;" %>
-      <div style="align-items: center; background-color: #0F2044; border-radius: 4px; bottom: 0; left: -20px; display: flex; flex-direction: column; gap: 4px; height: 120px; justify-content: center; position: absolute; width: 120px;">
-        <div style="color: #C8902A; font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; line-height: 34px;">SC</div>
-        <div style="color: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.1em; line-height: 12px;">DISTRICT 5</div>
+<section class="bg-white w-full">
+  <div class="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-8 lg:gap-[100px] px-6 py-16 lg:px-20 lg:py-[120px]">
+    <div class="relative w-full sm:w-[360px] lg:w-[460px] flex-shrink-0">
+      <%= image_tag 'home-about-bg.jpg', class: "rounded-lg w-full h-auto object-cover" %>
+      <div class="absolute -bottom-4 -left-4 sm:-bottom-5 sm:-left-5 bg-navy-900 rounded flex flex-col items-center justify-center gap-1 w-24 h-24 lg:w-[120px] lg:h-[120px]">
+        <span class="text-campaign-gold font-display text-2xl lg:text-3xl font-bold leading-tight">SC</span>
+        <span class="text-white font-sans text-[9px] lg:text-[10px] font-semibold tracking-[0.1em] leading-tight">DISTRICT 5</span>
       </div>
     </div>
-    <div style="flex-basis: 0%; flex-grow: 1; display: flex; flex-direction: column;">
-      <div style="align-items: center; display: flex; gap: 12px; margin-bottom: 20px;">
-        <div style="background-color: #C8902A; height: 2px; width: 40px;"></div>
-        <div style="color: #C8902A; font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase;">About Andrew</div>
+    <div class="flex-1">
+      <div class="flex items-center gap-3 mb-5">
+        <div class="bg-campaign-gold h-0.5 w-10"></div>
+        <span class="text-campaign-gold font-sans text-xs font-semibold tracking-[0.15em] uppercase">About Andrew</span>
       </div>
-      <div style="color: #0F2044; font-family: 'Playfair Display', serif; font-size: 46px; font-weight: 700; line-height: 1.1; margin-bottom: 28px; white-space: pre-wrap;">A neighbor.<br />A voice.<br />A leader.</div>
-      <div style="color: #4B5563; font-family: 'Inter', sans-serif; font-size: 17px; line-height: 1.8; margin-bottom: 20px;">Andrew Clough has lived and worked in District 5 for over a decade. He understands the challenges families face because he faces them too — rising costs, underfunded schools, and a government that too often feels out of reach.</div>
-      <div style="color: #4B5563; font-family: 'Inter', sans-serif; font-size: 17px; line-height: 1.8; margin-bottom: 40px;">Andrew believes in transparent government, investing in education, and building an economy that works for everyone — not just those at the top.</div>
-      <div style="display: flex; gap: 48px;">
-        <div style="display: flex; flex-direction: column; gap: 4px;">
-          <div style="color: #C8902A; font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 700; line-height: 44px;">10+</div>
-          <div style="color: #6B7280; font-family: 'Inter', sans-serif; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase;">Years in District 5</div>
+      <h2 class="text-navy-900 font-display text-3xl sm:text-4xl lg:text-[46px] font-bold leading-[1.1] mb-7">
+        A neighbor.<br />A voice.<br />A leader.
+      </h2>
+      <p class="text-gray-600 font-sans text-base lg:text-lg leading-[1.8] mb-5">
+        Andrew Clough has lived and worked in District 5 for over a decade. He understands the challenges families face because he faces them too — rising costs, underfunded schools, and a government that too often feels out of reach.
+      </p>
+      <p class="text-gray-600 font-sans text-base lg:text-lg leading-[1.8] mb-10">
+        Andrew believes in transparent government, investing in education, and building an economy that works for everyone — not just those at the top.
+      </p>
+      <div class="flex flex-wrap gap-6 sm:gap-12">
+        <div class="flex flex-col gap-1">
+          <span class="text-campaign-gold font-display text-3xl lg:text-[36px] font-bold leading-tight">10+</span>
+          <span class="text-gray-500 font-sans text-xs tracking-[0.08em] uppercase">Years in District 5</span>
         </div>
-        <div style="background-color: #E5E7EB; width: 1px;"></div>
-        <div style="display: flex; flex-direction: column; gap: 4px;">
-          <div style="color: #C8902A; font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 700; line-height: 44px;">5</div>
-          <div style="color: #6B7280; font-family: 'Inter', sans-serif; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase;">Core Priorities</div>
+        <div class="hidden sm:block bg-gray-200 w-px"></div>
+        <div class="flex flex-col gap-1">
+          <span class="text-campaign-gold font-display text-3xl lg:text-[36px] font-bold leading-tight">5</span>
+          <span class="text-gray-500 font-sans text-xs tracking-[0.08em] uppercase">Core Priorities</span>
         </div>
-        <div style="background-color: #E5E7EB; width: 1px;"></div>
-        <div style="display: flex; flex-direction: column; gap: 4px;">
-          <div style="color: #C8902A; font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 700; line-height: 44px;">1</div>
-          <div style="color: #6B7280; font-family: 'Inter', sans-serif; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase;">Goal: Serve You</div>
+        <div class="hidden sm:block bg-gray-200 w-px"></div>
+        <div class="flex flex-col gap-1">
+          <span class="text-campaign-gold font-display text-3xl lg:text-[36px] font-bold leading-tight">1</span>
+          <span class="text-gray-500 font-sans text-xs tracking-[0.08em] uppercase">Goal: Serve You</span>
         </div>
       </div>
     </div>
   </div>
-</div>
+</section>
 
 <%# Issues Section %>
-<div id="issues" style="background-color: #F5F4F1; width: 100%; box-sizing: border-box;">
-  <div style="max-width: 1440px; margin-inline: auto; padding: 120px 80px;">
-    <div style="display: flex; align-items: center; flex-direction: column; margin-bottom: 60px;">
-      <div style="align-items: center; display: flex; gap: 12px; margin-bottom: 20px;">
-        <div style="background-color: #C8902A; height: 2px; width: 40px;"></div>
-        <div style="color: #C8902A; font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase;">The Issues</div>
-        <div style="background-color: #C8902A; height: 2px; width: 40px;"></div>
+<section id="issues" class="bg-ivory-100 w-full">
+  <div class="max-w-7xl mx-auto px-6 py-16 lg:px-20 lg:py-[120px]">
+    <div class="flex flex-col items-center mb-12 lg:mb-16">
+      <div class="flex items-center gap-3 mb-5">
+        <div class="bg-campaign-gold h-0.5 w-10"></div>
+        <span class="text-campaign-gold font-sans text-xs font-semibold tracking-[0.15em] uppercase">The Issues</span>
+        <div class="bg-campaign-gold h-0.5 w-10"></div>
       </div>
-      <div style="color: #0F2044; font-family: 'Playfair Display', serif; font-size: 50px; font-weight: 700; line-height: 1.1; margin-bottom: 16px; text-align: center;">What Andrew Stands For</div>
-      <div style="color: #6B7280; font-family: 'Inter', sans-serif; font-size: 17px; line-height: 1.7; max-width: 560px; text-align: center;">Five priorities. One mission. A District 5 that works for the people who live here.</div>
+      <h2 class="text-navy-900 font-display text-3xl sm:text-4xl lg:text-5xl font-bold leading-[1.1] mb-4 text-center">What Andrew Stands For</h2>
+      <p class="text-gray-500 font-sans text-base lg:text-lg leading-relaxed max-w-lg text-center">Five priorities. One mission. A District 5 that works for the people who live here.</p>
     </div>
 
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px;">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
       <% @active_issues.each do |issue| %>
-        <a href="<%= issue_path(issue) %>" style="text-decoration: none; color: inherit; background-color: #FFFFFF; border-radius: 8px; border-top: 4px solid <%= issue.featured? ? '#C8902A' : '#0F2044' %>; padding: 40px 36px; display: flex; flex-direction: column; transition: box-shadow 0.2s;" onmouseover="this.style.boxShadow='0 4px 12px rgba(0,0,0,0.1)'" onmouseout="this.style.boxShadow='none'">
-          <div style="align-items: center; background-color: #0F2044; border-radius: 6px; display: flex; height: 48px; justify-content: center; margin-bottom: 24px; width: 48px; flex-shrink: 0;">
+        <a href="<%= issue_path(issue) %>" class="block bg-white rounded-lg border-t-4 <%= issue.featured? ? 'border-campaign-gold' : 'border-navy-900' %> p-8 lg:p-9 hover:shadow-lg transition-shadow no-underline text-inherit">
+          <div class="bg-navy-900 rounded w-12 h-12 flex items-center justify-center mb-6">
             <% if issue.icon.present? %>
               <%= issue_icon(issue.icon) %>
             <% end %>
           </div>
-          <div style="color: #0F2044; font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; margin-bottom: 12px;"><%= issue.title %></div>
-          <div style="color: #6B7280; font-family: 'Inter', sans-serif; font-size: 14px; line-height: 1.8; flex-grow: 1;"><%= truncate(strip_tags(issue.description.to_s), length: 150) %></div>
-          <div style="align-items: center; display: flex; gap: 8px; margin-top: 20px;">
-            <div style="background-color: #C8902A; height: 2px; width: 24px;"></div>
-            <div style="color: #C8902A; font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;">Learn More</div>
+          <h3 class="text-navy-900 font-display text-xl lg:text-2xl font-bold mb-3"><%= issue.title %></h3>
+          <p class="text-gray-500 font-sans text-sm leading-[1.8] mb-5"><%= truncate(strip_tags(issue.description.to_s), length: 150) %></p>
+          <div class="flex items-center gap-2 mt-auto">
+            <div class="bg-campaign-gold h-0.5 w-6"></div>
+            <span class="text-campaign-gold font-sans text-xs font-semibold tracking-[0.1em] uppercase">Learn More</span>
           </div>
         </a>
       <% end %>
     </div>
   </div>
-</div>
+</section>
 
 <%# Get Involved Section %>
-<div style="background-color: #0F2044; width: 100%; box-sizing: border-box;">
-  <div style="max-width: 1440px; margin-inline: auto; display: flex; align-items: center; gap: 100px; padding: 120px 80px;">
-    <div style="flex-basis: 0%; flex-grow: 1; flex-shrink: 1; display: flex; flex-direction: column;">
-      <div style="align-items: center; display: flex; gap: 12px; margin-bottom: 20px;">
-        <div style="background-color: #C8902A; height: 2px; width: 40px;"></div>
-        <div style="color: #C8902A; font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase;">Get Involved</div>
+<section class="bg-navy-900 w-full">
+  <div class="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-8 lg:gap-[100px] px-6 py-16 lg:px-20 lg:py-[120px]">
+    <div class="flex-1">
+      <div class="flex items-center gap-3 mb-5">
+        <div class="bg-campaign-gold h-0.5 w-10"></div>
+        <span class="text-campaign-gold font-sans text-xs font-semibold tracking-[0.15em] uppercase">Get Involved</span>
       </div>
-      <div style="color: #FFFFFF; font-family: 'Playfair Display', serif; font-size: 50px; font-weight: 700; line-height: 1.1; margin-bottom: 24px;">Change starts with you.</div>
-      <div style="color: #94A3B8; font-family: 'Inter', sans-serif; font-size: 17px; line-height: 1.8; margin-bottom: 48px;">Campaigns are powered by people. Knock doors, make calls, share the word — every hour you give moves us closer to a District 5 that works for everyone.</div>
-      <div style="display: flex; gap: 32px;">
-        <div style="display: flex; flex-direction: column; gap: 8px;">
-          <div style="align-items: center; display: flex; gap: 10px;"><div style="background-color: #C8902A; border-radius: 50%; height: 8px; width: 8px; flex-shrink: 0;"></div><div style="color: #CBD5E1; font-family: 'Inter', sans-serif; font-size: 15px;">Canvassing</div></div>
-          <div style="align-items: center; display: flex; gap: 10px;"><div style="background-color: #C8902A; border-radius: 50%; height: 8px; width: 8px; flex-shrink: 0;"></div><div style="color: #CBD5E1; font-family: 'Inter', sans-serif; font-size: 15px;">Phone Banking</div></div>
-          <div style="align-items: center; display: flex; gap: 10px;"><div style="background-color: #C8902A; border-radius: 50%; height: 8px; width: 8px; flex-shrink: 0;"></div><div style="color: #CBD5E1; font-family: 'Inter', sans-serif; font-size: 15px;">Events & Rallies</div></div>
+      <h2 class="text-white font-display text-3xl sm:text-4xl lg:text-5xl font-bold leading-[1.1] mb-6">Change starts with you.</h2>
+      <p class="text-slate-400 font-sans text-base lg:text-lg leading-[1.8] mb-10">Campaigns are powered by people. Knock doors, make calls, share the word — every hour you give moves us closer to a District 5 that works for everyone.</p>
+      <div class="flex flex-wrap gap-8 sm:gap-16">
+        <div class="flex flex-col gap-3">
+          <div class="flex items-center gap-3"><div class="bg-campaign-gold rounded-full w-2 h-2 flex-shrink-0"></div><span class="text-slate-300 font-sans text-base">Canvassing</span></div>
+          <div class="flex items-center gap-3"><div class="bg-campaign-gold rounded-full w-2 h-2 flex-shrink-0"></div><span class="text-slate-300 font-sans text-base">Phone Banking</span></div>
+          <div class="flex items-center gap-3"><div class="bg-campaign-gold rounded-full w-2 h-2 flex-shrink-0"></div><span class="text-slate-300 font-sans text-base">Events & Rallies</span></div>
         </div>
-        <div style="display: flex; flex-direction: column; gap: 8px;">
-          <div style="align-items: center; display: flex; gap: 10px;"><div style="background-color: #C8902A; border-radius: 50%; height: 8px; width: 8px; flex-shrink: 0;"></div><div style="color: #CBD5E1; font-family: 'Inter', sans-serif; font-size: 15px;">Social Media</div></div>
-          <div style="align-items: center; display: flex; gap: 10px;"><div style="background-color: #C8902A; border-radius: 50%; height: 8px; width: 8px; flex-shrink: 0;"></div><div style="color: #CBD5E1; font-family: 'Inter', sans-serif; font-size: 15px;">Yard Signs</div></div>
-          <div style="align-items: center; display: flex; gap: 10px;"><div style="background-color: #C8902A; border-radius: 50%; height: 8px; width: 8px; flex-shrink: 0;"></div><div style="color: #CBD5E1; font-family: 'Inter', sans-serif; font-size: 15px;">Fundraising</div></div>
+        <div class="flex flex-col gap-3">
+          <div class="flex items-center gap-3"><div class="bg-campaign-gold rounded-full w-2 h-2 flex-shrink-0"></div><span class="text-slate-300 font-sans text-base">Social Media</span></div>
+          <div class="flex items-center gap-3"><div class="bg-campaign-gold rounded-full w-2 h-2 flex-shrink-0"></div><span class="text-slate-300 font-sans text-base">Yard Signs</span></div>
+          <div class="flex items-center gap-3"><div class="bg-campaign-gold rounded-full w-2 h-2 flex-shrink-0"></div><span class="text-slate-300 font-sans text-base">Fundraising</span></div>
         </div>
       </div>
     </div>
-    <div style="background-color: #FFFFFF; border-radius: 8px; padding: 48px; width: 500px; flex-shrink: 0; display: flex; flex-direction: column; gap: 20px;">
-      <div style="color: #0F2044; font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; margin-bottom: 8px;">Join the Campaign</div>
-      <div style="display: flex; gap: 16px;">
-        <div style="flex-grow: 1; display: flex; flex-direction: column; gap: 8px;">
-          <div style="color: #374151; font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600; text-transform: uppercase;">First Name</div>
-          <div style="background-color: #F9FAFB; border: 1.5px solid #E5E7EB; border-radius: 4px; height: 48px;"></div>
+    <div class="w-full lg:w-[500px] bg-white rounded-lg p-6 sm:p-12 flex flex-col gap-5">
+      <h3 class="text-navy-900 font-display text-2xl lg:text-[28px] font-bold mb-2">Join the Campaign</h3>
+      <div class="flex flex-col sm:flex-row gap-4">
+        <div class="flex-1 flex flex-col gap-2">
+          <label class="text-gray-700 font-sans text-xs font-semibold uppercase">First Name</label>
+          <input type="text" class="bg-gray-50 border border-gray-200 rounded h-12 px-3 w-full" />
         </div>
-        <div style="flex-grow: 1; display: flex; flex-direction: column; gap: 8px;">
-          <div style="color: #374151; font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600; text-transform: uppercase;">Last Name</div>
-          <div style="background-color: #F9FAFB; border: 1.5px solid #E5E7EB; border-radius: 4px; height: 48px;"></div>
+        <div class="flex-1 flex flex-col gap-2">
+          <label class="text-gray-700 font-sans text-xs font-semibold uppercase">Last Name</label>
+          <input type="text" class="bg-gray-50 border border-gray-200 rounded h-12 px-3 w-full" />
         </div>
       </div>
-      <div style="display: flex; flex-direction: column; gap: 8px;">
-        <div style="color: #374151; font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600; text-transform: uppercase;">Email Address</div>
-        <div style="background-color: #F9FAFB; border: 1.5px solid #E5E7EB; border-radius: 4px; height: 48px;"></div>
+      <div class="flex flex-col gap-2">
+        <label class="text-gray-700 font-sans text-xs font-semibold uppercase">Email Address</label>
+        <input type="email" class="bg-gray-50 border border-gray-200 rounded h-12 px-3 w-full" />
       </div>
-      <div style="display: flex; flex-direction: column; gap: 8px;">
-        <div style="color: #374151; font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600; text-transform: uppercase;">Zip Code</div>
-        <div style="background-color: #F9FAFB; border: 1.5px solid #E5E7EB; border-radius: 4px; height: 48px;"></div>
+      <div class="flex flex-col gap-2">
+        <label class="text-gray-700 font-sans text-xs font-semibold uppercase">Zip Code</label>
+        <input type="text" class="bg-gray-50 border border-gray-200 rounded h-12 px-3 w-full" />
       </div>
-      <div style="align-items: center; background-color: #C8902A; border-radius: 4px; display: flex; height: 52px; justify-content: center; margin-top: 8px;">
-        <div style="color: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;">Sign Me Up</div>
-      </div>
-      <div style="color: #9CA3AF; font-family: 'Inter', sans-serif; font-size: 12px; text-align: center;">Your information is private and will never be sold.</div>
+      <button class="bg-campaign-gold hover:bg-campaign-gold-dark text-white font-sans text-sm font-bold tracking-wider uppercase h-[52px] rounded transition-colors mt-2 w-full">
+        Sign Me Up
+      </button>
+      <p class="text-gray-400 font-sans text-xs text-center">Your information is private and will never be sold.</p>
     </div>
   </div>
-</div>
+</section>
 
 <%# Donate Section %>
-<div style="background-color: #C8902A; width: 100%; box-sizing: border-box;">
-  <div style="max-width: 1440px; margin-inline: auto; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 100px 80px;">
-    <div style="color: #FFFFFF; font-family: 'Playfair Display', serif; font-size: 54px; font-weight: 700; line-height: 1.1; margin-bottom: 20px; text-align: center;">Fuel the Movement.</div>
-    <div style="color: rgba(255,255,255,0.85); font-family: 'Inter', sans-serif; font-size: 18px; line-height: 1.7; margin-bottom: 48px; max-width: 560px; text-align: center;">Every dollar stays in District 5 — going toward outreach, events, and getting our message out to neighbors who are ready for real change.</div>
-    <div style="display: flex; gap: 16px; margin-bottom: 48px;">
-      <div style="background-color: rgba(255,255,255,0.2); border: 1.5px solid rgba(255,255,255,0.5); border-radius: 4px; padding: 14px 28px;">
-        <div style="color: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 700;">$25</div>
-      </div>
-      <div style="background-color: rgba(255,255,255,0.2); border: 1.5px solid rgba(255,255,255,0.5); border-radius: 4px; padding: 14px 28px;">
-        <div style="color: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 700;">$50</div>
-      </div>
-      <div style="background-color: rgba(255,255,255,0.2); border: 1.5px solid rgba(255,255,255,0.5); border-radius: 4px; padding: 14px 28px;">
-        <div style="color: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 700;">$100</div>
-      </div>
-      <div style="background-color: rgba(255,255,255,0.2); border: 1.5px solid rgba(255,255,255,0.5); border-radius: 4px; padding: 14px 28px;">
-        <div style="color: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 700;">$250</div>
-      </div>
-      <div style="background-color: rgba(255,255,255,0.2); border: 1.5px solid rgba(255,255,255,0.5); border-radius: 4px; padding: 14px 28px;">
-        <div style="color: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 700;">Other</div>
-      </div>
+<section id="donate" class="bg-campaign-gold w-full">
+  <div class="max-w-7xl mx-auto flex flex-col items-center justify-center px-6 py-16 lg:px-20 lg:py-[100px]">
+    <h2 class="text-white font-display text-3xl sm:text-4xl lg:text-[54px] font-bold leading-[1.1] mb-5 text-center">Fuel the Movement.</h2>
+    <p class="text-white/85 font-sans text-base lg:text-lg leading-relaxed max-w-lg mb-10 text-center">Every dollar stays in District 5 — going toward outreach, events, and getting our message out to neighbors who are ready for real change.</p>
+    <div class="flex flex-wrap justify-center gap-3 sm:gap-4 mb-10">
+      <button class="bg-white/20 border border-white/50 rounded px-6 sm:px-7 py-3 sm:py-4 text-white font-sans text-sm font-bold hover:bg-white/30 transition-colors">$25</button>
+      <button class="bg-white/20 border border-white/50 rounded px-6 sm:px-7 py-3 sm:py-4 text-white font-sans text-sm font-bold hover:bg-white/30 transition-colors">$50</button>
+      <button class="bg-white/20 border border-white/50 rounded px-6 sm:px-7 py-3 sm:py-4 text-white font-sans text-sm font-bold hover:bg-white/30 transition-colors">$100</button>
+      <button class="bg-white/20 border border-white/50 rounded px-6 sm:px-7 py-3 sm:py-4 text-white font-sans text-sm font-bold hover:bg-white/30 transition-colors">$250</button>
+      <button class="bg-white/20 border border-white/50 rounded px-6 sm:px-7 py-3 sm:py-4 text-white font-sans text-sm font-bold hover:bg-white/30 transition-colors">Other</button>
     </div>
-    <div style="background-color: #0F2044; border-radius: 4px; padding: 18px 60px;">
-      <div style="color: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;">Donate Now</div>
-    </div>
+    <button class="bg-navy-900 hover:bg-navy-800 rounded px-14 py-4 text-white font-sans text-sm font-bold tracking-wider uppercase transition-colors">
+      Donate Now
+    </button>
   </div>
-</div>
+</section>
