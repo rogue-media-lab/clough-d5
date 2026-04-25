@@ -34,7 +34,6 @@ Built by [Rogue Media Lab](https://roguemedialab.com).
 
 - Ruby 3.4.1
 - PostgreSQL
-- Node.js (for Importmap/Stimulus)
 
 ## Local Setup
 
