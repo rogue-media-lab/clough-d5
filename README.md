@@ -1,5 +1,12 @@
 # Clough for SC District 5
 
+![Ruby](https://img.shields.io/badge/ruby-3.4.1-CC342D?logo=ruby&logoColor=white)
+![Rails](https://img.shields.io/badge/rails-8.1-CC0000?logo=rubyonrails&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/postgresql-16-336791?logo=postgresql&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/tailwindcss-3.4-06B6D4?logo=tailwindcss&logoColor=white)
+![Heroku](https://img.shields.io/badge/heroku-deployed-430098?logo=heroku&logoColor=white)
+![License](https://img.shields.io/badge/license-proprietary-gray)
+
 A campaign website for Andrew Clough's South Carolina District 5 race, built with Rails 8. The site features a public-facing campaign platform with issue positions, volunteer signups, news aggregation, event management, and an admin dashboard for the campaign team.
 
 Built by [Rogue Media Lab](https://roguemedialab.com).
