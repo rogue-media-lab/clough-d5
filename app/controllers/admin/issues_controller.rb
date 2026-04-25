@@ -1,5 +1,5 @@
 class Admin::IssuesController < Admin::BaseController
-  before_action :set_issue, only: [:show, :edit, :update, :destroy]
+  before_action :set_issue, only: [ :show, :edit, :update, :destroy ]
 
   def index
     @issues = Issue.order(position: :asc)
@@ -44,6 +44,6 @@ class Admin::IssuesController < Admin::BaseController
   end
 
   def issue_params
-    params.expect(issue: [:title, :description, :icon, :status, :position, :featured])
+    params.expect(issue: [ :title, :description, :icon, :status, :position, :featured ])
   end
 end

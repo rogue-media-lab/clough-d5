@@ -167,7 +167,7 @@ issues_data = [
 # Update or create issues
 issues_data.each do |data|
   issue = Issue.find_by(title: data[:title])
-  
+
   if issue
     puts "Updating existing issue: #{data[:title]}"
     issue.update!(

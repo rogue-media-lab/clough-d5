@@ -1,5 +1,5 @@
 class Admin::VolunteerInterestsController < Admin::BaseController
-  before_action :set_interest, only: [:edit, :update, :destroy]
+  before_action :set_interest, only: [ :edit, :update, :destroy ]
 
   def index
     @interests = VolunteerInterest.order(:name)
@@ -41,6 +41,6 @@ class Admin::VolunteerInterestsController < Admin::BaseController
   end
 
   def interest_params
-    params.expect(volunteer_interest: [:name])
+    params.expect(volunteer_interest: [ :name ])
   end
 end

@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   root "home#index"
 
   # Public pages
-  resources :posts, only: [:index, :show]
+  resources :posts, only: [ :index, :show ]
   get "/news", to: "posts#index", as: :news
 
   get "/volunteer", to: "home#volunteer", as: :volunteer
@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   end
 
   # Public volunteer submission
-  resources :volunteer_submissions, only: [:create]
+  resources :volunteer_submissions, only: [ :create ]
   resources :volunteer_interests, only: []
   # Error pages
   match "/404", to: "errors#not_found",             via: :all

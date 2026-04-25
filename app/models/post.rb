@@ -14,5 +14,4 @@ end
 def draft?
   !published?
 end
-
 end

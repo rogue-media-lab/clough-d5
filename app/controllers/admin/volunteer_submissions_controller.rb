@@ -1,5 +1,5 @@
 class Admin::VolunteerSubmissionsController < Admin::BaseController
-  before_action :set_submission, only: [:show, :edit, :update, :destroy]
+  before_action :set_submission, only: [ :show, :edit, :update, :destroy ]
 
   def index
     @submissions = VolunteerSubmission.order(created_at: :desc)
@@ -31,6 +31,6 @@ class Admin::VolunteerSubmissionsController < Admin::BaseController
   end
 
   def submission_params
-    params.expect(volunteer_submission: [:name, :email, :phone, :message, :area_code, :submission_status, interest_ids: []])
+    params.expect(volunteer_submission: [ :name, :email, :phone, :message, :area_code, :submission_status, interest_ids: [] ])
   end
 end

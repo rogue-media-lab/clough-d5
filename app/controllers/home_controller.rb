@@ -46,6 +46,6 @@ class HomeController < ApplicationController
   private
 
   def volunteer_submission_params
-    params.expect(volunteer_submission: [:name, :last_name, :email, :phone, :message, :area_code, interest_ids: []])
+    params.expect(volunteer_submission: [ :name, :last_name, :email, :phone, :message, :area_code, interest_ids: [] ])
   end
 end
