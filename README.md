@@ -109,6 +109,16 @@ Rogue-Media-Lab/
 └── Projects/Andrew-Clough/ # Planning documents and sprint tracking
 ```
 
-## License
+## Built With AI
+
+This project was both designed and developed with the assistance of AI. The entire application — from database schema to Tailwind styling to admin dashboard — was built collaboratively between a human developer and an AI coding agent using Rails 8.
+
+No code was blindly generated. Every feature was reviewed, tested, and refined through conversation. The AI handled boilerplate, migrations, and component structure while the human directed architecture decisions, verified designs against mockups, and shaped the final product.
+
+This is what modern Rails development looks like: a skilled developer with an AI copilot, moving fast without cutting corners.
+
+**AI Agent:** Hermes Agent — an open-source CLI AI assistant built for software development.
+
+---
 
 Proprietary — built by Rogue Media Lab for the Clough for SC campaign.
