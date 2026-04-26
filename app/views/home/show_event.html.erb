@@ -64,15 +64,21 @@
           <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
           <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
           <script>
-            document.addEventListener("DOMContentLoaded", function() {
-              var map = L.map('event-map').setView([<%= @event.latitude %>, <%= @event.longitude %>], 15);
-              L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; OpenStreetMap contributors'
-              }).addTo(map);
-              L.marker([<%= @event.latitude %>, <%= @event.longitude %>]).addTo(map)
-                .bindPopup('<strong><%= j @event.title %></strong><br><%= j @event.location %>')
-                .openPopup();
-            });
+            (function() {
+              function initEventMap() {
+                var mapEl = document.getElementById('event-map');
+                if (!mapEl || mapEl._leaflet_id) return;
+                var map = L.map('event-map').setView([<%= @event.latitude %>, <%= @event.longitude %>], 15);
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                  attribution: '&copy; OpenStreetMap contributors'
+                }).addTo(map);
+                L.marker([<%= @event.latitude %>, <%= @event.longitude %>]).addTo(map)
+                  .bindPopup('<strong><%= j @event.title %></strong><br><%= j @event.location %>')
+                  .openPopup();
+              }
+              document.addEventListener('DOMContentLoaded', initEventMap);
+              document.addEventListener('turbo:load', initEventMap);
+            })();
           </script>
         <% end %>
       </div>
