@@ -18,7 +18,7 @@ Rails.application.routes.draw do
     root "dashboard#index"
     resources :posts
     resources :news_articles
-    resources :news_feeds, only: [ :index, :create, :destroy ]
+    resources :news_feeds, only: [ :index, :create, :edit, :update, :destroy ]
     resources :volunteer_interests
     resources :volunteer_submissions do
       member do
