@@ -8,4 +8,20 @@ class Issue < ApplicationRecord
 
   validates :title, presence: true
   validates :description, presence: true
+  validates :position, numericality: { greater_than: 0, only_integer: true }
+  validate :unique_position
+
+  private
+
+  def unique_position
+    return if position.blank?
+
+    conflict = Issue.where(position: position)
+      .where.not(id: id)
+      .exists?
+
+    if conflict
+      errors.add(:position, "is already used by another issue. Positions must be unique.")
+    end
+  end
 end
