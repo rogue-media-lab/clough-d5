@@ -60,20 +60,12 @@
           <div class="bg-campaign-gold h-0.5 w-10"></div>
           <span class="text-campaign-gold font-sans text-xs font-semibold tracking-[0.15em] uppercase">Andrew's Take</span>
         </div>
-        <div class="bg-navy-900 text-white rounded-xl p-6 lg:p-8" style="font-family: 'Inter', sans-serif; font-size: 16px; line-height: 1.8; color: #e2e8f0;">
-          <style>
-            .reflection-content p { margin-bottom: 1em; }
-            .reflection-content ul, .reflection-content ol { margin: 0.5em 0; padding-left: 1.5em; }
-            .reflection-content li { margin-bottom: 0.3em; list-style-type: disc; }
-            .reflection-content ol li { list-style-type: decimal; }
-            .reflection-content a { color: #d4a853; text-decoration: underline; }
-            .reflection-content strong { color: #ffffff; font-weight: 700; }
-          </style>
-          <div class="reflection-content">
+        <div class="bg-navy-900 text-white rounded-xl p-6 lg:p-8">
+          <div class="prose prose-invert prose-sm lg:prose-base max-w-none">
             <%= @article.reflection %>
           </div>
           <div class="mt-6 pt-4 border-t border-white/10">
-            <p class="font-sans text-xs font-semibold tracking-wider uppercase" style="color: #d4a853;">— Andrew Clough</p>
+            <p class="text-campaign-gold font-sans text-xs font-semibold tracking-wider uppercase">— Andrew Clough</p>
           </div>
         </div>
       </div>
