@@ -28,6 +28,11 @@
     <p class="stat-value" style="color: #16A34A;"><%= @confirmed_count %></p>
     <p style="font-size: 12px; color: #9CA3AF; margin: 4px 0 0;">ready to go</p>
   </div>
+  <div class="stat-card">
+    <p class="stat-label">Upcoming Events</p>
+    <p class="stat-value" style="color: #7C3AED;"><%= @upcoming_count %></p>
+    <p style="font-size: 12px; color: #9CA3AF; margin: 4px 0 0;"><%= @event_count %> total</p>
+  </div>
 </div>
 
 <!-- Two Column Layout -->
@@ -132,6 +137,31 @@
           </div>
           <%= link_to "Edit", edit_admin_news_article_path(article), class: "widget-link" %>
         </div>
+      <% end %>
+    </div>
+  </div>
+
+  <%# This Week's Events %>
+  <div class="widget-card">
+    <div class="widget-header">
+      <h2 class="widget-title">This Week's Events</h2>
+      <%= link_to "View all", admin_events_path, class: "widget-link" %>
+    </div>
+    <div>
+      <% if @this_week_events.any? %>
+        <% @this_week_events.each do |event| %>
+          <div class="widget-row">
+            <div>
+              <p style="font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 500; color: #111827; margin: 0;"><%= event.title %></p>
+              <p style="font-family: 'Inter', sans-serif; font-size: 12px; color: #6B7280; margin: 2px 0 0;">
+                <%= event.date.strftime("%a, %b %-d at %l:%M %p") %> · <%= event.location %>
+              </p>
+            </div>
+            <%= link_to "Edit", edit_admin_event_path(event), class: "widget-link" %>
+          </div>
+        <% end %>
+      <% else %>
+        <p style="padding: 20px; text-align: center; font-size: 13px; color: #9CA3AF;">No events this week.</p>
       <% end %>
     </div>
   </div>

@@ -29,5 +29,10 @@ class Admin::DashboardController < Admin::BaseController
     @published_news_count = NewsArticle.published.count
     @fetched_news_count  = NewsArticle.fetched.count
     @recent_articles     = NewsArticle.recent.limit(5)
+
+    # Events
+    @event_count       = Event.count
+    @upcoming_count    = Event.upcoming.count
+    @this_week_events  = Event.this_week
   end
 end

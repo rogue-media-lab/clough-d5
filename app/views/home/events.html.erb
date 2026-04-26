@@ -13,80 +13,84 @@
   </div>
 </section>
 
-<%# Upcoming Events Section %>
+<%# Upcoming Events %>
 <section class="bg-ivory-50 w-full">
   <div class="max-w-7xl mx-auto px-6 py-16 lg:px-20 lg:py-20 flex flex-col gap-10">
     <div class="flex flex-col gap-2">
       <h2 class="text-navy-900 font-display text-3xl lg:text-[36px] font-bold">Upcoming Events</h2>
-      <p class="text-gray-500 font-sans text-base">All times local. Events are updated live from Andrew's campaign calendar.</p>
+      <p class="text-gray-500 font-sans text-base">All times local.</p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      <%# Event 1 %>
-      <div class="bg-white rounded-lg border-t-4 border-campaign-gold p-6 lg:p-9 flex flex-col gap-5">
-        <div class="flex items-start gap-5">
-          <div class="bg-navy-900 rounded px-3 py-2 flex flex-col items-center flex-shrink-0">
-            <span class="text-campaign-gold font-sans text-[11px] font-bold tracking-[0.1em] uppercase">APR</span>
-            <span class="text-white font-display text-3xl font-bold leading-none">12</span>
-          </div>
-          <div class="flex flex-col gap-2">
-            <span class="bg-amber-100 text-amber-700 font-sans text-[11px] font-semibold tracking-wider uppercase px-3 py-1 rounded-full inline-flex w-fit">☕ Coffee with Clough</span>
-            <h3 class="text-navy-900 font-display text-xl font-bold leading-snug">Rock Hill Listening Session</h3>
-          </div>
-        </div>
-        <p class="text-gray-500 font-sans text-sm leading-relaxed flex-1">Grab a coffee and talk directly with Andrew. No agenda, no speeches — just neighbors talking about what matters most in District 5.</p>
-      </div>
-
-      <%# Event 2 %>
-      <div class="bg-white rounded-lg border-t-4 border-navy-900 p-6 lg:p-9 flex flex-col gap-5">
-        <div class="flex items-start gap-5">
-          <div class="bg-navy-900 rounded px-3 py-2 flex flex-col items-center flex-shrink-0">
-            <span class="text-campaign-gold font-sans text-[11px] font-bold tracking-[0.1em] uppercase">APR</span>
-            <span class="text-white font-display text-3xl font-bold leading-none">19</span>
-          </div>
-          <div class="flex flex-col gap-2">
-            <span class="bg-indigo-100 text-indigo-700 font-sans text-[11px] font-semibold tracking-wider uppercase px-3 py-1 rounded-full inline-flex w-fit">🏛 Town Hall</span>
-            <h3 class="text-navy-900 font-display text-xl font-bold leading-snug">Chester County Town Hall</h3>
-          </div>
-        </div>
-        <p class="text-gray-500 font-sans text-sm leading-relaxed flex-1">A structured Q&A with Andrew on the issues that matter — healthcare, jobs, and accountability. Open to all District 5 residents.</p>
-      </div>
-
-      <%# Event 3 %>
-      <div class="bg-white rounded-lg border-t-4 border-campaign-gold p-6 lg:p-9 flex flex-col gap-5">
-        <div class="flex items-start gap-5">
-          <div class="bg-navy-900 rounded px-3 py-2 flex flex-col items-center flex-shrink-0">
-            <span class="text-campaign-gold font-sans text-[11px] font-bold tracking-[0.1em] uppercase">MAY</span>
-            <span class="text-white font-display text-3xl font-bold leading-none">3</span>
-          </div>
-          <div class="flex flex-col gap-2">
-            <span class="bg-amber-100 text-amber-700 font-sans text-[11px] font-semibold tracking-wider uppercase px-3 py-1 rounded-full inline-flex w-fit">☕ Coffee with Clough</span>
-            <h3 class="text-navy-900 font-display text-xl font-bold leading-snug">Union County Morning Meet</h3>
+    <% if @upcoming_events.any? %>
+      <%# Group by month %>
+      <% @upcoming_events.each do |month, events| %>
+        <div class="flex flex-col gap-4">
+          <h3 class="text-navy-700 font-sans text-sm font-semibold uppercase tracking-wider"><%= month.strftime("%B %Y") %></h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <% events.each do |event| %>
+              <div class="bg-white rounded-lg border-t-4 border-campaign-gold p-6 lg:p-9 flex flex-col gap-5">
+                <div class="flex items-start gap-5">
+                  <div class="bg-navy-900 rounded px-3 py-2 flex flex-col items-center flex-shrink-0">
+                    <span class="text-campaign-gold font-sans text-[11px] font-bold tracking-[0.1em] uppercase"><%= event.date.strftime("%b") %></span>
+                    <span class="text-white font-display text-3xl font-bold leading-none"><%= event.date.strftime("%-d") %></span>
+                    <span class="text-slate-400 font-sans text-[10px]"><%= event.date.strftime("%a") %></span>
+                  </div>
+                  <div class="flex-1">
+                    <h4 class="text-navy-900 font-display text-lg font-bold mb-1"><%= event.title %></h4>
+                    <p class="text-gray-500 font-sans text-sm"><%= event.date.strftime("%l:%M %p") %></p>
+                  </div>
+                </div>
+                <div class="flex items-start gap-2">
+                  <svg class="w-4 h-4 text-gray-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                  </svg>
+                  <p class="text-gray-500 font-sans text-sm"><%= event.location %></p>
+                </div>
+                <% if event.description.present? %>
+                  <p class="text-gray-600 font-sans text-sm leading-relaxed"><%= truncate(strip_tags(event.description.to_s), length: 120) %></p>
+                <% end %>
+              </div>
+            <% end %>
           </div>
         </div>
-        <p class="text-gray-500 font-sans text-sm leading-relaxed flex-1">Andrew comes to you. Different town every time — same promise: listen first, talk second. Come share what's on your mind.</p>
+      <% end %>
+    <% else %>
+      <div class="bg-white rounded-lg border border-gray-200 p-12 text-center">
+        <div class="w-16 h-16 bg-navy-900 rounded-full flex items-center justify-center mx-auto mb-4">
+          <svg class="w-8 h-8 text-campaign-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+          </svg>
+        </div>
+        <h3 class="text-navy-900 font-display text-xl font-bold mb-2">No upcoming events</h3>
+        <p class="text-gray-500 font-sans text-sm">Check back soon — new events are added regularly.</p>
       </div>
-    </div>
+    <% end %>
   </div>
 </section>
 
-<%# Calendar Section %>
-<section class="bg-white w-full">
-  <div class="max-w-7xl mx-auto px-6 py-16 lg:px-20 lg:py-20 flex flex-col gap-10">
-    <div class="flex flex-col sm:flex-row sm:justify-between sm:items-end gap-4">
-      <div class="flex flex-col gap-2">
-        <div class="flex items-center gap-3">
-          <div class="bg-campaign-gold h-0.5 w-10"></div>
-          <span class="text-campaign-gold font-sans text-xs font-semibold tracking-[0.1em] uppercase">Full Schedule</span>
-        </div>
-        <h2 class="text-navy-900 font-display text-3xl lg:text-[36px] font-bold">Campaign Calendar</h2>
+<%# Past Events %>
+<% if @past_events.any? %>
+  <section class="bg-white w-full">
+    <div class="max-w-7xl mx-auto px-6 py-16 lg:px-20 lg:py-20">
+      <div class="flex items-center gap-3 mb-8">
+        <div class="bg-campaign-gold h-0.5 w-10"></div>
+        <span class="text-campaign-gold font-sans text-xs font-semibold tracking-[0.15em] uppercase">Past Events</span>
       </div>
-      <p class="text-gray-500 font-sans text-sm">Live from Andrew's Google Calendar · Updates automatically</p>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <% @past_events.each do |event| %>
+          <div class="bg-ivory-100 rounded-lg p-5 flex items-start gap-4">
+            <div class="bg-navy-900/10 rounded px-2 py-1 flex flex-col items-center flex-shrink-0">
+              <span class="text-navy-500 font-sans text-[10px] font-bold uppercase"><%= event.date.strftime("%b") %></span>
+              <span class="text-navy-900 font-display text-lg font-bold leading-none"><%= event.date.strftime("%-d") %></span>
+            </div>
+            <div>
+              <h4 class="text-navy-900 font-display text-sm font-bold"><%= event.title %></h4>
+              <p class="text-gray-400 font-sans text-xs mt-1"><%= event.location %></p>
+            </div>
+          </div>
+        <% end %>
+      </div>
     </div>
-    <div class="bg-ivory-50 border border-gray-200 rounded-lg h-[400px] lg:h-[560px] flex items-center justify-center flex-col gap-4">
-      <span class="text-4xl">📅</span>
-      <h3 class="text-navy-900 font-display text-xl font-bold">Google Calendar Embed</h3>
-      <p class="text-gray-500 font-sans text-sm max-w-sm text-center leading-relaxed">Live calendar pulls directly from Andrew's Google Calendar. All events appear here automatically when added.</p>
-    </div>
-  </div>
-</section>
+  </section>
+<% end %>

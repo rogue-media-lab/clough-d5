@@ -26,6 +26,7 @@ Rails.application.routes.draw do
       end
     end
     resources :news_feeds, only: [ :index, :create, :edit, :update, :destroy ]
+    resources :events
     resources :volunteer_interests
     resources :volunteer_submissions do
       member do

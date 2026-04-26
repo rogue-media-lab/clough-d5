@@ -63,6 +63,9 @@
           <%= link_to admin_news_feeds_path, class: "sidebar-link #{request.path.starts_with?(admin_news_feeds_path) ? 'active' : ''}" do %>
             <span style="margin-right: 8px;">📡</span> RSS Feeds
           <% end %>
+          <%= link_to admin_events_path, class: "sidebar-link #{request.path.starts_with?(admin_events_path) ? 'active' : ''}" do %>
+            <span style="margin-right: 8px;">📅</span> Events
+          <% end %>
 
           <div class="sidebar-heading">People</div>
           <%= link_to admin_volunteer_submissions_path, class: "sidebar-link #{request.path.starts_with?(admin_volunteer_submissions_path) ? 'active' : ''}" do %>
@@ -93,7 +96,8 @@
             <div class="dropdown-content" style="display: none; position: absolute; background-color: #FFFFFF; min-width: 180px; box-shadow: 0 8px 24px rgba(0,0,0,0.12); border-radius: 8px; z-index: 1; right: 0; margin-top: 4px; overflow: hidden;">
               <%= link_to 'New Issue', new_admin_issue_path, style: "color: #374151; padding: 12px 16px; text-decoration: none; display: block; font-size: 14px; border-bottom: 1px solid #F3F4F6;" %>
               <%= link_to 'New Post', new_admin_post_path, style: "color: #374151; padding: 12px 16px; text-decoration: none; display: block; font-size: 14px; border-bottom: 1px solid #F3F4F6;" %>
-              <%= link_to 'New Article', new_admin_news_article_path, style: "color: #374151; padding: 12px 16px; text-decoration: none; display: block; font-size: 14px;" %>
+              <%= link_to 'New Article', new_admin_news_article_path, style: "color: #374151; padding: 12px 16px; text-decoration: none; display: block; font-size: 14px; border-bottom: 1px solid #F3F4F6;" %>
+              <%= link_to 'New Event', new_admin_event_path, style: "color: #374151; padding: 12px 16px; text-decoration: none; display: block; font-size: 14px;" %>
             </div>
           </div>
         </header>
