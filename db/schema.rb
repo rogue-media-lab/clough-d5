@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_04_26_172743) do
+ActiveRecord::Schema[8.1].define(version: 2026_04_26_203000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -58,7 +58,9 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_26_172743) do
     t.text "description"
     t.string "google_event_id"
     t.string "image"
+    t.float "latitude"
     t.string "location"
+    t.float "longitude"
     t.integer "status"
     t.string "title"
     t.datetime "updated_at", null: false

@@ -45,6 +45,6 @@ class Admin::EventsController < Admin::BaseController
   end
 
   def event_params
-    params.expect(event: [ :title, :description, :date, :location, :image, :status ])
+    params.expect(event: [ :title, :description, :date, :location, :image, :status, :latitude, :longitude ])
   end
 end

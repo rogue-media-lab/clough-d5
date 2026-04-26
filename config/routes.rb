@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   get "/issues", to: "home#issues", as: :issues
   get "/issues/:id", to: "home#show_issue", as: :issue
   get "/events", to: "home#events", as: :events
+  get "/events/:id", to: "home#show_event", as: :event
 
   namespace :admin do
     resources :issues

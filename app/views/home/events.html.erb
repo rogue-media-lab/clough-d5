@@ -13,49 +13,141 @@
   </div>
 </section>
 
-<%# Upcoming Events %>
-<section class="bg-ivory-50 w-full">
-  <div class="max-w-7xl mx-auto px-6 py-16 lg:px-20 lg:py-20 flex flex-col gap-10">
-    <div class="flex flex-col gap-2">
-      <h2 class="text-navy-900 font-display text-3xl lg:text-[36px] font-bold">Upcoming Events</h2>
-      <p class="text-gray-500 font-sans text-base">All times local.</p>
-    </div>
+<%# Next Up Featured Event %>
+<% if @next_event %>
+  <section class="bg-white w-full">
+    <div class="max-w-7xl mx-auto px-6 py-16 lg:px-20 lg:py-20">
+      <div class="flex items-center gap-3 mb-8">
+        <div class="bg-campaign-gold h-0.5 w-10"></div>
+        <span class="text-campaign-gold font-sans text-xs font-semibold tracking-[0.15em] uppercase">Next Up</span>
+      </div>
 
-    <% if @upcoming_events.any? %>
-      <%# Group by month %>
-      <% @upcoming_events.each do |month, events| %>
-        <div class="flex flex-col gap-4">
-          <h3 class="text-navy-700 font-sans text-sm font-semibold uppercase tracking-wider"><%= month.strftime("%B %Y") %></h3>
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <% events.each do |event| %>
-              <div class="bg-white rounded-lg border-t-4 border-campaign-gold p-6 lg:p-9 flex flex-col gap-5">
-                <div class="flex items-start gap-5">
-                  <div class="bg-navy-900 rounded px-3 py-2 flex flex-col items-center flex-shrink-0">
-                    <span class="text-campaign-gold font-sans text-[11px] font-bold tracking-[0.1em] uppercase"><%= event.date.strftime("%b") %></span>
-                    <span class="text-white font-display text-3xl font-bold leading-none"><%= event.date.strftime("%-d") %></span>
-                    <span class="text-slate-400 font-sans text-[10px]"><%= event.date.strftime("%a") %></span>
-                  </div>
-                  <div class="flex-1">
-                    <h4 class="text-navy-900 font-display text-lg font-bold mb-1"><%= event.title %></h4>
-                    <p class="text-gray-500 font-sans text-sm"><%= event.date.strftime("%l:%M %p") %></p>
-                  </div>
-                </div>
-                <div class="flex items-start gap-2">
-                  <svg class="w-4 h-4 text-gray-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+      <div class="bg-ivory-50 rounded-xl overflow-hidden border border-ivory-200">
+        <div class="grid grid-cols-1 lg:grid-cols-2">
+          <%# Event Details %>
+          <div class="p-8 lg:p-10 flex flex-col justify-center">
+            <div class="flex items-center gap-4 mb-6">
+              <div class="bg-navy-900 rounded px-4 py-3 flex flex-col items-center">
+                <span class="text-campaign-gold font-sans text-[11px] font-bold tracking-[0.1em] uppercase"><%= @next_event.date.strftime("%b") %></span>
+                <span class="text-white font-display text-4xl font-bold leading-none"><%= @next_event.date.strftime("%-d") %></span>
+                <span class="text-slate-400 font-sans text-[10px]"><%= @next_event.date.strftime("%a") %></span>
+              </div>
+              <div>
+                <h2 class="text-navy-900 font-display text-2xl lg:text-3xl font-bold"><%= @next_event.title %></h2>
+                <p class="text-gray-500 font-sans text-sm mt-1"><%= @next_event.date.strftime("%l:%M %p") %></p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-2 mb-4">
+              <svg class="w-4 h-4 text-gray-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+              </svg>
+              <p class="text-gray-600 font-sans text-sm"><%= @next_event.location %></p>
+            </div>
+
+            <% if @next_event.description.present? %>
+              <p class="text-gray-600 font-sans text-sm leading-relaxed mb-6"><%= truncate(strip_tags(@next_event.description.to_s), length: 200) %></p>
+            <% end %>
+
+            <div class="flex gap-3">
+              <%= link_to event_path(@next_event), class: "inline-flex items-center gap-2 px-5 py-2.5 bg-navy-900 text-white text-sm font-medium rounded-md hover:bg-navy-800 transition-colors" do %>
+                View Details
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+              <% end %>
+              <% if @next_event.has_coordinates? %>
+                <a href="<%= @next_event.directions_url %>" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-5 py-2.5 bg-campaign-gold text-navy-900 text-sm font-medium rounded-md hover:bg-campaign-gold/90 transition-colors">
+                  Get Directions
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
                   </svg>
-                  <p class="text-gray-500 font-sans text-sm"><%= event.location %></p>
+                </a>
+              <% end %>
+            </div>
+          </div>
+
+          <%# Map %>
+          <div class="relative">
+            <% if @next_event.has_coordinates? %>
+              <div id="next-event-map" style="height: 100%; min-height: 350px;"></div>
+              <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+              <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+              <script>
+                document.addEventListener("DOMContentLoaded", function() {
+                  var map = L.map('next-event-map').setView([<%= @next_event.latitude %>, <%= @next_event.longitude %>], 15);
+                  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    attribution: '&copy; OpenStreetMap contributors'
+                  }).addTo(map);
+                  L.marker([<%= @next_event.latitude %>, <%= @next_event.longitude %>]).addTo(map)
+                    .bindPopup('<%= j @next_event.title %><br><%= j @next_event.location %>')
+                    .openPopup();
+                });
+              </script>
+            <% else %>
+              <div class="h-full min-h-[350px] bg-navy-900/5 flex items-center justify-center">
+                <div class="text-center">
+                  <svg class="w-12 h-12 text-gray-300 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/>
+                  </svg>
+                  <p class="text-gray-400 font-sans text-sm">Map not available for this event</p>
                 </div>
-                <% if event.description.present? %>
-                  <p class="text-gray-600 font-sans text-sm leading-relaxed"><%= truncate(strip_tags(event.description.to_s), length: 120) %></p>
-                <% end %>
               </div>
             <% end %>
           </div>
         </div>
-      <% end %>
-    <% else %>
+      </div>
+    </div>
+  </section>
+<% end %>
+
+<%# Remaining Upcoming Events %>
+<% if @remaining_upcoming.any? %>
+  <section class="bg-ivory-50 w-full">
+    <div class="max-w-7xl mx-auto px-6 py-16 lg:px-20 lg:py-20 flex flex-col gap-10">
+      <div class="flex flex-col gap-2">
+        <h2 class="text-navy-900 font-display text-3xl lg:text-[36px] font-bold">More Upcoming Events</h2>
+        <p class="text-gray-500 font-sans text-base">All times local.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <% @remaining_upcoming.each do |event| %>
+          <div class="bg-white rounded-lg border-t-4 border-campaign-gold p-6 lg:p-9 flex flex-col gap-5">
+            <div class="flex items-start gap-5">
+              <div class="bg-navy-900 rounded px-3 py-2 flex flex-col items-center flex-shrink-0">
+                <span class="text-campaign-gold font-sans text-[11px] font-bold tracking-[0.1em] uppercase"><%= event.date.strftime("%b") %></span>
+                <span class="text-white font-display text-3xl font-bold leading-none"><%= event.date.strftime("%-d") %></span>
+                <span class="text-slate-400 font-sans text-[10px]"><%= event.date.strftime("%a") %></span>
+              </div>
+              <div class="flex-1">
+                <h4 class="text-navy-900 font-display text-lg font-bold mb-1"><%= event.title %></h4>
+                <p class="text-gray-500 font-sans text-sm"><%= event.date.strftime("%l:%M %p") %></p>
+              </div>
+            </div>
+            <div class="flex items-start gap-2">
+              <svg class="w-4 h-4 text-gray-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+              </svg>
+              <p class="text-gray-500 font-sans text-sm"><%= event.location %></p>
+            </div>
+            <% if event.description.present? %>
+              <p class="text-gray-600 font-sans text-sm leading-relaxed"><%= truncate(strip_tags(event.description.to_s), length: 120) %></p>
+            <% end %>
+            <%= link_to "View Details", event_path(event), class: "text-navy-900 font-sans text-sm font-semibold hover:text-campaign-gold transition-colors" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </section>
+<% elsif !@next_event %>
+  <section class="bg-ivory-50 w-full">
+    <div class="max-w-7xl mx-auto px-6 py-16 lg:px-20 lg:py-20 flex flex-col gap-10">
+      <div class="flex flex-col gap-2">
+        <h2 class="text-navy-900 font-display text-3xl lg:text-[36px] font-bold">Upcoming Events</h2>
+        <p class="text-gray-500 font-sans text-base">All times local.</p>
+      </div>
       <div class="bg-white rounded-lg border border-gray-200 p-12 text-center">
         <div class="w-16 h-16 bg-navy-900 rounded-full flex items-center justify-center mx-auto mb-4">
           <svg class="w-8 h-8 text-campaign-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -65,9 +157,9 @@
         <h3 class="text-navy-900 font-display text-xl font-bold mb-2">No upcoming events</h3>
         <p class="text-gray-500 font-sans text-sm">Check back soon — new events are added regularly.</p>
       </div>
-    <% end %>
-  </div>
-</section>
+    </div>
+  </section>
+<% end %>
 
 <%# Past Events %>
 <% if @past_events.any? %>

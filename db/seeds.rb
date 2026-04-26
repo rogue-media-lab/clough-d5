@@ -129,43 +129,56 @@ Event.create!([
     description: "Join Andrew for an open discussion on property tax reform and what it means for District 5 families. Bring your questions and concerns.",
     date: 3.days.from_now.change(hour: 18, min: 30),
     location: "Rock Hill City Hall, 155 Johnston St",
-    status: :upcoming
+    status: :upcoming,
+    latitude: 34.9240435,
+    longitude: -81.0282436
   },
   {
     title: "Coffee with Clough — York",
     description: "Casual morning coffee. No speeches, just conversation. Come share what's on your mind about District 5.",
     date: 5.days.from_now.change(hour: 8, min: 0),
     location: "The Coffee House, 23 N Congress St, York",
-    status: :upcoming
+    status: :upcoming,
+    latitude: 34.9947059,
+    longitude: -81.2416951
   },
   {
     title: "Community Clean-Up Day",
     description: "Volunteer with Andrew's team to clean up neighborhoods across Rock Hill. Supplies provided. Bring gloves and water.",
     date: 8.days.from_now.change(hour: 9, min: 0),
     location: "Winthrop Park, Rock Hill",
-    status: :upcoming
+    status: :upcoming,
+    latitude: 34.9390334,
+    longitude: -81.0317448
   },
   {
     title: "Youth Leadership Forum",
     description: "A forum for young people ages 16-25 to discuss issues that matter to them. Andrew will listen and answer questions about his platform.",
     date: 12.days.from_now.change(hour: 16, min: 0),
     location: "Chester County Library, 100 Center St, Chester",
-    status: :upcoming
+    status: :upcoming,
+    latitude: 34.7050140,
+    longitude: -81.2149915
   },
   {
     title: "Meet & Greet at the Farmers Market",
     description: "Stop by Andrew's booth at the Rock Hill Farmers Market. Pick up campaign materials, ask questions, and grab a yard sign.",
     date: 15.days.from_now.change(hour: 7, min: 30),
     location: "Rock Hill Farmers Market, Downtown",
-    status: :upcoming
+    status: :upcoming,
+    latitude: 34.9249,
+    longitude: -81.0258
   },
   {
     title: "Veterans Appreciation Dinner",
     description: "A special evening honoring District 5 veterans. Dinner served. RSVP required.",
     date: 20.days.from_now.change(hour: 18, min: 0),
     location: "American Legion Post 34, Rock Hill",
-    status: :upcoming
+    status: :upcoming,
+    latitude: 34.9280,
+    longitude: -81.0350
   }
 ])
 
 puts "Events: #{Event.count} total"
+puts "Events with coordinates: #{Event.where.not(latitude: nil).count} total"

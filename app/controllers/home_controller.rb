@@ -38,8 +38,13 @@ class HomeController < ApplicationController
   end
 
   def events
-    @upcoming_events = Event.upcoming.group_by { |e| e.date.beginning_of_month }
+    @next_event = Event.upcoming.first
+    @remaining_upcoming = Event.upcoming.offset(1)
     @past_events = Event.past.limit(8)
+  end
+
+  def show_event
+    @event = Event.find(params[:id])
   end
 
   private
