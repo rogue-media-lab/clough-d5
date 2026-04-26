@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_04_24_020110) do
+ActiveRecord::Schema[8.1].define(version: 2026_04_26_125441) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -159,6 +159,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_24_020110) do
     t.integer "status"
     t.integer "submission_status"
     t.datetime "updated_at", null: false
+    t.datetime "welcome_email_sent_at"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

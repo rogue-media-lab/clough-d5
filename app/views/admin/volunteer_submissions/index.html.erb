@@ -1,36 +1,115 @@
-<% content_for :title, "Volunteer Submissions" %>
+<% content_for :page_title, "Volunteers" %>
+<content_for :page_subtitle, "Manage volunteer submissions and track outreach." %>
 
-<div class="w-full">
+<div style="margin-bottom: 20px;">
   <% if notice.present? %>
-    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-md inline-block" id="notice"><%= notice %></p>
+    <p style="background: #DCFCE7; color: #166534; padding: 8px 16px; border-radius: 6px; font-size: 14px; font-weight: 500; margin: 0; display: inline-block;"><%= notice %></p>
+  <% end %>
+</div>
+
+<!-- Filters -->
+<div style="background: #FFFFFF; border-radius: 10px; border: 1px solid #E5E7EB; padding: 20px; margin-bottom: 24px;">
+  <form method="get" style="display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-end;">
+    <div>
+      <label style="display: block; font-size: 12px; font-weight: 500; color: #6B7280; text-transform: uppercase; margin-bottom: 6px;">Status</label>
+      <select name="status" style="padding: 8px 12px; border: 1px solid #D1D5DB; border-radius: 8px; font-size: 14px; color: #374151; background: #FFFFFF; min-width: 140px;">
+        <option value="">All statuses</option>
+        <% VolunteerSubmission.submission_statuses.keys.each do |s| %>
+          <option value="<%= s %>" <%= "selected" if params[:status] == s %>><%= s.capitalize %></option>
+        <% end %>
+      </select>
+    </div>
+
+    <div>
+      <label style="display: block; font-size: 12px; font-weight: 500; color: #6B7280; text-transform: uppercase; margin-bottom: 6px;">Interest</label>
+      <select name="interest_id" style="padding: 8px 12px; border: 1px solid #D1D5DB; border-radius: 8px; font-size: 14px; color: #374151; background: #FFFFFF; min-width: 160px;">
+        <option value="">All interests</option>
+        <% @interests.each do |interest| %>
+          <option value="<%= interest.id %>" <%= "selected" if params[:interest_id] == interest.id.to_s %>><%= interest.name %></option>
+        <% end %>
+      </select>
+    </div>
+
+    <div>
+      <label style="display: block; font-size: 12px; font-weight: 500; color: #6B7280; text-transform: uppercase; margin-bottom: 6px;">Welcome Email</label>
+      <select name="welcome" style="padding: 8px 12px; border: 1px solid #D1D5DB; border-radius: 8px; font-size: 14px; color: #374151; background: #FFFFFF; min-width: 140px;">
+        <option value="">Any</option>
+        <option value="not_sent" <%= "selected" if params[:welcome] == "not_sent" %>>Not sent</option>
+        <option value="sent" <%= "selected" if params[:welcome] == "sent" %>>Sent</option>
+      </select>
+    </div>
+
+    <div>
+      <label style="display: block; font-size: 12px; font-weight: 500; color: #6B7280; text-transform: uppercase; margin-bottom: 6px;">From</label>
+      <input type="date" name="from" value="<%= params[:from] %>" style="padding: 8px 12px; border: 1px solid #D1D5DB; border-radius: 8px; font-size: 14px; color: #374151;">
+    </div>
+
+    <div>
+      <label style="display: block; font-size: 12px; font-weight: 500; color: #6B7280; text-transform: uppercase; margin-bottom: 6px;">To</label>
+      <input type="date" name="to" value="<%= params[:to] %>" style="padding: 8px 12px; border: 1px solid #D1D5DB; border-radius: 8px; font-size: 14px; color: #374151;">
+    </div>
+
+    <div style="display: flex; gap: 8px;">
+      <button type="submit" style="padding: 8px 16px; background: #0F2044; color: #FFFFFF; border: none; border-radius: 8px; font-size: 14px; font-weight: 500; cursor: pointer;">Filter</button>
+      <a href="<%= admin_volunteer_submissions_path %>" style="padding: 8px 16px; background: #F3F4F6; color: #6B7280; border-radius: 8px; font-size: 14px; text-decoration: none; font-weight: 500;">Clear</a>
+    </div>
+  </form>
+
+  <% if @current_filters.values.any? %>
+    <div style="margin-top: 14px; padding-top: 14px; border-top: 1px solid #F3F4F6; font-size: 13px; color: #6B7280;">
+      Showing <%= @submissions.count %> result<%= "s" if @submissions.count != 1 %>
+    </div>
+  <% end %>
+</div>
+
+<!-- Submissions List -->
+<div style="background: #FFFFFF; border-radius: 10px; border: 1px solid #E5E7EB; overflow: hidden;">
+  <div style="display: grid; grid-template-columns: 1fr 120px 120px 100px 100px; padding: 12px 24px; background: #F9FAFB; border-bottom: 1px solid #E5E7EB; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: #6B7280;">
+    <div>Volunteer</div>
+    <div style="text-align: center;">Status</div>
+    <div style="text-align: center;">Welcome</div>
+    <div style="text-align: center;">Area</div>
+    <div style="text-align: right;">Actions</div>
+  </div>
+
+  <% @submissions.each do |volunteer| %>
+    <div style="display: grid; grid-template-columns: 1fr 120px 120px 100px 100px; padding: 16px 24px; border-bottom: 1px solid #F3F4F6; align-items: center;">
+      <div>
+        <p style="font-size: 15px; font-weight: 600; color: #111827; margin: 0;"><%= volunteer.name %></p>
+        <p style="font-size: 13px; color: #6B7280; margin: 2px 0 0;"><%= volunteer.email %></p>
+        <% if volunteer.interests.any? %>
+          <div style="margin-top: 6px; display: flex; gap: 4px; flex-wrap: wrap;">
+            <% volunteer.interests.each do |interest| %>
+              <span style="font-size: 11px; padding: 2px 8px; background: #F3F4F6; color: #4B5563; border-radius: 10px;"><%= interest.name %></span>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+      <div style="text-align: center;">
+        <span style="display: inline-block; padding: 3px 10px; border-radius: 12px; font-size: 12px; font-weight: 500; background: <%= status_bg_color(volunteer.submission_status) %>; color: <%= status_text_color(volunteer.submission_status) %>;">
+          <%= volunteer.submission_status.capitalize %>
+        </span>
+      </div>
+      <div style="text-align: center;">
+        <% if volunteer.welcome_email_sent_at %>
+          <span style="font-size: 12px; color: #166534;">✓ Sent</span>
+        <% else %>
+          <span style="font-size: 12px; color: #D97706;">Pending</span>
+        <% end %>
+      </div>
+      <div style="text-align: center; font-size: 13px; color: #6B7280;">
+        <%= volunteer.area_code.presence || "—" %>
+      </div>
+      <div style="display: flex; gap: 6px; justify-content: flex-end;">
+        <%= link_to "View", admin_volunteer_submission_path(volunteer), style: "padding: 6px 12px; background: #F3F4F6; color: #374151; border-radius: 6px; font-size: 13px; text-decoration: none; font-weight: 500;" %>
+        <%= button_to "Delete", admin_volunteer_submission_path(volunteer), method: :delete, style: "padding: 6px 12px; background: #FEE2E2; color: #DC2626; border-radius: 6px; font-size: 13px; border: none; cursor: pointer; font-weight: 500;", data: { turbo_confirm: "Are you sure?" } %>
+      </div>
+    </div>
   <% end %>
 
-  <div class="flex justify-between items-center">
-    <h1 class="font-bold text-4xl">Volunteer Submissions</h1>
-  </div>
-
-  <div id="submissions" class="min-w-full divide-y divide-gray-200 space-y-5 mt-5">
-    <% if @submissions.any? %>
-      <% @submissions.each do |submission| %>
-        <div class="flex flex-col sm:flex-row justify-between items-center pb-5 sm:pb-0">
-          <div class="w-full">
-            <div>
-              <h3 class="text-lg font-medium text-gray-900"><%= submission.name %></h3>
-              <p class="text-sm text-gray-500"><%= submission.email %> | <%= submission.phone.presence || "No phone" %></p>
-              <p class="text-sm text-gray-500">Area: <%= submission.area_code.presence || "Not provided" %> | Status: <%= submission.submission_status %></p>
-              <% if submission.interests.any? %>
-                <p class="text-sm text-gray-500 mt-1">Interests: <%= submission.interests.pluck(:name).join(", ") %></p>
-              <% end %>
-            </div>
-          </div>
-          <div class="w-full sm:w-auto flex flex-col sm:flex-row space-x-2 space-y-2">
-            <%= link_to "Show", admin_volunteer_submission_path(submission), class: "w-full sm:w-auto text-center rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
-            <%= button_to "Destroy", admin_volunteer_submission_path(submission), method: :delete, class: "w-full sm:w-auto rounded-md px-3.5 py-2.5 text-white bg-red-600 hover:bg-red-500 font-medium cursor-pointer", data: { turbo_confirm: "Are you sure?" } %>
-          </div>
-        </div>
-      <% end %>
-    <% else %>
-      <p class="text-center my-10">No volunteer submissions yet.</p>
-    <% end %>
-  </div>
+  <% if @submissions.none? %>
+    <div style="padding: 48px 24px; text-align: center; color: #9CA3AF;">
+      <p style="font-size: 16px; margin: 0;">No volunteers match your filters.</p>
+    </div>
+  <% end %>
 </div>

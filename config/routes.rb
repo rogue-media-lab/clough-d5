@@ -17,7 +17,11 @@ Rails.application.routes.draw do
     root "dashboard#index"
     resources :posts
     resources :volunteer_interests
-    resources :volunteer_submissions
+    resources :volunteer_submissions do
+      member do
+        patch :mark_welcome_sent
+      end
+    end
   end
 
   # Public volunteer submission

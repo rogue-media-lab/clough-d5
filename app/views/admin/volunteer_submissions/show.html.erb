@@ -1,55 +1,121 @@
-<% content_for :title, "Volunteer Submission" %>
+<% content_for :page_title, @submission.name %>
+<% content_for :page_subtitle, "Volunteer submission from #{@submission.created_at.strftime('%B %d, %Y')}" %>
 
-<div class="mx-auto md:w-2/3 w-full">
-  <h1 class="font-bold text-4xl mb-5"><%= @submission.name %></h1>
+<div style="margin-bottom: 20px;">
+  <% if notice.present? %>
+    <p style="background: #DCFCE7; color: #166534; padding: 8px 16px; border-radius: 6px; font-size: 14px; font-weight: 500; margin: 0; display: inline-block;"><%= notice %></p>
+  <% end %>
+</div>
 
-  <div class="bg-white shadow rounded-lg p-6">
-    <div class="mb-4">
-      <label class="block text-gray-500 text-sm font-bold mb-2">Email</label>
-      <p class="text-gray-900"><%= @submission.email %></p>
+<div style="display: grid; grid-template-columns: 1fr 340px; gap: 28px;">
+
+  <!-- Main Content -->
+  <div>
+    <!-- Contact Info Card -->
+    <div style="background: #FFFFFF; border-radius: 10px; border: 1px solid #E5E7EB; padding: 28px; margin-bottom: 20px;">
+      <h3 style="font-size: 14px; font-weight: 600; color: #374151; margin: 0 0 20px; padding-bottom: 12px; border-bottom: 1px solid #F3F4F6;">Contact Information</h3>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+        <div>
+          <p style="font-size: 12px; font-weight: 500; color: #6B7280; text-transform: uppercase; margin: 0 0 4px;">Name</p>
+          <p style="font-size: 15px; font-weight: 600; color: #111827; margin: 0;"><%= @submission.name %></p>
+        </div>
+        <div>
+          <p style="font-size: 12px; font-weight: 500; color: #6B7280; text-transform: uppercase; margin: 0 0 4px;">Email</p>
+          <p style="font-size: 15px; color: #111827; margin: 0;">
+            <a href="mailto:<%= @submission.email %>" style="color: #2563EB; text-decoration: none;"><%= @submission.email %></a>
+          </p>
+        </div>
+        <div>
+          <p style="font-size: 12px; font-weight: 500; color: #6B7280; text-transform: uppercase; margin: 0 0 4px;">Phone</p>
+          <p style="font-size: 15px; color: #111827; margin: 0;">
+            <% if @submission.phone.present? %>
+              <a href="tel:<%= @submission.phone %>" style="color: #2563EB; text-decoration: none;"><%= @submission.phone %></a>
+            <% else %>
+              <span style="color: #9CA3AF;">Not provided</span>
+            <% end %>
+          </p>
+        </div>
+        <div>
+          <p style="font-size: 12px; font-weight: 500; color: #6B7280; text-transform: uppercase; margin: 0 0 4px;">Area Code</p>
+          <p style="font-size: 15px; color: #111827; margin: 0;"><%= @submission.area_code.presence || "Not provided" %></p>
+        </div>
+      </div>
     </div>
 
-    <div class="mb-4">
-      <label class="block text-gray-500 text-sm font-bold mb-2">Phone</label>
-      <p class="text-gray-900"><%= @submission.phone.presence || "Not provided" %></p>
+    <!-- Message Card -->
+    <div style="background: #FFFFFF; border-radius: 10px; border: 1px solid #E5E7EB; padding: 28px;">
+      <h3 style="font-size: 14px; font-weight: 600; color: #374151; margin: 0 0 16px; padding-bottom: 12px; border-bottom: 1px solid #F3F4F6;">Message</h3>
+      <p style="font-size: 15px; color: #374151; line-height: 1.7; margin: 0; white-space: pre-wrap;"><%= @submission.message.presence || "No message provided." %></p>
+    </div>
+  </div>
+
+  <!-- Sidebar -->
+  <div>
+    <!-- Status Card -->
+    <div style="background: #FFFFFF; border-radius: 10px; border: 1px solid #E5E7EB; padding: 20px; margin-bottom: 16px;">
+      <h3 style="font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: #6B7280; margin: 0 0 16px;">Status</h3>
+
+      <div style="margin-bottom: 16px;">
+        <span style="display: inline-block; padding: 4px 14px; border-radius: 14px; font-size: 13px; font-weight: 600; background: <%= status_bg_color(@submission.submission_status) %>; color: <%= status_text_color(@submission.submission_status) %>;">
+          <%= @submission.submission_status.capitalize %>
+        </span>
+      </div>
+
+      <%= link_to "Edit Status", edit_admin_volunteer_submission_path(@submission), style: "display: block; text-align: center; padding: 10px 16px; background: #0F2044; color: #FFFFFF; border-radius: 8px; font-size: 14px; font-weight: 500; text-decoration: none; margin-bottom: 12px;" %>
+
+      <%= button_to "Delete Submission", admin_volunteer_submission_path(@submission), method: :delete, style: "display: block; width: 100%; text-align: center; padding: 10px 16px; background: #FEE2E2; color: #DC2626; border: none; border-radius: 8px; font-size: 14px; font-weight: 500; cursor: pointer;", data: { turbo_confirm: "Are you sure? This cannot be undone." } %>
     </div>
 
-    <div class="mb-4">
-      <label class="block text-gray-500 text-sm font-bold mb-2">Area Code</label>
-      <p class="text-gray-900"><%= @submission.area_code.presence || "Not provided" %></p>
-    </div>
+    <!-- Welcome Email Card -->
+    <div style="background: #FFFFFF; border-radius: 10px; border: 1px solid #E5E7EB; padding: 20px; margin-bottom: 16px;">
+      <h3 style="font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: #6B7280; margin: 0 0 16px;">Welcome Email</h3>
 
-    <div class="mb-4">
-      <label class="block text-gray-500 text-sm font-bold mb-2">Status</label>
-      <p class="text-gray-900"><%= @submission.submission_status %></p>
-    </div>
-
-    <div class="mb-4">
-      <label class="block text-gray-500 text-sm font-bold mb-2">Interests</label>
-      <% if @submission.interests.any? %>
-        <div class="flex flex-wrap gap-2">
-          <% @submission.interests.each do |interest| %>
-            <span class="inline-block bg-gray-100 rounded-full px-3 py-1 text-sm font-semibold text-gray-700"><%= interest.name %></span>
-          <% end %>
+      <% if @submission.welcome_email_sent_at %>
+        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
+          <span style="width: 32px; height: 32px; background: #DCFCE7; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #166534; font-size: 16px;">✓</span>
+          <div>
+            <p style="font-size: 14px; font-weight: 500; color: #166534; margin: 0;">Sent</p>
+            <p style="font-size: 12px; color: #6B7280; margin: 2px 0 0;"><%= @submission.welcome_email_sent_at.strftime('%b %d, %Y at %I:%M %p') %></p>
+          </div>
         </div>
       <% else %>
-        <p class="text-gray-500">No interests selected</p>
+        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
+          <span style="width: 32px; height: 32px; background: #FEF3C7; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #D97706; font-size: 16px;">✉</span>
+          <div>
+            <p style="font-size: 14px; font-weight: 500; color: #D97706; margin: 0;">Not sent yet</p>
+            <p style="font-size: 12px; color: #6B7280; margin: 2px 0 0;">Send a welcome email to get started</p>
+          </div>
+        </div>
+        <%= button_to "Mark as Sent", mark_welcome_sent_admin_volunteer_submission_path(@submission), method: :patch, style: "display: block; width: 100%; text-align: center; padding: 10px 16px; background: #C8902A; color: #FFFFFF; border: none; border-radius: 8px; font-size: 14px; font-weight: 500; cursor: pointer;" %>
       <% end %>
     </div>
 
-    <div class="mb-4">
-      <label class="block text-gray-500 text-sm font-bold mb-2">Message</label>
-      <p class="text-gray-900 whitespace-pre-wrap"><%= @submission.message.presence || "No message" %></p>
+    <!-- Interests Card -->
+    <div style="background: #FFFFFF; border-radius: 10px; border: 1px solid #E5E7EB; padding: 20px; margin-bottom: 16px;">
+      <h3 style="font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: #6B7280; margin: 0 0 16px;">Interests</h3>
+
+      <% if @submission.interests.any? %>
+        <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+          <% @submission.interests.each do |interest| %>
+            <span style="font-size: 13px; padding: 4px 12px; background: #FFF7ED; color: #C2410C; border-radius: 14px; font-weight: 500;"><%= interest.name %></span>
+          <% end %>
+        </div>
+      <% else %>
+        <p style="font-size: 13px; color: #9CA3AF;">No interests selected</p>
+      <% end %>
     </div>
 
-    <div class="mb-4">
-      <label class="block text-gray-500 text-sm font-bold mb-2">Submitted</label>
-      <p class="text-gray-900"><%= @submission.created_at.strftime("%B %d, %Y at %I:%M %p") %></p>
+    <!-- Timeline -->
+    <div style="background: #FFFFFF; border-radius: 10px; border: 1px solid #E5E7EB; padding: 20px;">
+      <h3 style="font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: #6B7280; margin: 0 0 16px;">Timeline</h3>
+      <p style="font-size: 13px; color: #6B7280; margin: 0;">Submitted: <strong style="color: #374151;"><%= @submission.created_at.strftime('%b %d, %Y') %></strong></p>
+      <p style="font-size: 13px; color: #6B7280; margin: 6px 0 0;">Updated: <strong style="color: #374151;"><%= @submission.updated_at.strftime('%b %d, %Y') %></strong></p>
     </div>
   </div>
 
-  <div class="mt-6 flex gap-4">
-    <%= link_to "Edit Status", edit_admin_volunteer_submission_path(@submission), class: "rounded-md px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white font-medium" %>
-    <%= link_to "Back to submissions", admin_volunteer_submissions_path, class: "ml-auto rounded-md py-3 px-3.5 inline-block font-medium text-gray-500 hover:text-gray-800" %>
-  </div>
+</div>
+
+<div style="margin-top: 24px;">
+  <%= link_to "Back to Volunteers", admin_volunteer_submissions_path, style: "font-size: 14px; color: #6B7280; text-decoration: none;" %>
 </div>
