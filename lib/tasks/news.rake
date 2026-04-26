@@ -141,7 +141,7 @@ namespace :news do
 
   desc "Backfill missing article images by fetching OG tags"
   task backfill_images: :environment do
-    articles = NewsArticle.where(image: [nil, ""]).where.not(external_url: [nil, ""])
+    articles = NewsArticle.where(image: [ nil, "" ]).where.not(external_url: [ nil, "" ])
     puts "Found #{articles.count} articles without images..."
     puts "Polite mode: #{REQUEST_DELAY}s between requests\n\n"
 
@@ -157,7 +157,7 @@ namespace :news do
       end
     end
 
-    puts "\nDone. #{NewsArticle.where.not(image: [nil, '']).count}/#{NewsArticle.count} have images."
+    puts "\nDone. #{NewsArticle.where.not(image: [ nil, '' ]).count}/#{NewsArticle.count} have images."
   end
 end
 

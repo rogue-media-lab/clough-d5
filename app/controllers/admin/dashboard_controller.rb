@@ -21,7 +21,7 @@ class Admin::DashboardController < Admin::BaseController
 
     # Volunteer breakdown by interest
     @interest_breakdown = VolunteerInterest.all.map do |interest|
-      [interest.name, interest.submissions.count]
+      [ interest.name, interest.submissions.count ]
     end.sort_by { |_, count| -count }
 
     # News Articles
