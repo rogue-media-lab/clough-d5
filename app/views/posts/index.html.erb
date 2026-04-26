@@ -73,8 +73,50 @@
         </article>
       <% end %>
     </div>
-  <% elsif @featured_post.nil? %>
+  <% elsif @featured_post.nil? && @posts.empty? %>
     <p class="text-center text-ivory-400 py-20 text-sm">No posts published yet.</p>
+  <% end %>
+
+  <%# News Articles Section %>
+  <% if @news_articles.any? %>
+    <section class="mt-12">
+      <div class="flex items-center gap-4 mb-6">
+        <div class="h-0.5 w-10 bg-ivory-300"></div>
+        <h2 class="text-sm font-semibold uppercase tracking-widest text-ivory-500">In The News</h2>
+        <div class="h-0.5 flex-1 bg-ivory-300"></div>
+      </div>
+      <h3 class="text-2xl md:text-3xl font-bold text-ivory-900 mb-2">Andrew Clough in the Media</h3>
+      <p class="text-ivory-500 mb-8">Coverage and stories from around District 5.</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <% @news_articles.each do |article| %>
+          <article class="bg-white rounded-xl border border-ivory-200 p-6 hover:shadow-md transition-shadow">
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-xs font-semibold uppercase tracking-widest text-ivory-400"><%= article.source %></span>
+              <% if article.featured? %>
+                <span class="text-campaign-gold text-sm">&#9733; Featured</span>
+              <% end %>
+            </div>
+            <h4 class="text-base font-bold text-ivory-900 mb-2">
+              <% if article.external_url.present? %>
+                <a href="<%= article.external_url %>" target="_blank" class="hover:text-ivory-600 transition-colors"><%= article.title %></a>
+              <% else %>
+                <%= article.title %>
+              <% end %>
+            </h4>
+            <% if article.body.present? %>
+              <p class="text-sm text-ivory-500 mb-3"><%= article.body.truncate(150) %></p>
+            <% end %>
+            <div class="flex items-center justify-between">
+              <p class="text-xs text-ivory-400"><%= article.published_date&.strftime("%b %-d, %Y") %></p>
+              <% if article.external_url.present? %>
+                <a href="<%= article.external_url %>" target="_blank" class="text-sm font-medium text-ivory-700 hover:text-ivory-900 transition-colors">Read →</a>
+              <% end %>
+            </div>
+          </article>
+        <% end %>
+      </div>
+    </section>
   <% end %>
 
 </div>
