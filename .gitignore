@@ -36,3 +36,4 @@
 
 # Ignore bundled gems — run bundle install after cloning
 /vendor/bundle
+node_modules/
