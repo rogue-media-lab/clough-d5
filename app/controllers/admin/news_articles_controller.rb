@@ -105,7 +105,7 @@ class Admin::NewsArticlesController < Admin::BaseController
             image_url = item.enclosure.url
           end
 
-          NewsArticle.create!(
+          article = NewsArticle.create!(
             title: title,
             body: description,
             external_url: url,
@@ -114,6 +114,14 @@ class Admin::NewsArticlesController < Admin::BaseController
             published_date: pub_date,
             status: :fetched
           )
+
+          # Fetch OG image for first 2 articles per run (keeps under Heroku timeout)
+          if image_url.blank? && new_count < 2
+            sleep 0.5
+            og = fetch_og_image(url, user_agent)
+            article.update_column(:image, og) if og.present?
+          end
+
           new_count += 1
         end
       rescue => e
@@ -155,5 +163,33 @@ class Admin::NewsArticlesController < Admin::BaseController
 
   def article_params
     params.expect(news_article: [ :title, :body, :external_url, :image, :source, :published_date, :status, :featured, :reflection ])
+  end
+
+  def fetch_og_image(url, user_agent)
+    uri = URI.parse(url)
+    http = Net::HTTP.new(uri.host, uri.port)
+    http.use_ssl = (uri.scheme == "https")
+    http.open_timeout = 4
+    http.read_timeout = 5
+
+    request = Net::HTTP::Get.new(uri.request_uri)
+    request["User-Agent"] = user_agent
+
+    response = http.request(request)
+    return nil unless response.is_a?(Net::HTTPSuccess)
+
+    html = response.body[0..51200]
+
+    if html =~ /property=["']og:image["'][^>]*content=["']([^"']+)["']/i
+      return $1
+    elsif html =~ /content=["']([^"']+)["'][^>]*property=["']og:image["']/i
+      return $1
+    elsif html =~ /name=["']twitter:image["'][^>]*content=["']([^"']+)["']/i
+      return $1
+    end
+
+    nil
+  rescue
+    nil
   end
 end
