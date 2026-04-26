@@ -1,6 +1,6 @@
 <% content_for :title, "#{@article.title} | Clough for SC5" %>
 
-<%# Article Header %>
+<%# Article Hero %>
 <section class="bg-navy-900 w-full">
   <div class="max-w-5xl mx-auto px-6 py-10 lg:px-20 lg:py-16">
     <%= link_to news_path, class: "inline-flex items-center gap-2 text-slate-400 hover:text-white font-sans text-sm transition-colors mb-6 no-underline" do %>
@@ -17,86 +17,81 @@
       <% if @article.published_date.present? %>
         <span><%= @article.published_date.strftime("%B %-d, %Y") %></span>
       <% end %>
-      <% if @article.external_url.present? %>
-        <span>&middot;</span>
-        <a href="<%= @article.external_url %>" target="_blank" rel="noopener" class="text-campaign-gold hover:text-white transition-colors">Open original &rarr;</a>
-      <% end %>
     </div>
   </div>
 </section>
 
-<%# Article Body + Embedded View %>
+<%# Article Preview + CTA %>
 <section class="bg-white w-full">
   <div class="max-w-5xl mx-auto px-6 py-10 lg:px-20">
-    <% if @article.body.present? %>
-      <div class="mb-8">
-        <p class="text-gray-600 font-sans text-base lg:text-lg leading-[1.8]"><%= @article.body %></p>
-      </div>
-    <% end %>
+    <div class="flex flex-col lg:flex-row gap-8 lg:gap-12">
 
-    <%# Embedded Article Frame %>
-    <% if @article.external_url.present? %>
-      <div class="rounded-xl overflow-hidden border border-gray-200 relative" style="height: 75vh; min-height: 500px;">
-        <iframe
-          id="article-frame"
-          src="<%= @article.external_url %>"
-          class="w-full h-full border-0"
-          sandbox="allow-scripts allow-same-origin"
-          loading="lazy"
-          referrerpolicy="no-referrer"
-        ></iframe>
-        <%# Fallback if iframe is blocked %>
-        <div id="iframe-fallback" class="hidden absolute inset-0 bg-ivory-100 flex flex-col items-center justify-center text-center p-8">
-          <div class="bg-white rounded-xl border border-gray-200 p-10 max-w-md">
-            <div class="w-16 h-16 bg-navy-900 rounded-full flex items-center justify-center mx-auto mb-6">
-              <span class="text-campaign-gold text-2xl">&#128279;</span>
-            </div>
-            <h3 class="text-navy-900 font-display text-xl font-bold mb-3">This article can't be displayed here</h3>
-            <p class="text-gray-500 font-sans text-sm leading-relaxed mb-6">
-              <%= @article.source %> doesn't allow their pages to be embedded. You can read the full article on their site.
-            </p>
-            <a href="<%= @article.external_url %>" target="_blank" rel="noopener"
-               class="inline-block bg-campaign-gold hover:bg-campaign-gold-dark text-white font-sans text-sm font-bold tracking-wider uppercase px-8 py-3 rounded transition-colors no-underline">
-              Read on <%= @article.source %> &rarr;
-            </a>
+      <%# Article Image %>
+      <div class="lg:w-2/5 flex-shrink-0">
+        <% if @article.image.present? %>
+          <div class="rounded-xl overflow-hidden bg-ivory-100 aspect-video">
+            <img src="<%= @article.image %>" alt="<%= @article.title %>" class="w-full h-full object-cover" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentElement.innerHTML='<%= j(render partial: 'news_articles/fallback_image') %>'">
           </div>
+        <% else %>
+          <div class="rounded-xl overflow-hidden bg-ivory-100 aspect-video flex items-center justify-center">
+            <%= render partial: 'news_articles/fallback_image' %>
+          </div>
+        <% end %>
+      </div>
+
+      <%# Article Details %>
+      <div class="flex-1">
+        <% if @article.body.present? %>
+          <div class="mb-8">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="bg-campaign-gold h-0.5 w-10"></div>
+              <span class="text-campaign-gold font-sans text-xs font-semibold tracking-[0.15em] uppercase">Summary</span>
+            </div>
+            <p class="text-gray-600 font-sans text-base lg:text-lg leading-[1.8]"><%= @article.body %></p>
+          </div>
+        <% end %>
+
+        <%# Issues this article relates to %>
+        <% if @article.issues.any? %>
+          <div class="mb-8">
+            <div class="flex items-center gap-3 mb-3">
+              <div class="bg-campaign-gold h-0.5 w-10"></div>
+              <span class="text-campaign-gold font-sans text-xs font-semibold tracking-[0.15em] uppercase">Related Issues</span>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <% @article.issues.each do |issue| %>
+                <a href="<%= issue_path(issue) %>" class="inline-flex items-center gap-2 bg-navy-900 text-white px-4 py-2 rounded-lg text-sm font-sans hover:bg-navy-800 transition-colors no-underline">
+                  <% if issue.icon.present? %>
+                    <span><%= issue_icon(issue.icon) %></span>
+                  <% end %>
+                  <%= issue.title %>
+                </a>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+
+        <%# Read Full Article CTA %>
+        <div class="bg-ivory-100 rounded-xl p-6 lg:p-8">
+          <p class="text-gray-500 font-sans text-sm leading-relaxed mb-4">
+            This article was published by <strong class="text-navy-900"><%= @article.source %></strong>.
+            Click below to read the full story on their website.
+          </p>
+          <% if @article.external_url.present? %>
+            <a href="<%= @article.external_url %>" target="_blank" rel="noopener"
+               class="inline-flex items-center gap-3 bg-campaign-gold hover:bg-campaign-gold-dark text-white font-sans text-sm font-bold tracking-wider uppercase px-8 py-4 rounded-lg transition-colors no-underline">
+              Read Full Article on <%= @article.source %>
+              <span>&rarr;</span>
+            </a>
+          <% end %>
+          <p class="text-gray-400 font-sans text-xs mt-4">Opens in a new tab</p>
         </div>
       </div>
-      <script>
-        // Detect if iframe fails to load (blocked by X-Frame-Options)
-        const frame = document.getElementById('article-frame');
-        const fallback = document.getElementById('iframe-fallback');
-        let loaded = false;
-
-        frame.addEventListener('load', () => {
-          loaded = true;
-          try {
-            // Try to access iframe content — will throw if blocked by CORS/X-Frame-Options
-            const url = frame.contentWindow.location.href;
-            if (url === 'about:blank') {
-              fallback.classList.remove('hidden');
-            }
-          } catch(e) {
-            // Cross-origin — but iframe loaded, so it's fine
-          }
-        });
-
-        frame.addEventListener('error', () => {
-          fallback.classList.remove('hidden');
-        });
-
-        // Safety timeout — show fallback if nothing loads in 8s
-        setTimeout(() => {
-          if (!loaded) {
-            fallback.classList.remove('hidden');
-          }
-        }, 8000);
-      </script>
-    <% end %>
+    </div>
 
     <%# Related Articles %>
     <% if @related.any? %>
-      <div class="mt-12">
+      <div class="mt-12 pt-10 border-t border-gray-200">
         <div class="flex items-center gap-3 mb-6">
           <div class="bg-campaign-gold h-0.5 w-10"></div>
           <span class="text-campaign-gold font-sans text-xs font-semibold tracking-[0.15em] uppercase">More from <%= @article.source %></span>
