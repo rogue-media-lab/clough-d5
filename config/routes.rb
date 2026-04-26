@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   # Public pages
   resources :posts, only: [ :index, :show ]
   get "/news", to: "posts#index", as: :news
+  get "/news/:id", to: "news_articles#show", as: :news_article
 
   get "/volunteer", to: "home#volunteer", as: :volunteer
   post "/volunteer", to: "home#create_volunteer_submission", as: :volunteer_submissions

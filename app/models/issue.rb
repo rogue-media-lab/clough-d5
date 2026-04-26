@@ -1,5 +1,7 @@
 class Issue < ApplicationRecord
   has_rich_text :description
+  has_many :issue_news_articles, dependent: :destroy
+  has_many :news_articles, through: :issue_news_articles
 
   enum :status, { draft: 0, active: 1 }, default: :draft
 

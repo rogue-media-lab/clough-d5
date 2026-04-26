@@ -25,11 +25,7 @@
               <% end %>
             </div>
             <h3 class="text-white font-display text-2xl lg:text-3xl font-bold leading-[1.2] mb-4">
-              <% if featured_article.external_url.present? %>
-                <a href="<%= featured_article.external_url %>" target="_blank" class="hover:text-campaign-gold transition-colors"><%= featured_article.title %></a>
-              <% else %>
-                <%= featured_article.title %>
-              <% end %>
+              <%= link_to featured_article.title, news_article_path(featured_article), class: "hover:text-campaign-gold transition-colors" %>
             </h3>
             <% if featured_article.body.present? %>
               <p class="text-slate-400 font-sans text-base leading-[1.8] mb-6 max-w-2xl"><%= featured_article.body.truncate(200) %></p>
@@ -38,11 +34,9 @@
               <% if featured_article.published_date.present? %>
                 <span class="text-slate-500 font-sans text-sm"><%= featured_article.published_date.strftime("%B %-d, %Y") %></span>
               <% end %>
-              <% if featured_article.external_url.present? %>
-                <a href="<%= featured_article.external_url %>" target="_blank" class="inline-flex items-center gap-2 text-campaign-gold font-sans text-sm font-semibold tracking-wider uppercase hover:text-white transition-colors">
-                  Read Full Article
-                  <span>&rarr;</span>
-                </a>
+              <%= link_to news_article_path(featured_article), class: "inline-flex items-center gap-2 text-campaign-gold font-sans text-sm font-semibold tracking-wider uppercase hover:text-white transition-colors" do %>
+                Read Full Article
+                <span>&rarr;</span>
               <% end %>
             </div>
           </div>
@@ -53,11 +47,7 @@
       <% if remaining_articles.any? %>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <% remaining_articles.each do |article| %>
-            <% if article.external_url.present? %>
-              <a href="<%= article.external_url %>" target="_blank" rel="noopener" class="block bg-white/5 border border-white/10 rounded-xl p-6 lg:p-7 hover:bg-white/10 transition-colors no-underline">
-            <% else %>
-              <div class="bg-white/5 border border-white/10 rounded-xl p-6 lg:p-7">
-            <% end %>
+            <%= link_to news_article_path(article), class: "block bg-white/5 border border-white/10 rounded-xl p-6 lg:p-7 hover:bg-white/10 transition-colors no-underline" do %>
               <div class="flex items-center gap-3 mb-4">
                 <span class="text-xs font-semibold tracking-[0.1em] uppercase text-campaign-gold"><%= article.source %></span>
                 <% if article.featured? %>
@@ -70,13 +60,7 @@
               <% end %>
               <div class="flex items-center justify-between mt-auto pt-3 border-t border-white/5">
                 <span class="text-slate-500 font-sans text-xs"><%= article.published_date&.strftime("%b %-d, %Y") %></span>
-                <% if article.external_url.present? %>
-                  <span class="text-campaign-gold font-sans text-xs font-semibold tracking-wider uppercase">Read &rarr;</span>
-                <% end %>
-              </div>
-            <% if article.external_url.present? %>
-              </a>
-            <% else %>
+                <span class="text-campaign-gold font-sans text-xs font-semibold tracking-wider uppercase">Read &rarr;</span>
               </div>
             <% end %>
           <% end %>
