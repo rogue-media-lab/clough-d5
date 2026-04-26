@@ -21,72 +21,65 @@
   </div>
 </section>
 
-<%# Article Preview + CTA %>
+<%# Article Image %>
+<div class="max-w-5xl mx-auto px-6 lg:px-20 mt-8">
+  <div class="rounded-xl overflow-hidden bg-ivory-100 aspect-video flex items-center justify-center">
+    <% if @article.image.present? %>
+      <img src="<%= @article.image %>" alt="<%= @article.title %>" class="w-full h-full object-cover" loading="lazy" referrerpolicy="no-referrer"
+           onerror="this.parentElement.innerHTML='<%= j(render partial: 'news_articles/fallback_image') %>'">
+    <% else %>
+      <%= render partial: 'news_articles/fallback_image' %>
+    <% end %>
+  </div>
+</div>
+
+<%# Article Details %>
 <section class="bg-white w-full">
   <div class="max-w-5xl mx-auto px-6 py-10 lg:px-20">
-    <div class="flex flex-col lg:flex-row gap-8 lg:gap-12">
-
-      <%# Article Image %>
-      <div class="lg:w-2/5 flex-shrink-0">
-        <% if @article.image.present? %>
-          <div class="rounded-xl overflow-hidden bg-ivory-100 aspect-video">
-            <img src="<%= @article.image %>" alt="<%= @article.title %>" class="w-full h-full object-cover" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentElement.innerHTML='<%= j(render partial: 'news_articles/fallback_image') %>'">
-          </div>
-        <% else %>
-          <div class="rounded-xl overflow-hidden bg-ivory-100 aspect-video flex items-center justify-center">
-            <%= render partial: 'news_articles/fallback_image' %>
-          </div>
-        <% end %>
+    <% if @article.body.present? %>
+      <div class="mb-8">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="bg-campaign-gold h-0.5 w-10"></div>
+          <span class="text-campaign-gold font-sans text-xs font-semibold tracking-[0.15em] uppercase">Summary</span>
+        </div>
+        <p class="text-gray-600 font-sans text-base lg:text-lg leading-[1.8]"><%= @article.body %></p>
       </div>
+    <% end %>
 
-      <%# Article Details %>
-      <div class="flex-1">
-        <% if @article.body.present? %>
-          <div class="mb-8">
-            <div class="flex items-center gap-3 mb-4">
-              <div class="bg-campaign-gold h-0.5 w-10"></div>
-              <span class="text-campaign-gold font-sans text-xs font-semibold tracking-[0.15em] uppercase">Summary</span>
-            </div>
-            <p class="text-gray-600 font-sans text-base lg:text-lg leading-[1.8]"><%= @article.body %></p>
-          </div>
-        <% end %>
-
-        <%# Issues this article relates to %>
-        <% if @article.issues.any? %>
-          <div class="mb-8">
-            <div class="flex items-center gap-3 mb-3">
-              <div class="bg-campaign-gold h-0.5 w-10"></div>
-              <span class="text-campaign-gold font-sans text-xs font-semibold tracking-[0.15em] uppercase">Related Issues</span>
-            </div>
-            <div class="flex flex-wrap gap-2">
-              <% @article.issues.each do |issue| %>
-                <a href="<%= issue_path(issue) %>" class="inline-flex items-center gap-2 bg-navy-900 text-white px-4 py-2 rounded-lg text-sm font-sans hover:bg-navy-800 transition-colors no-underline">
-                  <% if issue.icon.present? %>
-                    <span><%= issue_icon(issue.icon) %></span>
-                  <% end %>
-                  <%= issue.title %>
-                </a>
+    <%# Issues this article relates to %>
+    <% if @article.issues.any? %>
+      <div class="mb-8">
+        <div class="flex items-center gap-3 mb-3">
+          <div class="bg-campaign-gold h-0.5 w-10"></div>
+          <span class="text-campaign-gold font-sans text-xs font-semibold tracking-[0.15em] uppercase">Related Issues</span>
+        </div>
+        <div class="flex flex-wrap gap-2">
+          <% @article.issues.each do |issue| %>
+            <a href="<%= issue_path(issue) %>" class="inline-flex items-center gap-2 bg-navy-900 text-white px-4 py-2 rounded-lg text-sm font-sans hover:bg-navy-800 transition-colors no-underline">
+              <% if issue.icon.present? %>
+                <span><%= issue_icon(issue.icon) %></span>
               <% end %>
-            </div>
-          </div>
-        <% end %>
-
-        <%# Read Full Article CTA %>
-        <div class="bg-ivory-100 rounded-xl p-6 lg:p-8">
-          <p class="text-gray-500 font-sans text-sm leading-relaxed mb-4">
-            This article was published by <strong class="text-navy-900"><%= @article.source %></strong>.
-            Click below to read the full story on their website.
-          </p>
-          <% if @article.external_url.present? %>
-            <a href="<%= @article.external_url %>" target="_blank" rel="noopener"
-               class="inline-flex items-center gap-3 bg-campaign-gold hover:bg-campaign-gold-dark text-white font-sans text-sm font-bold tracking-wider uppercase px-8 py-4 rounded-lg transition-colors no-underline">
-              Read Full Article on <%= @article.source %>
-              <span>&rarr;</span>
+              <%= issue.title %>
             </a>
           <% end %>
-          <p class="text-gray-400 font-sans text-xs mt-4">Opens in a new tab</p>
         </div>
       </div>
+    <% end %>
+
+    <%# Read Full Article CTA %>
+    <div class="bg-ivory-100 rounded-xl p-6 lg:p-8">
+      <p class="text-gray-500 font-sans text-sm leading-relaxed mb-4">
+        This article was published by <strong class="text-navy-900"><%= @article.source %></strong>.
+        Click below to read the full story on their website.
+      </p>
+      <% if @article.external_url.present? %>
+        <a href="<%= @article.external_url %>" target="_blank" rel="noopener"
+           class="inline-flex items-center gap-3 bg-campaign-gold hover:bg-campaign-gold-dark text-white font-sans text-sm font-bold tracking-wider uppercase px-8 py-4 rounded-lg transition-colors no-underline">
+          Read Full Article on <%= @article.source %>
+          <span>&rarr;</span>
+        </a>
+      <% end %>
+      <p class="text-gray-400 font-sans text-xs mt-4">Opens in a new tab</p>
     </div>
 
     <%# Related Articles %>
