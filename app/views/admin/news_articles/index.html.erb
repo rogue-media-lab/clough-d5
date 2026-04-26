@@ -8,8 +8,8 @@
             class: "px-3 py-1 text-xs rounded-full #{params[:status].blank? && params[:source].blank? ? 'bg-navy-900 text-white' : 'bg-ivory-100 text-ivory-600 hover:bg-ivory-200'}" %>
       <%= link_to "Published", admin_news_articles_path(status: :published),
             class: "px-3 py-1 text-xs rounded-full #{params[:status] == 'published' ? 'bg-navy-900 text-white' : 'bg-ivory-100 text-ivory-600 hover:bg-ivory-200'}" %>
-      <%= link_to "Drafts", admin_news_articles_path(status: :draft),
-            class: "px-3 py-1 text-xs rounded-full #{params[:status] == 'draft' ? 'bg-navy-900 text-white' : 'bg-ivory-100 text-ivory-600 hover:bg-ivory-200'}" %>
+      <%= link_to "Fetched", admin_news_articles_path(status: :fetched),
+            class: "px-3 py-1 text-xs rounded-full #{params[:status] == 'fetched' ? 'bg-navy-900 text-white' : 'bg-ivory-100 text-ivory-600 hover:bg-ivory-200'}" %>
     </div>
   </div>
   <div class="flex items-center gap-2">
@@ -90,7 +90,7 @@
                 <% if article.published? %>
                   <span class="inline-flex px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">Published</span>
                 <% else %>
-                  <span class="inline-flex px-2 py-0.5 rounded text-xs font-medium bg-yellow-100 text-yellow-800">Draft</span>
+                  <span class="inline-flex px-2 py-0.5 rounded text-xs font-medium bg-ivory-100 text-ivory-600">Fetched</span>
                 <% end %>
               </td>
               <td class="px-4 py-3 text-xs text-ivory-400">
@@ -98,10 +98,10 @@
               </td>
               <td class="px-4 py-3 text-right">
                 <div class="flex items-center gap-2 justify-end">
-                  <% if article.draft? %>
+                  <% if article.fetched? %>
                     <%= link_to "Publish", admin_news_article_path(article, news_article: { status: :published }), data: { turbo_method: :patch }, class: "text-xs text-green-700 hover:underline" %>
                   <% else %>
-                    <%= link_to "Unpublish", admin_news_article_path(article, news_article: { status: :draft }), data: { turbo_method: :patch }, class: "text-xs text-yellow-700 hover:underline" %>
+                    <%= link_to "Unpublish", admin_news_article_path(article, news_article: { status: :fetched }), data: { turbo_method: :patch }, class: "text-xs text-yellow-700 hover:underline" %>
                   <% end %>
                   <%= link_to "Edit", edit_admin_news_article_path(article), class: "text-xs text-navy-900 hover:underline" %>
                   <%= link_to "Delete", admin_news_article_path(article), data: { turbo_method: :delete, turbo_confirm: "Delete this article?" }, class: "text-xs text-red-600 hover:underline" %>

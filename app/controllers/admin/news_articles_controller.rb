@@ -112,7 +112,7 @@ class Admin::NewsArticlesController < Admin::BaseController
             image: image_url,
             source: feed.name,
             published_date: pub_date,
-            status: :draft
+            status: :fetched
           )
           new_count += 1
         end
@@ -122,7 +122,7 @@ class Admin::NewsArticlesController < Admin::BaseController
     end
 
     if new_count > 0
-      redirect_to admin_news_articles_path(status: :draft), notice: "Fetched #{new_count} new articles from #{feeds.count} feeds."
+      redirect_to admin_news_articles_path(status: :fetched), notice: "Fetched #{new_count} new articles from #{feeds.count} feeds."
     else
       redirect_to admin_news_articles_path, notice: "No new articles found.#{errors.any? ? " Errors: #{errors.join(', ')}" : ''}"
     end
@@ -136,7 +136,7 @@ class Admin::NewsArticlesController < Admin::BaseController
 
   def bulk_unpublish
     articles = NewsArticle.where(id: params[:article_ids])
-    count = articles.update_all(status: :draft)
+    count = articles.update_all(status: :fetched)
     redirect_to admin_news_articles_path, notice: "Unpublished #{count} articles."
   end
 
@@ -154,6 +154,6 @@ class Admin::NewsArticlesController < Admin::BaseController
   end
 
   def article_params
-    params.expect(news_article: [ :title, :body, :external_url, :image, :source, :published_date, :status, :featured ])
+    params.expect(news_article: [ :title, :body, :external_url, :image, :source, :published_date, :status, :featured, :reflection ])
   end
 end
