@@ -17,7 +17,14 @@ Rails.application.routes.draw do
     resources :issues
     root "dashboard#index"
     resources :posts
-    resources :news_articles
+    resources :news_articles do
+      collection do
+        post :fetch_feeds
+        patch :bulk_publish
+        patch :bulk_unpublish
+        delete :bulk_delete
+      end
+    end
     resources :news_feeds, only: [ :index, :create, :edit, :update, :destroy ]
     resources :volunteer_interests
     resources :volunteer_submissions do
