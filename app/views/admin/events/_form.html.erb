@@ -77,15 +77,15 @@
 
 <script>
   (function() {
+    var adminMapInstance = null;
+    var adminMarker = null;
+
     function initAdminMap() {
       var mapEl = document.getElementById('admin-event-map');
       if (!mapEl) return;
 
       // Destroy existing map instance if any (Turbo revisit)
-      if (mapEl._leaflet_id) {
-        mapEl._leaflet_id = null;
-        mapEl.innerHTML = '';
-      }
+      if (adminMapInstance) { adminMapInstance.remove(); adminMapInstance = null; adminMarker = null; }
 
       // Default center: Rock Hill, SC
       var defaultLat = 34.9249;
@@ -106,18 +106,19 @@
       }
 
       var map = L.map('admin-event-map').setView([defaultLat, defaultLon], defaultZoom);
+      adminMapInstance = map;
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; OpenStreetMap contributors'
       }).addTo(map);
 
-      var marker = null;
+      adminMarker = null;
 
       function placeMarker(lat, lon) {
-        if (marker) {
-          marker.setLatLng([lat, lon]);
+        if (adminMarker) {
+          adminMarker.setLatLng([lat, lon]);
         } else {
-          marker = L.marker([lat, lon], { draggable: true }).addTo(map);
-          marker.on('dragend', function(e) {
+          adminMarker = L.marker([lat, lon], { draggable: true }).addTo(map);
+          adminMarker.on('dragend', function(e) {
             var pos = e.target.getLatLng();
             latInput.value = pos.lat.toFixed(6);
             lonInput.value = pos.lng.toFixed(6);

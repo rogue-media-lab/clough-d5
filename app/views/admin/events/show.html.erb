@@ -31,14 +31,16 @@
       <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
       <script>
         (function() {
+          var showMapInstance = null;
           function initShowMap() {
             var mapEl = document.getElementById('admin-show-map');
-            if (!mapEl || mapEl._leaflet_id) return;
-            var map = L.map('admin-show-map').setView([<%= @event.latitude %>, <%= @event.longitude %>], 16);
+            if (!mapEl) return;
+            if (showMapInstance) { showMapInstance.remove(); showMapInstance = null; }
+            showMapInstance = L.map('admin-show-map').setView([<%= @event.latitude %>, <%= @event.longitude %>], 16);
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
               attribution: '&copy; OpenStreetMap contributors'
-            }).addTo(map);
-            L.marker([<%= @event.latitude %>, <%= @event.longitude %>]).addTo(map)
+            }).addTo(showMapInstance);
+            L.marker([<%= @event.latitude %>, <%= @event.longitude %>]).addTo(showMapInstance)
               .bindPopup('<strong><%= j @event.title %></strong><br><%= j @event.location %>')
               .openPopup();
           }

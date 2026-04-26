@@ -76,14 +76,16 @@
               <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
               <script>
                 (function() {
+                  var nextEventMap = null;
                   function initNextEventMap() {
                     var mapEl = document.getElementById('next-event-map');
-                    if (!mapEl || mapEl._leaflet_id) return;
-                    var map = L.map('next-event-map').setView([<%= @next_event.latitude %>, <%= @next_event.longitude %>], 15);
+                    if (!mapEl) return;
+                    if (nextEventMap) { nextEventMap.remove(); nextEventMap = null; }
+                    nextEventMap = L.map('next-event-map').setView([<%= @next_event.latitude %>, <%= @next_event.longitude %>], 15);
                     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                       attribution: '&copy; OpenStreetMap contributors'
-                    }).addTo(map);
-                    L.marker([<%= @next_event.latitude %>, <%= @next_event.longitude %>]).addTo(map)
+                    }).addTo(nextEventMap);
+                    L.marker([<%= @next_event.latitude %>, <%= @next_event.longitude %>]).addTo(nextEventMap)
                       .bindPopup('<%= j @next_event.title %><br><%= j @next_event.location %>')
                       .openPopup();
                   }

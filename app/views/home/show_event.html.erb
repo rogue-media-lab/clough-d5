@@ -51,7 +51,7 @@
         <% if @event.has_coordinates? %>
           <div class="bg-white rounded-xl border border-ivory-200 p-8">
             <h2 class="text-navy-900 font-display text-2xl font-bold mb-4">Event Location</h2>
-            <div id="event-map" class="rounded-lg border border-ivory-200" style="height: 400px;"></div>
+            <div id="event-map" class="rounded-lg border border-ivory-200" style="height: 400px;" data-lat="<%= @event.latitude %>" data-lon="<%= @event.longitude %>" data-title="<%= @event.title %>" data-location="<%= @event.location %>"></div>
             <div class="mt-4 flex gap-3">
               <a href="<%= @event.directions_url %>" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-6 py-3 bg-campaign-gold text-navy-900 text-sm font-medium rounded-md hover:bg-campaign-gold/90 transition-colors">
                 Get Directions
@@ -65,17 +65,31 @@
           <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
           <script>
             (function() {
+              var eventMapInstance = null;
+
               function initEventMap() {
                 var mapEl = document.getElementById('event-map');
-                if (!mapEl || mapEl._leaflet_id) return;
-                var map = L.map('event-map').setView([<%= @event.latitude %>, <%= @event.longitude %>], 15);
+                if (!mapEl) return;
+
+                // Destroy previous map instance if it exists
+                if (eventMapInstance) {
+                  eventMapInstance.remove();
+                  eventMapInstance = null;
+                }
+
+                var lat = parseFloat(mapEl.dataset.lat);
+                var lon = parseFloat(mapEl.dataset.lon);
+                if (isNaN(lat) || isNaN(lon)) return;
+
+                eventMapInstance = L.map('event-map').setView([lat, lon], 15);
                 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                   attribution: '&copy; OpenStreetMap contributors'
-                }).addTo(map);
-                L.marker([<%= @event.latitude %>, <%= @event.longitude %>]).addTo(map)
-                  .bindPopup('<strong><%= j @event.title %></strong><br><%= j @event.location %>')
+                }).addTo(eventMapInstance);
+                L.marker([lat, lon]).addTo(eventMapInstance)
+                  .bindPopup('<strong>' + mapEl.dataset.title + '</strong><br>' + mapEl.dataset.location)
                   .openPopup();
               }
+
               document.addEventListener('DOMContentLoaded', initEventMap);
               document.addEventListener('turbo:load', initEventMap);
             })();
