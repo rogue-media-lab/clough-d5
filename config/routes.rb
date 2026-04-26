@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   # Public pages
   resources :posts, only: [ :index, :show ]
   get "/news", to: "posts#index", as: :news
+  get "/news/:id", to: "news_articles#show", as: :news_article
 
   get "/volunteer", to: "home#volunteer", as: :volunteer
   post "/volunteer", to: "home#create_volunteer_submission", as: :volunteer_submissions
@@ -16,6 +17,15 @@ Rails.application.routes.draw do
     resources :issues
     root "dashboard#index"
     resources :posts
+    resources :news_articles do
+      collection do
+        post :fetch_feeds
+        patch :bulk_publish
+        patch :bulk_unpublish
+        delete :bulk_delete
+      end
+    end
+    resources :news_feeds, only: [ :index, :create, :edit, :update, :destroy ]
     resources :volunteer_interests
     resources :volunteer_submissions do
       member do

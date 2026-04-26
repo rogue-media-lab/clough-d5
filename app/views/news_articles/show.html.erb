@@ -1,0 +1,128 @@
+<% content_for :title, "#{@article.title} | Clough for SC5" %>
+
+<%# Article Hero %>
+<section class="bg-navy-900 w-full">
+  <div class="max-w-5xl mx-auto px-6 py-10 lg:px-20 lg:py-16">
+    <%= link_to news_path, class: "inline-flex items-center gap-2 text-slate-400 hover:text-white font-sans text-sm transition-colors mb-6 no-underline" do %>
+      <span>&larr;</span> Back to News
+    <% end %>
+    <div class="flex items-center gap-3 mb-4">
+      <span class="text-xs font-semibold tracking-[0.1em] uppercase text-campaign-gold"><%= @article.source %></span>
+      <% if @article.featured? %>
+        <span class="text-campaign-gold text-sm">&#9733; Featured</span>
+      <% end %>
+    </div>
+    <h1 class="text-white font-display text-2xl sm:text-3xl lg:text-4xl font-bold leading-[1.15] mb-4"><%= @article.title %></h1>
+    <div class="flex items-center gap-4 text-slate-400 font-sans text-sm">
+      <% if @article.published_date.present? %>
+        <span><%= @article.published_date.strftime("%B %-d, %Y") %></span>
+      <% end %>
+    </div>
+  </div>
+</section>
+
+<%# Article Image %>
+<div class="max-w-5xl mx-auto px-6 lg:px-20 mt-12 lg:mt-16">
+  <div class="rounded-xl overflow-hidden bg-ivory-100 aspect-video flex items-center justify-center">
+    <% if @article.image.present? %>
+      <img src="<%= @article.image %>" alt="<%= @article.title %>" class="w-full h-full object-cover" loading="lazy" referrerpolicy="no-referrer">
+    <% else %>
+      <div class="flex flex-col items-center justify-center h-full text-center p-6">
+        <div class="w-16 h-16 bg-navy-900 rounded-full flex items-center justify-center mb-4">
+          <svg class="w-8 h-8 text-campaign-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/>
+          </svg>
+        </div>
+        <p class="text-navy-900 font-display text-sm font-bold">Clough for SC5</p>
+        <p class="text-gray-400 font-sans text-xs mt-1">News Coverage</p>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<%# Article Details %>
+<section class="bg-white w-full">
+  <div class="max-w-5xl mx-auto px-6 py-10 lg:px-20">
+    <% if @article.body.present? %>
+      <div class="mb-8">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="bg-campaign-gold h-0.5 w-10"></div>
+          <span class="text-campaign-gold font-sans text-xs font-semibold tracking-[0.15em] uppercase">Summary</span>
+        </div>
+        <p class="text-gray-600 font-sans text-base lg:text-lg leading-[1.8]"><%= @article.body %></p>
+      </div>
+    <% end %>
+
+    <%# Andrew's Reflection %>
+    <% if @article.reflection.present? %>
+      <div class="mb-8">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="bg-campaign-gold h-0.5 w-10"></div>
+          <span class="text-campaign-gold font-sans text-xs font-semibold tracking-[0.15em] uppercase">Andrew's Take</span>
+        </div>
+        <div class="bg-navy-900 text-white rounded-xl p-6 lg:p-8">
+          <div class="prose prose-invert prose-sm lg:prose-base max-w-none prose-p:text-slate-200 prose-li:text-slate-200 prose-strong:text-white">
+            <%= @article.reflection %>
+          </div>
+          <div class="mt-6 pt-4 border-t border-white/10">
+            <p class="text-campaign-gold font-sans text-xs font-semibold tracking-wider uppercase">— Andrew Clough</p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+
+    <%# Issues this article relates to %>
+    <% if @article.issues.any? %>
+      <div class="mb-8">
+        <div class="flex items-center gap-3 mb-3">
+          <div class="bg-campaign-gold h-0.5 w-10"></div>
+          <span class="text-campaign-gold font-sans text-xs font-semibold tracking-[0.15em] uppercase">Related Issues</span>
+        </div>
+        <div class="flex flex-wrap gap-2">
+          <% @article.issues.each do |issue| %>
+            <a href="<%= issue_path(issue) %>" class="inline-flex items-center gap-2 bg-navy-900 text-white px-4 py-2 rounded-lg text-sm font-sans hover:bg-navy-800 transition-colors no-underline">
+              <% if issue.icon.present? %>
+                <span><%= issue_icon(issue.icon) %></span>
+              <% end %>
+              <%= issue.title %>
+            </a>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+
+    <%# Read Full Article CTA %>
+    <div class="bg-ivory-100 rounded-xl p-6 lg:p-8">
+      <p class="text-gray-500 font-sans text-sm leading-relaxed mb-4">
+        This article was published by <strong class="text-navy-900"><%= @article.source %></strong>.
+        Click below to read the full story on their website.
+      </p>
+      <% if @article.external_url.present? %>
+        <a href="<%= @article.external_url %>" target="_blank" rel="noopener"
+           class="inline-flex items-center gap-3 bg-campaign-gold hover:bg-campaign-gold-dark text-white font-sans text-sm font-bold tracking-wider uppercase px-8 py-4 rounded-lg transition-colors no-underline">
+          Read Full Article on <%= @article.source %>
+          <span>&rarr;</span>
+        </a>
+      <% end %>
+      <p class="text-gray-400 font-sans text-xs mt-4">Opens in a new tab</p>
+    </div>
+
+    <%# Related Articles %>
+    <% if @related.any? %>
+      <div class="mt-12 pt-10 border-t border-gray-200">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="bg-campaign-gold h-0.5 w-10"></div>
+          <span class="text-campaign-gold font-sans text-xs font-semibold tracking-[0.15em] uppercase">More from <%= @article.source %></span>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <% @related.each do |related| %>
+            <%= link_to news_article_path(related), class: "block bg-ivory-100 rounded-lg p-5 hover:shadow-md transition-shadow no-underline" do %>
+              <h4 class="text-navy-900 font-display text-sm font-bold leading-[1.3] mb-2"><%= related.title %></h4>
+              <span class="text-gray-400 font-sans text-xs"><%= related.published_date&.strftime("%b %-d, %Y") %></span>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</section>

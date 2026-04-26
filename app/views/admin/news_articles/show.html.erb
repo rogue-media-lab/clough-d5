@@ -1,0 +1,60 @@
+<% content_for :page_title, @article.title %>
+
+<div class="mb-6">
+  <%= link_to "← Back to articles", admin_news_articles_path, class: "text-sm text-ivory-500 hover:text-ivory-700" %>
+</div>
+
+<div class="grid grid-cols-3 gap-6">
+  <div class="col-span-2">
+    <div class="bg-white rounded-lg border border-ivory-200 p-6">
+      <h1 class="text-2xl font-bold text-ivory-900 mb-2"><%= @article.title %></h1>
+      <div class="flex items-center gap-3 mb-6 text-sm text-ivory-500">
+        <span>Source: <%= @article.source %></span>
+        <% if @article.published_date.present? %>
+          <span>&middot;</span>
+          <span><%= @article.published_date.strftime("%B %d, %Y") %></span>
+        <% end %>
+      </div>
+      <% if @article.external_url.present? %>
+        <a href="<%= @article.external_url %>" target="_blank" class="text-sm text-navy-900 hover:underline mb-4 block">
+          View original article →
+        </a>
+      <% end %>
+      <% if @article.body.present? %>
+        <div class="prose prose-sm max-w-none text-ivory-700">
+          <%= @article.body %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="space-y-4">
+    <div class="bg-white rounded-lg border border-ivory-200 p-6">
+      <h3 class="text-sm font-semibold text-ivory-700 mb-3">Details</h3>
+      <dl class="space-y-2 text-sm">
+        <div class="flex justify-between">
+          <dt class="text-ivory-500">Status</dt>
+          <dd>
+            <% if @article.published? %>
+              <span class="inline-flex px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">Published</span>
+            <% else %>
+              <span class="inline-flex px-2 py-0.5 rounded text-xs font-medium bg-yellow-100 text-yellow-800">Draft</span>
+            <% end %>
+          </dd>
+        </div>
+        <div class="flex justify-between">
+          <dt class="text-ivory-500">Featured</dt>
+          <dd class="text-ivory-900"><%= @article.featured? ? "Yes" : "No" %></dd>
+        </div>
+        <div class="flex justify-between">
+          <dt class="text-ivory-500">Created</dt>
+          <dd class="text-ivory-900"><%= @article.created_at.strftime("%b %d, %Y") %></dd>
+        </div>
+      </dl>
+    </div>
+    <div class="flex gap-2">
+      <%= link_to "Edit", edit_admin_news_article_path(@article), class: "flex-1 text-center px-4 py-2 bg-navy-900 text-white text-sm font-medium rounded-md hover:bg-navy-800 transition-colors" %>
+      <%= link_to "Delete", admin_news_article_path(@article), data: { turbo_method: :delete, turbo_confirm: "Delete this article?" }, class: "px-4 py-2 bg-red-50 text-red-700 text-sm font-medium rounded-md hover:bg-red-100 transition-colors" %>
+    </div>
+  </div>
+</div>

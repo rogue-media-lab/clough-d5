@@ -76,3 +76,4 @@ group :test do
   gem "rspec-rails"
 end
 gem "letter_opener", group: :development
+gem "rss", "~> 0.3"
