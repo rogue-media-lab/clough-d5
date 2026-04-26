@@ -1,37 +1,65 @@
-<% content_for :title, "Issues" %>
+<% content_for :page_title, "Issues" %>
+<% content_for :page_subtitle, "Manage the platform priorities displayed on the public site." %>
 
-<div class="w-full">
+<div style="margin-bottom: 24px; display: flex; gap: 12px; align-items: center;">
   <% if notice.present? %>
-    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-md inline-block" id="notice"><%= notice %></p>
+    <p style="background: #DCFCE7; color: #166534; padding: 8px 16px; border-radius: 6px; font-size: 14px; font-weight: 500; margin: 0;"><%= notice %></p>
+  <% end %>
+</div>
+
+<div style="background: #FFFFFF; border-radius: 10px; border: 1px solid #E5E7EB; overflow: hidden;">
+  <!-- Table Header -->
+  <div style="display: grid; grid-template-columns: 1fr 100px 100px 80px 140px; padding: 12px 24px; background: #F9FAFB; border-bottom: 1px solid #E5E7EB; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: #6B7280;">
+    <div>Issue</div>
+    <div style="text-align: center;">Status</div>
+    <div style="text-align: center;">Featured</div>
+    <div style="text-align: center;">Position</div>
+    <div style="text-align: right;">Actions</div>
+  </div>
+
+  <!-- Issue Rows -->
+  <% @issues.order(:position).each do |issue| %>
+    <div style="display: grid; grid-template-columns: 1fr 100px 100px 80px 140px; padding: 16px 24px; border-bottom: 1px solid #F3F4F6; align-items: center;">
+      <div style="display: flex; align-items: center; gap: 14px;">
+        <div style="width: 40px; height: 40px; background: #FFF7ED; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+          <%= issue_icon(issue.icon) %>
+        </div>
+        <div>
+          <p style="font-size: 15px; font-weight: 600; color: #111827; margin: 0;"><%= issue.title %></p>
+          <p style="font-size: 12px; color: #6B7280; margin: 2px 0 0;"><%= truncate(issue.tagline, length: 60) %></p>
+        </div>
+      </div>
+      <div style="text-align: center;">
+        <span style="display: inline-block; padding: 3px 10px; border-radius: 12px; font-size: 12px; font-weight: 500; background: <%= issue.active? ? '#DCFCE7' : '#F3F4F6' %>; color: <%= issue.active? ? '#166534' : '#6B7280' %>;">
+          <%= issue.status.capitalize %>
+        </span>
+      </div>
+      <div style="text-align: center;">
+        <% if issue.featured? %>
+          <span style="color: #C8902A; font-size: 18px;">★</span>
+        <% else %>
+          <span style="color: #D1D5DB;">☆</span>
+        <% end %>
+      </div>
+      <div style="text-align: center; font-size: 14px; color: #374151; font-weight: 500;">
+        <%= issue.position %>
+      </div>
+      <div style="display: flex; gap: 6px; justify-content: flex-end;">
+        <%= link_to "View", admin_issue_path(issue), style: "padding: 6px 12px; background: #F3F4F6; color: #374151; border-radius: 6px; font-size: 13px; text-decoration: none; font-weight: 500;" %>
+        <%= link_to "Edit", edit_admin_issue_path(issue), style: "padding: 6px 12px; background: #F3F4F6; color: #374151; border-radius: 6px; font-size: 13px; text-decoration: none; font-weight: 500;" %>
+        <%= button_to "Delete", admin_issue_path(issue), method: :delete, style: "padding: 6px 12px; background: #FEE2E2; color: #DC2626; border-radius: 6px; font-size: 13px; border: none; cursor: pointer; font-weight: 500;", data: { turbo_confirm: "Are you sure? This cannot be undone." } %>
+      </div>
+    </div>
   <% end %>
 
-  <div class="flex justify-between items-center">
-    <h1 class="font-bold text-4xl">Issues</h1>
-    <%= link_to "New issue", new_admin_issue_path, class: "rounded-md px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white block font-medium" %>
-  </div>
+  <% if @issues.none? %>
+    <div style="padding: 48px 24px; text-align: center; color: #9CA3AF;">
+      <p style="font-size: 16px; margin: 0;">No issues yet.</p>
+      <p style="font-size: 14px; margin: 8px 0 0;">Create your first platform issue to get started.</p>
+    </div>
+  <% end %>
+</div>
 
-  <div id="issues" class="min-w-full divide-y divide-gray-200 space-y-5">
-    <% if @issues.any? %>
-      <% @issues.each do |issue| %>
-        <div class="flex flex-col sm:flex-row justify-between items-center pb-5 sm:pb-0">
-          <div class="w-full">
-            <div class="flex items-center gap-4">
-              <span class="text-2xl"><%= issue.icon %></span>
-              <div>
-                <h3 class="text-lg font-medium text-gray-900"><%= issue.title %></h3>
-                <p class="text-sm text-gray-500">Position: <%= issue.position %> | Status: <%= issue.status %> | Featured: <%= issue.featured? ? "Yes" : "No" %></p>
-              </div>
-            </div>
-          </div>
-          <div class="w-full sm:w-auto flex flex-col sm:flex-row space-x-2 space-y-2">
-            <%= link_to "Show", admin_issue_path(issue), class: "w-full sm:w-auto text-center rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
-            <%= link_to "Edit", edit_admin_issue_path(issue), class: "w-full sm:w-auto text-center rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
-            <%= button_to "Destroy", admin_issue_path(issue), method: :delete, class: "w-full sm:w-auto rounded-md px-3.5 py-2.5 text-white bg-red-600 hover:bg-red-500 font-medium cursor-pointer", data: { turbo_confirm: "Are you sure?" } %>
-          </div>
-        </div>
-      <% end %>
-    <% else %>
-      <p class="text-center my-10">No issues found.</p>
-    <% end %>
-  </div>
+<div style="margin-top: 24px;">
+  <%= link_to "New Issue", new_admin_issue_path, style: "display: inline-block; padding: 10px 20px; background: #C8902A; color: #FFFFFF; border-radius: 8px; font-size: 14px; font-weight: 600; text-decoration: none;" %>
 </div>

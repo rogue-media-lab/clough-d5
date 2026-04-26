@@ -1,8 +1,8 @@
 <%= form_with(model: [:admin, issue], class: "contents") do |form| %>
   <% if issue.errors.any? %>
-    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-md mt-3">
-      <h2><%= pluralize(issue.errors.count, "error") %> prohibited this issue from being saved:</h2>
-      <ul class="list-disc ml-6">
+    <div style="background: #FEF2F2; border: 1px solid #FECACA; color: #DC2626; padding: 16px 20px; border-radius: 8px; margin-bottom: 24px;">
+      <p style="font-size: 14px; font-weight: 600; margin: 0 0 8px;"><%= pluralize(issue.errors.count, "error") %> prohibited this issue from being saved:</p>
+      <ul style="margin: 0; padding-left: 20px; font-size: 14px;">
         <% issue.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
@@ -10,50 +10,60 @@
     </div>
   <% end %>
 
-  <div class="my-5">
-    <%= form.label :title, class: "block font-medium text-gray-700" %>
-    <%= form.text_field :title, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500" %>
+  <div style="background: #FFFFFF; border-radius: 10px; border: 1px solid #E5E7EB; padding: 28px; margin-bottom: 24px;">
+    <h3 style="font-size: 14px; font-weight: 600; color: #374151; margin: 0 0 20px; padding-bottom: 12px; border-bottom: 1px solid #F3F4F6;">Basic Info</h3>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+      <div>
+        <%= form.label :title, style: "display: block; font-size: 13px; font-weight: 500; color: #374151; margin-bottom: 6px;" %>
+        <%= form.text_field :title, style: "width: 100%; padding: 10px 14px; border: 1px solid #D1D5DB; border-radius: 8px; font-size: 14px; color: #111827; outline: none; box-sizing: border-box;", placeholder: "e.g. Tax Relief & Fairness" %>
+      </div>
+      <div>
+        <%= form.label :icon, "Icon Name", style: "display: block; font-size: 13px; font-weight: 500; color: #374151; margin-bottom: 6px;" %>
+        <%= form.select :icon, [["Money (currency)", "money"], ["Briefcase (jobs)", "briefcase"], ["Heart (healthcare)", "heart"], ["Graduation Cap (education)", "grad-cap"], ["Flag (immigration)", "flag"], ["Checkmark (democracy)", "check-circle"], ["Building (infrastructure)", "building"], ["Clock (term limits)", "clock"]], {}, style: "width: 100%; padding: 10px 14px; border: 1px solid #D1D5DB; border-radius: 8px; font-size: 14px; color: #111827; outline: none; box-sizing: border-box; background: #FFFFFF;" %>
+      </div>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px;">
+      <div>
+        <%= form.label :status, style: "display: block; font-size: 13px; font-weight: 500; color: #374151; margin-bottom: 6px;" %>
+        <%= form.select :status, Issue.statuses.keys.map { |s| [s.humanize, s] }, {}, style: "width: 100%; padding: 10px 14px; border: 1px solid #D1D5DB; border-radius: 8px; font-size: 14px; color: #111827; outline: none; box-sizing: border-box; background: #FFFFFF;" %>
+      </div>
+      <div>
+        <%= form.label :position, "Display Order", style: "display: block; font-size: 13px; font-weight: 500; color: #374151; margin-bottom: 6px;" %>
+        <%= form.number_field :position, min: 1, style: "width: 100%; padding: 10px 14px; border: 1px solid #D1D5DB; border-radius: 8px; font-size: 14px; color: #111827; outline: none; box-sizing: border-box;" %>
+      </div>
+    </div>
+
+    <div style="margin-top: 20px; display: flex; align-items: center; gap: 10px;">
+      <%= form.check_box :featured, style: "width: 18px; height: 18px; accent-color: #C8902A;" %>
+      <span style="font-size: 14px; color: #374151;">Feature this issue on the homepage</span>
+    </div>
   </div>
 
-  <div class="my-5">
-    <%= form.label :description, class: "block font-medium text-gray-700" %>
-    <%= form.rich_text_area :description, class: "mt-1 block w-full border border-gray-700" %>
+  <div style="background: #FFFFFF; border-radius: 10px; border: 1px solid #E5E7EB; padding: 28px; margin-bottom: 24px;">
+    <h3 style="font-size: 14px; font-weight: 600; color: #374151; margin: 0 0 20px; padding-bottom: 12px; border-bottom: 1px solid #F3F4F6;">Content</h3>
+
+    <div style="margin-bottom: 20px;">
+      <%= form.label :tagline, "Tagline / Quote", style: "display: block; font-size: 13px; font-weight: 500; color: #374151; margin-bottom: 6px;" %>
+      <p style="font-size: 12px; color: #6B7280; margin: 0 0 6px;">Short italic quote displayed at the top of the issue detail page</p>
+      <%= form.text_area :tagline, rows: 2, style: "width: 100%; padding: 10px 14px; border: 1px solid #D1D5DB; border-radius: 8px; font-size: 14px; color: #111827; outline: none; box-sizing: border-box;", placeholder: "\"Fighting for working families across SC District 5\"" %>
+    </div>
+
+    <div style="margin-bottom: 20px;">
+      <%= form.label :summary, "Platform at a Glance", style: "display: block; font-size: 13px; font-weight: 500; color: #374151; margin-bottom: 6px;" %>
+      <p style="font-size: 12px; color: #6B7280; margin: 0 0 6px;">Key highlights for the sidebar — one item per line</p>
+      <%= form.text_area :summary, rows: 5, style: "width: 100%; padding: 10px 14px; border: 1px solid #D1D5DB; border-radius: 8px; font-size: 14px; color: #111827; outline: none; box-sizing: border-box; font-family: 'Inter', sans-serif;", placeholder: "Family Relief: Annual tax dividend for local families\nSmall Business: 2-year tax holiday for new entrepreneurs\nLocal Control: Communities keep more of their tax growth" %>
+    </div>
+
+    <div>
+      <%= form.label :description, "Full Description", style: "display: block; font-size: 13px; font-weight: 500; color: #374151; margin-bottom: 6px;" %>
+      <%= form.rich_text_area :description, style: "width: 100%; border: 1px solid #D1D5DB; border-radius: 8px; min-height: 200px;" %>
+    </div>
   </div>
 
-  <div class="my-5">
-    <%= form.label :tagline, "Tagline / Quote", class: "block font-medium text-gray-700" %>
-    <p class="text-sm text-gray-500 mb-1">Short italic quote displayed at the top of the issue detail page</p>
-    <%= form.text_area :tagline, rows: 2, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500" %>
-  </div>
-
-  <div class="my-5">
-    <%= form.label :summary, "Platform at a Glance", class: "block font-medium text-gray-700" %>
-    <p class="text-sm text-gray-500 mb-1">Key highlights - enter one item per line for the summary sidebar</p>
-    <%= form.text_area :summary, rows: 6, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500", placeholder: "Family Relief: Annual tax dividend for local families\nSmall Business: 2-year tax holiday for new entrepreneurs\nLocal Control: Communities keep more of their tax growth" %>
-  </div>
-
-  <div class="my-5">
-    <%= form.label :icon, class: "block font-medium text-gray-700" %>
-    <%= form.text_field :icon, placeholder: "e.g. banknote, heart, wrench", class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500" %>
-  </div>
-
-  <div class="my-5">
-    <%= form.label :status, class: "block font-medium text-gray-700" %>
-    <%= form.select :status, Issue.statuses.keys.map { |s| [s.humanize, s] }, {}, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500" %>
-  </div>
-
-  <div class="my-5">
-    <%= form.label :position, class: "block font-medium text-gray-700" %>
-    <%= form.number_field :position, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500" %>
-  </div>
-
-  <div class="my-5">
-    <%= form.label :featured, class: "block font-medium text-gray-700" %>
-    <%= form.check_box :featured, class: "rounded border-gray-300 text-blue-600 shadow-sm focus:border-blue-500 focus:ring-blue-500" %>
-    <span class="text-sm text-gray-500 ml-2">Show on homepage</span>
-  </div>
-
-  <div class="inline">
-    <%= form.submit class: "w-full sm:w-auto rounded-md px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white inline-block font-medium cursor-pointer" %>
+  <div style="display: flex; gap: 12px;">
+    <%= form.submit "Save Issue", style: "padding: 12px 24px; background: #C8902A; color: #FFFFFF; border: none; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer;" %>
+    <%= link_to "Cancel", admin_issues_path, style: "padding: 12px 24px; background: #F3F4F6; color: #374151; border-radius: 8px; font-size: 14px; font-weight: 500; text-decoration: none; display: inline-flex; align-items: center;" %>
   </div>
 <% end %>

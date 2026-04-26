@@ -1,25 +1,82 @@
-<% content_for :title, "Showing issue" %>
+<% content_for :page_title, @issue.title %>
+<% content_for :page_subtitle, "Issue ##{@issue.position} · #{@issue.status.capitalize} #{@issue.featured? ? "· Featured" : ""}" %>
 
-<div class="md:w-2/3 w-full">
+<div style="margin-bottom: 20px;">
   <% if notice.present? %>
-    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-md inline-block" id="notice"><%= notice %></p>
+    <p style="background: #DCFCE7; color: #166534; padding: 8px 16px; border-radius: 6px; font-size: 14px; font-weight: 500; margin: 0; display: inline-block;"><%= notice %></p>
   <% end %>
+</div>
 
-  <div class="bg-white shadow rounded-lg p-6 mb-6">
-    <div class="flex items-center gap-4 mb-4">
-      <span class="text-4xl"><%= @issue.icon %></span>
+<div style="display: grid; grid-template-columns: 1fr 340px; gap: 28px;">
+
+  <!-- Main Content -->
+  <div style="background: #FFFFFF; border-radius: 10px; border: 1px solid #E5E7EB; padding: 28px;">
+
+    <!-- Icon + Title Header -->
+    <div style="display: flex; align-items: flex-start; gap: 16px; margin-bottom: 24px; padding-bottom: 24px; border-bottom: 1px solid #F3F4F6;">
+      <div style="width: 56px; height: 56px; background: #FFF7ED; border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+        <%= issue_icon(@issue.icon) %>
+      </div>
       <div>
-        <h1 class="font-bold text-2xl"><%= @issue.title %></h1>
-        <p class="text-sm text-gray-500 mt-1">
-          Status: <%= @issue.status %> | Featured: <%= @issue.featured? ? "Yes" : "No" %> | Position: <%= @issue.position %>
-        </p>
+        <h2 style="font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; color: #0F2044; margin: 0;"><%= @issue.title %></h2>
+        <% if @issue.tagline.present? %>
+          <p style="font-size: 14px; color: #6B7280; margin: 6px 0 0; font-style: italic;"><%= @issue.tagline %></p>
+        <% end %>
       </div>
     </div>
-    <div class="prose max-w-none">
-      <%= @issue.description %>
+
+    <!-- Description -->
+    <% if @issue.description.present? %>
+      <div style="font-size: 15px; color: #374151; line-height: 1.7;">
+        <%= @issue.description %>
+      </div>
+    <% else %>
+      <p style="color: #9CA3AF; font-style: italic;">No description added yet.</p>
+    <% end %>
+
+    <!-- Actions -->
+    <div style="margin-top: 32px; padding-top: 20px; border-top: 1px solid #F3F4F6; display: flex; gap: 10px;">
+      <%= link_to "Edit Issue", edit_admin_issue_path(@issue), style: "padding: 10px 20px; background: #C8902A; color: #FFFFFF; border-radius: 8px; font-size: 14px; font-weight: 600; text-decoration: none;" %>
+      <%= link_to "Back to Issues", admin_issues_path, style: "padding: 10px 20px; background: #F3F4F6; color: #374151; border-radius: 8px; font-size: 14px; font-weight: 500; text-decoration: none;" %>
     </div>
   </div>
 
-  <%= link_to "Edit this issue", edit_admin_issue_path(@issue), class: "rounded-md px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white inline-block font-medium" %>
-  <%= link_to "Back to issues", admin_issues_path, class: "rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium ml-2" %>
+  <!-- Sidebar -->
+  <div>
+    <!-- Status Card -->
+    <div style="background: #FFFFFF; border-radius: 10px; border: 1px solid #E5E7EB; padding: 20px; margin-bottom: 16px;">
+      <h3 style="font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: #6B7280; margin: 0 0 16px;">Details</h3>
+      <div style="display: flex; flex-direction: column; gap: 14px;">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <span style="font-size: 13px; color: #6B7280;">Status</span>
+          <span style="padding: 3px 10px; border-radius: 12px; font-size: 12px; font-weight: 500; background: <%= @issue.active? ? '#DCFCE7' : '#F3F4F6' %>; color: <%= @issue.active? ? '#166534' : '#6B7280' %>;">
+            <%= @issue.status.capitalize %>
+          </span>
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <span style="font-size: 13px; color: #6B7280;">Featured</span>
+          <span style="font-size: 14px; font-weight: 500; color: <%= @issue.featured? ? '#C8902A' : '#9CA3AF' %>;">
+            <%= @issue.featured? ? "★ Yes" : "☆ No" %>
+          </span>
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <span style="font-size: 13px; color: #6B7280;">Position</span>
+          <span style="font-size: 14px; font-weight: 600; color: #111827;"><%= @issue.position %></span>
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <span style="font-size: 13px; color: #6B7280;">Icon</span>
+          <span style="font-size: 13px; font-weight: 500; color: #111827;"><%= @issue.icon %></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Platform at a Glance -->
+    <% if @issue.summary.present? %>
+      <div style="background: #FFF7ED; border-radius: 10px; border: 1px solid #FED7AA; padding: 20px;">
+        <h3 style="font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: #C2410C; margin: 0 0 12px;">Platform at a Glance</h3>
+        <p style="font-size: 14px; color: #78350F; line-height: 1.6; margin: 0;"><%= @issue.summary %></p>
+      </div>
+    <% end %>
+  </div>
+
 </div>
