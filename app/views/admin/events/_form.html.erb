@@ -1,3 +1,6 @@
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
 <%= form_with model: [:admin, event], class: "space-y-6" do |f| %>
   <% if event.errors.any? %>
     <div class="bg-red-50 border border-red-200 rounded-md px-4 py-3 text-sm text-red-800">
@@ -21,9 +24,34 @@
           <%= f.text_area :description, rows: 6, class: "w-full border border-ivory-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-navy-400", placeholder: "Event details, agenda, what to expect..." %>
         </div>
         <div>
-          <%= f.label :location, class: "block text-sm font-medium text-ivory-700 mb-1" %>
-          <%= f.text_field :location, class: "w-full border border-ivory-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-navy-400", placeholder: "e.g. Rock Hill City Hall, 155 Johnston St" %>
+          <%= f.label :location, "Location / Address", class: "block text-sm font-medium text-ivory-700 mb-1" %>
+          <%= f.text_field :location, id: "event-location-input", class: "w-full border border-ivory-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-navy-400", placeholder: "e.g. Rock Hill City Hall, 155 Johnston St" %>
+          <p class="text-xs text-ivory-400 mt-1">Type an address then click "Find on Map" to locate it.</p>
         </div>
+      </div>
+
+      <%# Map Picker %>
+      <div class="bg-white rounded-lg border border-ivory-200 p-6 space-y-4">
+        <div class="flex items-center justify-between">
+          <h3 class="text-sm font-semibold text-ivory-700">Pin Location on Map</h3>
+          <button type="button" id="find-address-btn" class="px-3 py-1.5 bg-navy-900 text-white text-xs font-medium rounded-md hover:bg-navy-800 transition-colors cursor-pointer">
+            Find on Map
+          </button>
+        </div>
+        <p class="text-xs text-ivory-400">Click anywhere on the map to drop a pin. Or type an address above and click "Find on Map".</p>
+        <div id="admin-event-map" class="rounded-lg border border-ivory-200" style="height: 350px; z-index: 1;"></div>
+
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <%= f.label :latitude, class: "block text-xs font-medium text-ivory-600 mb-1" %>
+            <%= f.number_field :latitude, id: "event-lat-input", step: :any, class: "w-full border border-ivory-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-navy-400 bg-ivory-50", placeholder: "34.9249" %>
+          </div>
+          <div>
+            <%= f.label :longitude, class: "block text-xs font-medium text-ivory-600 mb-1" %>
+            <%= f.number_field :longitude, id: "event-lon-input", step: :any, class: "w-full border border-ivory-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-navy-400 bg-ivory-50", placeholder: "-81.0258" %>
+          </div>
+        </div>
+        <p class="text-xs text-ivory-400">Lat/lon auto-fill when you click the map. You can also type them manually.</p>
       </div>
 
       <div class="bg-white rounded-lg border border-ivory-200 p-6 space-y-4">
@@ -61,3 +89,105 @@
     </div>
   </div>
 <% end %>
+
+<script>
+  (function() {
+    // Default center: Rock Hill, SC
+    var defaultLat = 34.9249;
+    var defaultLon = -81.0258;
+    var defaultZoom = 13;
+
+    // Use existing coordinates if editing
+    var latInput = document.getElementById('event-lat-input');
+    var lonInput = document.getElementById('event-lon-input');
+    var existingLat = latInput.value ? parseFloat(latInput.value) : null;
+    var existingLon = lonInput.value ? parseFloat(lonInput.value) : null;
+
+    if (existingLat && existingLon) {
+      defaultLat = existingLat;
+      defaultLon = existingLon;
+      defaultZoom = 16;
+    }
+
+    // Init map
+    var map = L.map('admin-event-map').setView([defaultLat, defaultLon], defaultZoom);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    var marker = null;
+
+    function placeMarker(lat, lon) {
+      if (marker) {
+        marker.setLatLng([lat, lon]);
+      } else {
+        marker = L.marker([lat, lon], { draggable: true }).addTo(map);
+        marker.on('dragend', function(e) {
+          var pos = e.target.getLatLng();
+          latInput.value = pos.lat.toFixed(6);
+          lonInput.value = pos.lng.toFixed(6);
+        });
+      }
+      latInput.value = lat.toFixed(6);
+      lonInput.value = lon.toFixed(6);
+      map.setView([lat, lon], 16);
+    }
+
+    // Place existing marker
+    if (existingLat && existingLon) {
+      placeMarker(existingLat, existingLon);
+    }
+
+    // Click to place/move marker
+    map.on('click', function(e) {
+      placeMarker(e.latlng.lat, e.latlng.lng);
+    });
+
+    // Manual lat/lon input updates marker
+    function updateFromInputs() {
+      var lat = parseFloat(latInput.value);
+      var lon = parseFloat(lonInput.value);
+      if (!isNaN(lat) && !isNaN(lon)) {
+        placeMarker(lat, lon);
+      }
+    }
+    latInput.addEventListener('change', updateFromInputs);
+    lonInput.addEventListener('change', updateFromInputs);
+
+    // "Find on Map" button — geocode the location text
+    document.getElementById('find-address-btn').addEventListener('click', function() {
+      var address = document.getElementById('event-location-input').value.trim();
+      if (!address) return;
+
+      var btn = this;
+      btn.textContent = 'Searching...';
+      btn.disabled = true;
+
+      var url = 'https://nominatim.openstreetmap.org/search?q=' + encodeURIComponent(address) + '&format=json&limit=1';
+
+      fetch(url, {
+        headers: { 'User-Agent': 'CloughCampaignAdmin/1.0' }
+      })
+        .then(function(r) { return r.json(); })
+        .then(function(data) {
+          if (data.length > 0) {
+            var lat = parseFloat(data[0].lat);
+            var lon = parseFloat(data[0].lon);
+            placeMarker(lat, lon);
+            btn.textContent = 'Found!';
+            setTimeout(function() { btn.textContent = 'Find on Map'; }, 2000);
+          } else {
+            btn.textContent = 'Not found';
+            setTimeout(function() { btn.textContent = 'Find on Map'; }, 2000);
+          }
+        })
+        .catch(function() {
+          btn.textContent = 'Error';
+          setTimeout(function() { btn.textContent = 'Find on Map'; }, 2000);
+        })
+        .finally(function() {
+          btn.disabled = false;
+        });
+    });
+  })();
+</script>
