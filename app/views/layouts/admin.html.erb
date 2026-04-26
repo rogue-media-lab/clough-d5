@@ -8,8 +8,6 @@
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
     <style>
-      .dropdown .dropbtn { cursor: pointer; }
-      .dropdown:hover .dropdown-content { display: block; }
       .sidebar-link { display: block; padding: 10px 16px; border-radius: 8px; color: #CBD5E1; font-size: 14px; font-weight: 500; text-decoration: none; transition: background-color 0.15s; }
       .sidebar-link:hover { background-color: rgba(255,255,255,0.1); color: #FFFFFF; }
       .sidebar-link.active { background-color: #C8902A; color: #FFFFFF; font-weight: 600; }
@@ -90,15 +88,6 @@
             <% if content_for?(:page_subtitle) %>
               <p style="font-family: 'Inter', sans-serif; font-size: 14px; color: #6B7280; margin: 4px 0 0;"><%= yield(:page_subtitle) %></p>
             <% end %>
-          </div>
-          <div class="dropdown" style="position: relative; display: inline-block;">
-            <button class="dropbtn" style="background-color: #C8902A; color: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; padding: 10px 18px; border-radius: 6px; border: none; cursor: pointer;">+ Create New</button>
-            <div class="dropdown-content" style="display: none; position: absolute; background-color: #FFFFFF; min-width: 180px; box-shadow: 0 8px 24px rgba(0,0,0,0.12); border-radius: 8px; z-index: 1; right: 0; margin-top: 4px; overflow: hidden;">
-              <%= link_to 'New Issue', new_admin_issue_path, style: "color: #374151; padding: 12px 16px; text-decoration: none; display: block; font-size: 14px; border-bottom: 1px solid #F3F4F6;" %>
-              <%= link_to 'New Post', new_admin_post_path, style: "color: #374151; padding: 12px 16px; text-decoration: none; display: block; font-size: 14px; border-bottom: 1px solid #F3F4F6;" %>
-              <%= link_to 'New Article', new_admin_news_article_path, style: "color: #374151; padding: 12px 16px; text-decoration: none; display: block; font-size: 14px; border-bottom: 1px solid #F3F4F6;" %>
-              <%= link_to 'New Event', new_admin_event_path, style: "color: #374151; padding: 12px 16px; text-decoration: none; display: block; font-size: 14px;" %>
-            </div>
           </div>
         </header>
         <main style="padding: 32px 40px;">
