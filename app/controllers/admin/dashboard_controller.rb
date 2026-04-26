@@ -27,7 +27,7 @@ class Admin::DashboardController < Admin::BaseController
     # News Articles
     @news_article_count  = NewsArticle.count
     @published_news_count = NewsArticle.published.count
-    @draft_news_count    = NewsArticle.draft.count
+    @fetched_news_count  = NewsArticle.fetched.count
     @recent_articles     = NewsArticle.recent.limit(5)
   end
 end
