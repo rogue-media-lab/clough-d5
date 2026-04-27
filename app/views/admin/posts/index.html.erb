@@ -1,57 +1,62 @@
-<% content_for :page_title, "Posts" %>
+<% content_for :page_title, "Blog Posts" %>
+<% content_for :page_subtitle, "Manage blog posts displayed on the public site." %>
 
-<div class="flex items-center justify-between mb-6">
-  <p class="text-sm text-ivory-500"><%= @posts.count %> posts</p>
-  <%= link_to "New Post", new_admin_post_path,
-        class: "px-4 py-2 bg-ivory-900 text-ivory-50 text-sm font-medium rounded-md hover:bg-ivory-700 transition-colors" %>
+<div style="margin-bottom: 24px; display: flex; gap: 12px; align-items: center;">
+  <% if notice.present? %>
+    <p style="background: #DCFCE7; color: #166534; padding: 8px 16px; border-radius: 6px; font-size: 14px; font-weight: 500; margin: 0;"><%= notice %></p>
+  <% end %>
 </div>
 
-<div class="bg-white rounded-lg border border-ivory-200 overflow-hidden">
-  <% if @posts.empty? %>
-    <p class="px-6 py-8 text-center text-sm text-ivory-400">No posts yet.</p>
-  <% else %>
-    <table class="w-full text-sm">
-      <thead>
-        <tr class="border-b border-ivory-100 bg-ivory-50">
-          <th class="px-6 py-3 text-left text-xs font-semibold text-ivory-500 uppercase tracking-wider">Title</th>
-          <th class="px-6 py-3 text-left text-xs font-semibold text-ivory-500 uppercase tracking-wider">Status</th>
-          <th class="px-6 py-3 text-left text-xs font-semibold text-ivory-500 uppercase tracking-wider">Featured</th>
-          <th class="px-6 py-3 text-left text-xs font-semibold text-ivory-500 uppercase tracking-wider">Date</th>
-          <th class="px-6 py-3"></th>
-        </tr>
-      </thead>
-      <tbody class="divide-y divide-ivory-100">
-        <% @posts.each do |post| %>
-          <tr class="hover:bg-ivory-50">
-            <td class="px-6 py-4">
-              <p class="font-medium text-ivory-900"><%= post.title %></p>
-              <p class="text-xs text-ivory-400 mt-0.5"><%= post.subtitle&.truncate(60) %></p>
-            </td>
-            <td class="px-6 py-4">
-              <% if post.published? %>
-                <span class="inline-flex px-2 py-0.5 rounded text-xs font-medium bg-pastel-mint text-green-800">Published</span>
-              <% else %>
-                <span class="inline-flex px-2 py-0.5 rounded text-xs font-medium bg-ivory-100 text-ivory-600">Draft</span>
-              <% end %>
-            </td>
-            <td class="px-6 py-4">
-              <% if post.featured? %>
-                <span class="inline-flex px-2 py-0.5 rounded text-xs font-medium bg-pastel-lavender text-purple-800">Featured</span>
-              <% end %>
-            </td>
-            <td class="px-6 py-4 text-ivory-400 text-xs">
-              <%= (post.published_at || post.created_at).strftime("%b %-d, %Y") %>
-            </td>
-            <td class="px-6 py-4 text-right space-x-4">
-              <%= link_to "Edit", edit_admin_post_path(post), class: "text-xs text-ivory-500 hover:text-ivory-900 transition-colors" %>
-              <% post_title = post.title %>
-              <%= button_to "Delete", admin_post_path(post), method: :delete,
-                    data: { turbo_confirm: 'Delete "' + post_title + '"?' },
-                    class: "text-xs text-red-400 hover:text-red-600 bg-transparent border-0 p-0 cursor-pointer transition-colors" %>
-            </td>
-          </tr>
+<div style="background: #FFFFFF; border-radius: 10px; border: 1px solid #E5E7EB; overflow: hidden;">
+  <!-- Table Header -->
+  <div style="display: grid; grid-template-columns: 1fr 100px 100px 120px 140px; padding: 12px 24px; background: #F9FAFB; border-bottom: 1px solid #E5E7EB; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: #6B7280;">
+    <div>Post</div>
+    <div style="text-align: center;">Status</div>
+    <div style="text-align: center;">Featured</div>
+    <div style="text-align: center;">Date</div>
+    <div style="text-align: right;">Actions</div>
+  </div>
+
+  <!-- Post Rows -->
+  <% @posts.each do |post| %>
+    <div style="display: grid; grid-template-columns: 1fr 100px 100px 120px 140px; padding: 16px 24px; border-bottom: 1px solid #F3F4F6; align-items: center;">
+      <div>
+        <p style="font-size: 15px; font-weight: 600; color: #111827; margin: 0;"><%= post.title %></p>
+        <% if post.subtitle.present? %>
+          <p style="font-size: 12px; color: #6B7280; margin: 2px 0 0;"><%= truncate(post.subtitle, length: 60) %></p>
         <% end %>
-      </tbody>
-    </table>
+      </div>
+      <div style="text-align: center;">
+        <span style="display: inline-block; padding: 3px 10px; border-radius: 12px; font-size: 12px; font-weight: 500; background: <%= post.published? ? '#DCFCE7' : '#F3F4F6' %>; color: <%= post.published? ? '#166534' : '#6B7280' %>;">
+          <%= post.published? ? 'Published' : 'Draft' %>
+        </span>
+      </div>
+      <div style="text-align: center;">
+        <% if post.featured? %>
+          <span style="color: #C8902A; font-size: 18px;">★</span>
+        <% else %>
+          <span style="color: #9CA3AF; font-size: 18px;">☆</span>
+        <% end %>
+      </div>
+      <div style="text-align: center; font-size: 13px; color: #6B7280;">
+        <%= (post.published_at || post.created_at).strftime("%b %-d, %Y") %>
+      </div>
+      <div style="display: flex; gap: 6px; justify-content: flex-end;">
+        <%= link_to "Edit", edit_admin_post_path(post), style: "padding: 6px 12px; background: #F3F4F6; color: #374151; border-radius: 6px; font-size: 13px; text-decoration: none; font-weight: 500;" %>
+        <% post_title = post.title %>
+        <%= button_to "Delete", admin_post_path(post), method: :delete, style: "padding: 6px 12px; background: #FEE2E2; color: #DC2626; border-radius: 6px; font-size: 13px; border: none; cursor: pointer; font-weight: 500;", data: { turbo_confirm: "Are you sure? This cannot be undone." } %>
+      </div>
+    </div>
   <% end %>
+
+  <% if @posts.none? %>
+    <div style="padding: 48px 24px; text-align: center; color: #9CA3AF;">
+      <p style="font-size: 16px; margin: 0;">No posts yet.</p>
+      <p style="font-size: 14px; margin: 8px 0 0;">Create your first blog post to get started.</p>
+    </div>
+  <% end %>
+</div>
+
+<div style="margin-top: 24px;">
+  <%= link_to "New Post", new_admin_post_path, style: "display: inline-block; padding: 10px 20px; background: #0F2044; color: #FFFFFF; border-radius: 8px; font-size: 14px; font-weight: 600; text-decoration: none;" %>
 </div>
