@@ -31,7 +31,7 @@
                 <td class="px-6 py-4 text-right">
                   <div class="flex items-center gap-2 justify-end">
                     <%= link_to "Edit", edit_admin_news_feed_path(feed), class: "text-xs text-navy-900 hover:underline" %>
-                    <%= link_to "Remove", admin_news_feed_path(feed), data: { turbo_method: :delete, turbo_confirm: "Remove this feed?" }, class: "text-xs text-red-600 hover:underline" %>
+                    <%= button_to "Delete", admin_news_feed_path(feed), method: :delete, style: "padding: 6px 12px; background: #FEE2E2; color: #DC2626; border-radius: 6px; font-size: 13px; border: none; cursor: pointer; font-weight: 500;", data: { turbo_confirm: "Delete this feed?" } %>
                   </div>
                 </td>
               </tr>
