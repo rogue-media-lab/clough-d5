@@ -97,14 +97,14 @@
                 <%= article.published_date&.strftime("%b %d") || "—" %>
               </td>
               <td class="px-4 py-3 text-right">
-                <div class="flex items-center gap-2 justify-end">
+                <div class="flex items-center gap-1.5 justify-end">
                   <% if article.fetched? %>
-                    <%= link_to "Publish", admin_news_article_path(article, news_article: { status: :published }), data: { turbo_method: :patch }, class: "text-xs text-green-700 hover:underline" %>
+                    <%= button_to "Publish", admin_news_article_path(article, news_article: { status: :published }), method: :patch, class: "px-2.5 py-1 text-xs font-medium rounded bg-green-100 text-green-800 hover:bg-green-200 cursor-pointer border-0" %>
                   <% else %>
-                    <%= link_to "Unpublish", admin_news_article_path(article, news_article: { status: :fetched }), data: { turbo_method: :patch }, class: "text-xs text-yellow-700 hover:underline" %>
+                    <%= button_to "Unpublish", admin_news_article_path(article, news_article: { status: :fetched }), method: :patch, class: "px-2.5 py-1 text-xs font-medium rounded bg-yellow-100 text-yellow-800 hover:bg-yellow-200 cursor-pointer border-0" %>
                   <% end %>
-                  <%= link_to "Edit", edit_admin_news_article_path(article), class: "text-xs text-navy-900 hover:underline" %>
-                  <%= link_to "Delete", admin_news_article_path(article), data: { turbo_method: :delete, turbo_confirm: "Delete this article?" }, class: "text-xs text-red-600 hover:underline" %>
+                  <%= link_to "Edit", edit_admin_news_article_path(article), class: "px-2.5 py-1 text-xs font-medium rounded bg-ivory-100 text-ivory-700 hover:bg-ivory-200 no-underline" %>
+                  <%= button_to "Delete", admin_news_article_path(article), method: :delete, data: { turbo_confirm: "Delete this article?" }, class: "px-2.5 py-1 text-xs font-medium rounded bg-red-100 text-red-700 hover:bg-red-200 cursor-pointer border-0" %>
                 </div>
               </td>
             </tr>
