@@ -77,3 +77,5 @@ group :test do
 end
 gem "letter_opener", group: :development
 gem "rss", "~> 0.3"
+gem "ahoy_matey"
+gem "groupdate"

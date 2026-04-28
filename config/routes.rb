@@ -39,6 +39,7 @@ Rails.application.routes.draw do
   # Public volunteer submission
   resources :volunteer_submissions, only: [ :create ]
   resources :volunteer_interests, only: []
+
   # Error pages
   match "/404", to: "errors#not_found",             via: :all
   match "/422", to: "errors#unprocessable_entity",  via: :all
