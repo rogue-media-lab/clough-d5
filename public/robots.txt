@@ -8,5 +8,15 @@ Disallow: /admin/
 Disallow: /session
 Disallow: /passwords
 
+# Allow Facebook crawler (needed for OG card previews)
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
 # Sitemap location
 Sitemap: https://cloughforsc5.com/sitemap.xml

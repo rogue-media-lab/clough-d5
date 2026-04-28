@@ -7,11 +7,11 @@ class HomeController < ApplicationController
     @active_issues = Issue.active.order(:position)
 
     set_meta_tags(
-      title: "Andrew Clough for Congress — People Over Politics | SC District 5",
-      description: "Andrew Clough is running for Congress in South Carolina's 5th District. A proud stepfather, airline worker, and community advocate putting People Over Politics.",
+      title: "Andrew Clough for Congress — Enough is Enough | SC District 5",
+      description: "Andrew Clough is running for Congress in South Carolina's 5th District. A proud stepfather, airline worker, and community advocate putting Enough is Enough.",
       canonical: root_url,
       og: {
-        title: "Andrew Clough for Congress — People Over Politics",
+        title: "Andrew Clough for Congress — Enough is Enough",
         description: "Courage. Compassion. Clough. Andrew Clough is running for Congress in South Carolina's 5th District.",
         url: root_url,
         type: "website"
@@ -25,11 +25,11 @@ class HomeController < ApplicationController
 
     set_meta_tags(
       title: "Volunteer with Andrew Clough — Join the Movement",
-      description: "Join the movement to put People Over Politics. Volunteer with Andrew Clough's campaign for Congress in SC District 5 — phone banking, canvassing, events, and more.",
+      description: "Join the movement to put Enough is Enough. Volunteer with Andrew Clough's campaign for Congress in SC District 5 — phone banking, canvassing, events, and more.",
       canonical: volunteer_url,
       og: {
         title: "Volunteer with Andrew Clough",
-        description: "Join the movement to put People Over Politics in SC District 5.",
+        description: "Join the movement to put Enough is Enough in SC District 5.",
         url: volunteer_url
       }
     )
@@ -143,8 +143,8 @@ class HomeController < ApplicationController
     set_meta_tags(
       site: "Clough for SC5",
       title: "Andrew Clough for Congress — SC District 5",
-      description: "Andrew Clough is running for Congress in South Carolina's 5th District. People Over Politics.",
-      keywords: "Andrew Clough, SC-5, Congress, South Carolina, 2026, election, People Over Politics",
+      description: "Andrew Clough is running for Congress in South Carolina's 5th District. Enough is Enough.",
+      keywords: "Andrew Clough, SC-5, Congress, South Carolina, 2026, election, Enough is Enough",
       reverse: true,
       separator: " | ",
       og: {
