@@ -186,13 +186,13 @@ puts "Events with coordinates: #{Event.where.not(latitude: nil).count} total"
 # Seed analytics data (demo traffic for dashboard chart)
 if Ahoy::Visit.count == 0
   puts "\nSeeding analytics data..."
-  pages = ["/", "/issues", "/about", "/volunteer", "/events", "/news", "/issues/1", "/issues/2", "/issues/3"]
-  referrers = [nil, nil, nil, "https://google.com", "https://facebook.com", "https://twitter.com", "https://cloughforsc5.com"]
+  pages = [ "/", "/issues", "/about", "/volunteer", "/events", "/news", "/issues/1", "/issues/2", "/issues/3" ]
+  referrers = [ nil, nil, nil, "https://google.com", "https://facebook.com", "https://twitter.com", "https://cloughforsc5.com" ]
 
   30.downto(0) do |days_ago|
     date = days_ago.days.ago
-    base_visits = [3, 5, 8, 10, 12][[days_ago / 6, 4].min]
-    visit_count = [base_visits + rand(-2..4), 1].max
+    base_visits = [ 3, 5, 8, 10, 12 ][[ days_ago / 6, 4 ].min]
+    visit_count = [ base_visits + rand(-2..4), 1 ].max
 
     visit_count.times do
       visit = Ahoy::Visit.create!(
