@@ -1,5 +1,46 @@
 class Admin::DashboardController < Admin::BaseController
   def index
+    # === ANALYTICS (top of page) ===
+    @today_visits     = Ahoy::Visit.where(started_at: Time.current.beginning_of_day..).count
+    @this_week_visits = Ahoy::Visit.where(started_at: 1.week.ago..).count
+    @this_month_visits = Ahoy::Visit.where(started_at: 1.month.ago..).count
+    @total_visits     = Ahoy::Visit.count
+
+    # Page views (events are page views)
+    @today_page_views     = Ahoy::Event.where(name: "$view", time: Time.current.beginning_of_day..).count
+    @this_week_page_views = Ahoy::Event.where(name: "$view", time: 1.week.ago..).count
+    @this_month_page_views = Ahoy::Event.where(name: "$view", time: 1.month.ago..).count
+
+    # Chart data: daily visits for last 30 days
+    @visits_by_day = Ahoy::Visit
+      .where(started_at: 30.days.ago..)
+      .group_by_day(:started_at)
+      .count
+
+    # Chart data: daily page views for last 30 days
+    @page_views_by_day = Ahoy::Event
+      .where(name: "$view", time: 30.days.ago..)
+      .group_by_day(:time)
+      .count
+
+    # Top pages (last 30 days)
+    @top_pages = Ahoy::Event
+      .where(name: "$view", time: 30.days.ago..)
+      .group("properties->>'url'")
+      .count
+      .sort_by { |_, v| -v }
+      .first(10)
+
+    # Top referrers (last 30 days)
+    @top_referrers = Ahoy::Visit
+      .where(started_at: 30.days.ago..)
+      .where.not(referrer: [ nil, "" ])
+      .group(:referrer)
+      .count
+      .sort_by { |_, v| -v }
+      .first(5)
+
+    # === EXISTING DASHBOARD DATA ===
     # Issues
     @issue_count       = Issue.count
     @active_issue_count = Issue.active.count
