@@ -2,13 +2,16 @@
 <% content_for :page_subtitle, "Welcome back. Here's what's happening." %>
 
 <!-- ===================== TRAFFIC ANALYTICS (TOP) ===================== -->
-<div class="widget-card" style="margin-bottom: 32px;">
+<div class="widget-card" style="margin-bottom: 32px;"
+     data-controller="traffic-chart"
+     data-visits="<%= @visits_by_day.to_json %>"
+     data-page-views="<%= @page_views_by_day.to_json %>">
   <div class="widget-header">
     <h2 class="widget-title">📊 Site Traffic</h2>
     <div style="display: flex; gap: 8px;">
-      <button onclick="showRange(30)" id="btn-30" class="traffic-tab active-tab">30 Days</button>
-      <button onclick="showRange(7)" id="btn-7" class="traffic-tab">7 Days</button>
-      <button onclick="showRange(1)" id="btn-1" class="traffic-tab">Today</button>
+      <button data-traffic-chart-target="tab" data-action="click->traffic-chart#showRange" data-days="30" class="traffic-tab active-tab">30 Days</button>
+      <button data-traffic-chart-target="tab" data-action="click->traffic-chart#showRange" data-days="7" class="traffic-tab">7 Days</button>
+      <button data-traffic-chart-target="tab" data-action="click->traffic-chart#showRange" data-days="1" class="traffic-tab">Today</button>
     </div>
   </div>
 
@@ -37,8 +40,8 @@
   </div>
 
   <!-- Chart -->
-  <div style="padding: 20px;">
-    <canvas id="trafficChart" height="250"></canvas>
+  <div style="padding: 20px; height: 300px;">
+    <canvas data-traffic-chart-target="canvas"></canvas>
   </div>
 
   <!-- Top Pages & Referrers row -->
@@ -93,120 +96,6 @@
   .active-tab { background: #0F2044; color: #FFFFFF; border-color: #0F2044; }
   .active-tab:hover { background: #1a2f55; color: #FFFFFF; border-color: #1a2f55; }
 </style>
-
-<!-- Chart.js Script -->
-<script>
-  (function() {
-    var Chart = window.Chart;
-    if (!Chart) {
-      console.error("Chart.js not loaded");
-      return;
-    }
-
-    var allVisits = <%= raw @visits_by_day.to_json %>;
-    var allPageViews = <%= raw @page_views_by_day.to_json %>;
-
-    var ctx = document.getElementById('trafficChart').getContext('2d');
-
-    var chart = new Chart(ctx, {
-      type: 'line',
-      data: {
-        labels: [],
-        datasets: [
-          {
-            label: 'Visits',
-            data: [],
-            borderColor: '#C8902A',
-            backgroundColor: 'rgba(200, 144, 42, 0.1)',
-            fill: true,
-            tension: 0.3,
-            pointRadius: 2,
-            pointHoverRadius: 5,
-            borderWidth: 2
-          },
-          {
-            label: 'Page Views',
-            data: [],
-            borderColor: '#0F2044',
-            backgroundColor: 'rgba(15, 32, 68, 0.05)',
-            fill: true,
-            tension: 0.3,
-            pointRadius: 2,
-            pointHoverRadius: 5,
-            borderWidth: 2
-          }
-        ]
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        interaction: { intersect: false, mode: 'index' },
-        plugins: {
-          legend: { position: 'top', labels: { font: { family: 'Inter', size: 12 }, usePointStyle: true, padding: 16 } },
-          tooltip: {
-            backgroundColor: '#0F2044',
-            titleFont: { family: 'Inter', size: 12 },
-            bodyFont: { family: 'Inter', size: 12 },
-            padding: 10,
-            cornerRadius: 6
-          }
-        },
-        scales: {
-          x: {
-            grid: { display: false },
-            ticks: { font: { family: 'Inter', size: 11 }, color: '#9CA3AF', maxRotation: 0 }
-          },
-          y: {
-            beginAtZero: true,
-            grid: { color: '#F3F4F6' },
-            ticks: { font: { family: 'Inter', size: 11 }, color: '#9CA3AF', precision: 0 }
-          }
-        }
-      }
-    });
-
-    function filterByRange(days) {
-      var now = new Date();
-      var cutoff = new Date(now);
-      if (days === 1) {
-        cutoff.setHours(0, 0, 0, 0);
-      } else {
-        cutoff.setDate(cutoff.getDate() - days);
-        cutoff.setHours(0, 0, 0, 0);
-      }
-
-      var labels = [];
-      var visits = [];
-      var pageViews = [];
-
-      Object.keys(allVisits).sort().forEach(function(dateStr) {
-        var d = new Date(dateStr + "T00:00:00");
-        if (d >= cutoff) {
-          var label = d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
-          labels.push(label);
-          visits.push(allVisits[dateStr] || 0);
-          pageViews.push(allPageViews[dateStr] || 0);
-        }
-      });
-
-      chart.data.labels = labels;
-      chart.data.datasets[0].data = visits;
-      chart.data.datasets[1].data = pageViews;
-      chart.update();
-    }
-
-    window.showRange = function(days) {
-      document.querySelectorAll('.traffic-tab').forEach(function(btn) {
-        btn.classList.remove('active-tab');
-      });
-      document.getElementById('btn-' + days).classList.add('active-tab');
-      filterByRange(days);
-    };
-
-    // Default: show 30 days
-    filterByRange(30);
-  })();
-</script>
 
 <!-- ===================== STAT CARDS ===================== -->
 <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px; margin-bottom: 32px;">
