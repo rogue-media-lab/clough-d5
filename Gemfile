@@ -79,3 +79,7 @@ gem "letter_opener", group: :development
 gem "rss", "~> 0.3"
 gem "ahoy_matey"
 gem "groupdate"
+
+# SEO & AEO
+gem "meta-tags"
+gem "sitemap_generator"

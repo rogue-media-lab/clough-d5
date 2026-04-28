@@ -1,0 +1,207 @@
+<%# JSON-LD Structured Data for SEO & AEO %>
+
+<%# Person Schema — Andrew Clough %>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Andrew Clough",
+  "givenName": "Andrew",
+  "familyName": "Clough",
+  "jobTitle": "Congressional Candidate",
+  "description": "A proud stepfather, dedicated airline worker, and community advocate running for Congress in South Carolina's 5th District.",
+  "url": "https://cloughforsc5.com",
+  "image": "https://cloughforsc5.com/andrew-clough.jpg",
+  "affiliation": {
+    "@type": "Organization",
+    "name": "Friends of Andrew Clough"
+  },
+  "homeLocation": {
+    "@type": "Place",
+    "name": "Rock Hill, South Carolina",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Rock Hill",
+      "addressRegion": "SC",
+      "addressCountry": "US"
+    }
+  },
+  "worksFor": {
+    "@type": "Organization",
+    "name": "Clough for Congress SC-5",
+    "url": "https://cloughforsc5.com"
+  },
+  "knowsAbout": [
+    "Tax Relief",
+    "Jobs & Wages",
+    "Healthcare",
+    "Public Education",
+    "Immigration Reform",
+    "Democracy & Voting Rights",
+    "Infrastructure",
+    "Term Limits"
+  ],
+  "sameAs": [
+    "https://www.facebook.com/p/Vote-Andrew-Clough-SC-5-Congressional-Candidate-61577300285975/",
+    "https://x.com/CloughForSC5",
+    "https://www.instagram.com/cloughforsc5/"
+  ]
+}
+</script>
+
+<%# WebSite Schema with SearchAction %>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Clough for SC5",
+  "alternateName": "Andrew Clough for Congress",
+  "url": "https://cloughforsc5.com",
+  "description": "Andrew Clough is running for Congress in South Carolina's 5th District. People Over Politics.",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Friends of Andrew Clough",
+    "url": "https://cloughforsc5.com"
+  },
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://cloughforsc5.com/issues?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+
+<%# Organization Schema %>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Friends of Andrew Clough",
+  "alternateName": "Clough for SC5",
+  "url": "https://cloughforsc5.com",
+  "logo": "https://cloughforsc5.com/andrew-clough.jpg",
+  "description": "Official campaign organization for Andrew Clough, candidate for U.S. Congress in South Carolina's 5th Congressional District.",
+  "foundingLocation": {
+    "@type": "Place",
+    "name": "Rock Hill, South Carolina"
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "email": "team@cloughforsc5.com",
+    "contactType": "campaign inquiries"
+  },
+  "sameAs": [
+    "https://www.facebook.com/p/Vote-Andrew-Clough-SC-5-Congressional-Candidate-61577300285975/",
+    "https://x.com/CloughForSC5",
+    "https://www.instagram.com/cloughforsc5/"
+  ]
+}
+</script>
+
+<%# BreadcrumbList — current page path %>
+<% if request.path != "/" %>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://cloughforsc5.com/"
+    }
+    <% case controller.action_name %>
+    <% when "about" %>
+    ,{
+      "@type": "ListItem",
+      "position": 2,
+      "name": "About",
+      "item": "https://cloughforsc5.com/about"
+    }
+    <% when "issues" %>
+    ,{
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Issues",
+      "item": "https://cloughforsc5.com/issues"
+    }
+    <% when "show_issue" %>
+    ,{
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Issues",
+      "item": "https://cloughforsc5.com/issues"
+    }
+    <% if @issue %>
+    ,{
+      "@type": "ListItem",
+      "position": 3,
+      "name": "<%= @issue.title %>",
+      "item": "https://cloughforsc5.com/issues/<%= @issue.id %>"
+    }
+    <% end %>
+    <% when "volunteer" %>
+    ,{
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Volunteer",
+      "item": "https://cloughforsc5.com/volunteer"
+    }
+    <% when "events" %>
+    ,{
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Events",
+      "item": "https://cloughforsc5.com/events"
+    }
+    <% when "show_event" %>
+    ,{
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Events",
+      "item": "https://cloughforsc5.com/events"
+    }
+    <% if @event %>
+    ,{
+      "@type": "ListItem",
+      "position": 3,
+      "name": "<%= @event.title %>",
+      "item": "https://cloughforsc5.com/events/<%= @event.id %>"
+    }
+    <% end %>
+    <% when "news" %>
+    ,{
+      "@type": "ListItem",
+      "position": 2,
+      "name": "News",
+      "item": "https://cloughforsc5.com/news"
+    }
+    <% end %>
+  ]
+}
+</script>
+<% end %>
+
+<%# Place Schema for SC District 5 %>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Place",
+  "name": "South Carolina's 5th Congressional District",
+  "description": "U.S. Congressional District covering York, Chester, Cherokee, Lancaster, and parts of other counties in upstate South Carolina.",
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 34.9249,
+    "longitude": -81.0284
+  },
+  "containedInPlace": {
+    "@type": "AdministrativeArea",
+    "name": "South Carolina",
+    "containedInCountry": {
+      "@type": "Country",
+      "name": "United States"
+    }
+  }
+}
+</script>

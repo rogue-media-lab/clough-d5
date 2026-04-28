@@ -198,6 +198,8 @@ GEM
       net-smtp
     marcel (1.1.0)
     matrix (0.4.3)
+    meta-tags (2.23.0)
+      actionpack (>= 6.0.0)
     mini_magick (5.3.1)
       logger
     mini_mime (1.1.5)
@@ -372,6 +374,8 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 4.0)
       websocket (~> 1.0)
+    sitemap_generator (7.0.1)
+      builder (~> 3.0)
     solid_cable (3.0.12)
       actioncable (>= 7.2)
       activejob (>= 7.2)
@@ -467,6 +471,7 @@ DEPENDENCIES
   jbuilder
   kamal
   letter_opener
+  meta-tags
   pg (~> 1.1)
   propshaft
   puma (>= 5.0)
@@ -475,6 +480,7 @@ DEPENDENCIES
   rss (~> 0.3)
   rubocop-rails-omakase
   selenium-webdriver
+  sitemap_generator
   solid_cable
   solid_cache
   solid_queue
@@ -559,6 +565,7 @@ CHECKSUMS
   mail (2.9.0) sha256=6fa6673ecd71c60c2d996260f9ee3dd387d4673b8169b502134659ece6d34941
   marcel (1.1.0) sha256=fdcfcfa33cc52e93c4308d40e4090a5d4ea279e160a7f6af988260fa970e0bee
   matrix (0.4.3) sha256=a0d5ab7ddcc1973ff690ab361b67f359acbb16958d1dc072b8b956a286564c5b
+  meta-tags (2.23.0) sha256=ffe78b5bee398de4ff5ac3316f5a786049538a651643b8476def06c3acc762c1
   mini_magick (5.3.1) sha256=29395dfd76badcabb6403ee5aff6f681e867074f8f28ce08d78661e9e4a351c4
   mini_mime (1.1.5) sha256=8681b7e2e4215f2a159f9400b5816d85e9d8c6c6b491e96a12797e798f8bccef
   minitest (6.0.5) sha256=f007d7246bf4feea549502842cd7c6aba8851cdc9c90ba06de9c476c0d01155c
@@ -629,6 +636,7 @@ CHECKSUMS
   safely_block (1.0.0) sha256=bea80e084e620adeada62fd98cf461bbb9888d40dc0f06d337df9d01e1a658e5
   securerandom (0.4.1) sha256=cc5193d414a4341b6e225f0cb4446aceca8e50d5e1888743fac16987638ea0b1
   selenium-webdriver (4.43.0) sha256=a634377b964b701c6ac0a009ce3a08fa34ec1e1e7fe9a6d57e3088d14529a65c
+  sitemap_generator (7.0.1) sha256=cb436da1c6cb073261a63c27e714e27b8292fca1e17ad503dac1db6518b3d2a8
   solid_cable (3.0.12) sha256=a168a54731a455d5627af48d8441ea3b554b8c1f6e6cd6074109de493e6b0460
   solid_cache (1.0.10) sha256=bc05a2fb3ac78a6f43cbb5946679cf9db67dd30d22939ededc385cb93e120d41
   solid_queue (1.4.0) sha256=e6a18d196f0b27cb6e3c77c5b31258b05fb634f8ed64fb1866ed164047216c2a

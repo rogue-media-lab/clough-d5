@@ -1,0 +1,19 @@
+<%# FAQPage JSON-LD for Issues — each issue becomes an FAQ for AI answer engines %>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    <% @issues.each_with_index do |issue, index| %>
+    {
+      "@type": "Question",
+      "name": "What is Andrew Clough's position on <%= issue.title %>?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "<%= escape_javascript(issue.tagline.presence || truncate(strip_tags(issue.description.to_s), length: 300)) %>"
+      }
+    }<%= "," unless index == @issues.length - 1 %>
+    <% end %>
+  ]
+}
+</script>
