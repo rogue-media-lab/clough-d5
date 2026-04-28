@@ -42,12 +42,12 @@ class PostsController < ApplicationController
       separator: " | ",
       og: {
         site_name: "Clough for SC5",
-        image: "/og-image.jpg"
+        image: "/og-image-a.jpg"
       },
       twitter: {
         card: "summary_large_image",
         site: "@cloughforsc5",
-        image: "/og-image.jpg"
+        image: "/og-image-a.jpg"
       }
     )
   end
