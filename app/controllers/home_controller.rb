@@ -5,6 +5,7 @@ class HomeController < ApplicationController
   def index
     @featured_issues = Issue.active.where(featured: true).order(:position)
     @active_issues = Issue.active.order(:position)
+    @endorsers = Endorser.active.ordered
 
     set_meta_tags(
       title: "Andrew Clough for Congress — Enough is Enough | SC District 5",

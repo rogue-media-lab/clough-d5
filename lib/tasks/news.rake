@@ -4,9 +4,11 @@ require "uri"
 
 # Polite defaults
 USER_AGENT = "CloughForSC5 Bot (campaign site; contact: admin@cloughforsc.com)"
-REQUEST_DELAY = 1.5  # seconds between any external requests
+REQUEST_DELAY = 1.0  # seconds between any external requests
 MAX_ARTICLES_PER_FEED = 10
 MAX_OG_FETCHES = 5    # only grab images for first N new articles per run
+FEED_OPEN_TIMEOUT = 5  # seconds to establish connection
+FEED_READ_TIMEOUT = 10 # seconds to read response
 
 namespace :news do
   desc "Fetch articles from all active RSS feeds"
@@ -26,8 +28,8 @@ namespace :news do
         uri = URI.parse(feed.url)
         http = Net::HTTP.new(uri.host, uri.port)
         http.use_ssl = (uri.scheme == "https")
-        http.open_timeout = 10
-        http.read_timeout = 15
+        http.open_timeout = FEED_OPEN_TIMEOUT
+        http.read_timeout = FEED_READ_TIMEOUT
 
         request = Net::HTTP::Get.new(uri.request_uri)
         request["User-Agent"] = USER_AGENT
@@ -42,8 +44,8 @@ namespace :news do
           redirect_uri = URI.parse(redirect_url)
           http = Net::HTTP.new(redirect_uri.host, redirect_uri.port)
           http.use_ssl = (redirect_uri.scheme == "https")
-          http.open_timeout = 10
-          http.read_timeout = 15
+          http.open_timeout = FEED_OPEN_TIMEOUT
+          http.read_timeout = FEED_READ_TIMEOUT
           request = Net::HTTP::Get.new(redirect_uri.request_uri)
           request["User-Agent"] = USER_AGENT
           request["Accept"] = "application/rss+xml, application/xml, text/xml, */*"

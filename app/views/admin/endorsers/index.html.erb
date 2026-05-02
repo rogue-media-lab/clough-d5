@@ -1,0 +1,52 @@
+<% content_for :page_title, "Endorsements" %>
+
+<div class="flex items-center justify-between mb-6">
+  <p class="text-sm text-ivory-500"><%= @endorsers.count %> endorsers</p>
+  <%= link_to "Add Endorser", new_admin_endorser_path,
+        class: "px-4 py-2 bg-navy-900 text-white text-sm font-medium rounded-md hover:bg-navy-800 transition-colors" %>
+</div>
+
+<div class="bg-white rounded-lg border border-ivory-200 overflow-hidden">
+  <% if @endorsers.empty? %>
+    <p class="px-6 py-8 text-center text-sm text-ivory-400">No endorsers yet. Add your first endorsement!</p>
+  <% else %>
+    <table class="w-full text-sm">
+      <thead>
+        <tr class="border-b border-ivory-100 bg-ivory-50">
+          <th class="px-6 py-3 text-left text-xs font-semibold text-ivory-500 uppercase tracking-wider">Order</th>
+          <th class="px-6 py-3 text-left text-xs font-semibold text-ivory-500 uppercase tracking-wider">Name</th>
+          <th class="px-6 py-3 text-left text-xs font-semibold text-ivory-500 uppercase tracking-wider">Title / Role</th>
+          <th class="px-6 py-3 text-left text-xs font-semibold text-ivory-500 uppercase tracking-wider">Category</th>
+          <th class="px-6 py-3 text-left text-xs font-semibold text-ivory-500 uppercase tracking-wider">Status</th>
+          <th class="px-6 py-3"></th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-ivory-100">
+        <% @endorsers.each do |endorser| %>
+          <tr class="hover:bg-ivory-50">
+            <td class="px-6 py-4 text-ivory-500 text-sm"><%= endorser.sort_order %></td>
+            <td class="px-6 py-4">
+              <p class="font-medium text-ivory-900"><%= endorser.name %></p>
+              <p class="text-xs text-ivory-400 mt-0.5 max-w-xs truncate"><%= truncate(endorser.quote, length: 80) %></p>
+            </td>
+            <td class="px-6 py-4 text-ivory-600 text-sm"><%= endorser.title %></td>
+            <td class="px-6 py-4 text-ivory-600 text-sm"><%= endorser.category %></td>
+            <td class="px-6 py-4">
+              <% if endorser.active? %>
+                <span class="inline-block px-2 py-0.5 rounded-full text-xs font-semibold bg-green-100 text-green-700">Active</span>
+              <% else %>
+                <span class="inline-block px-2 py-0.5 rounded-full text-xs font-semibold bg-gray-100 text-gray-500">Hidden</span>
+              <% end %>
+            </td>
+            <td class="px-6 py-4 text-right">
+              <div class="flex items-center gap-2 justify-end">
+                <%= link_to "Edit", edit_admin_endorser_path(endorser), class: "text-xs text-navy-900 hover:underline" %>
+                <%= button_to "Delete", admin_endorser_path(endorser), method: :delete, style: "padding: 6px 12px; background: #FEE2E2; color: #DC2626; border-radius: 6px; font-size: 13px; border: none; cursor: pointer; font-weight: 500;", data: { turbo_confirm: "Remove this endorser?" } %>
+              </div>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+</div>

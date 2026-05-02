@@ -42,7 +42,7 @@ NewsArticle.create!([
 ])
 
 NewsFeed.create!([
-  { name: "Rock Hill Herald", url: "https://www.heraldonline.com/news/local/", active: true },
+  { name: "Rock Hill Herald", url: "https://www.heraldonline.com/news/local/", active: false },
   { name: "York News-Times", url: "https://www.yorknewstimes.com/search/?f=rss&t=article&c=news&l=50&s=start_time&sd=desc", active: true },
   { name: "The Post and Courier", url: "https://www.postandcourier.com/search/?f=rss&t=article&c=news&l=50&s=start_time&sd=desc", active: true }
 ])

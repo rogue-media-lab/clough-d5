@@ -1,0 +1,32 @@
+<% content_for :page_title, @endorser.name %>
+<% content_for :page_subtitle, @endorser.title %>
+
+<div class="max-w-2xl">
+  <div class="bg-white rounded-lg border border-ivory-200 p-6 space-y-4">
+    <div>
+      <p class="text-xs font-semibold text-ivory-500 uppercase mb-1">Quote</p>
+      <p class="text-ivory-800 italic">"<%= @endorser.quote %>"</p>
+    </div>
+    <div class="grid grid-cols-2 gap-4">
+      <div>
+        <p class="text-xs font-semibold text-ivory-500 uppercase mb-1">Category</p>
+        <p class="text-ivory-800"><%= @endorser.category || "None" %></p>
+      </div>
+      <div>
+        <p class="text-xs font-semibold text-ivory-500 uppercase mb-1">Sort Order</p>
+        <p class="text-ivory-800"><%= @endorser.sort_order %></p>
+      </div>
+    </div>
+    <% if @endorser.photo_url.present? %>
+      <div>
+        <p class="text-xs font-semibold text-ivory-500 uppercase mb-2">Photo</p>
+        <img src="<%= @endorser.photo_url %>" alt="<%= @endorser.name %>" class="w-20 h-20 rounded-full object-cover">
+      </div>
+    <% end %>
+  </div>
+
+  <div class="flex gap-3 mt-6">
+    <%= link_to "Edit", edit_admin_endorser_path(@endorser), class: "px-4 py-2 bg-navy-900 text-white text-sm font-medium rounded-md hover:bg-navy-800 transition-colors" %>
+    <%= link_to "Back to Endorsers", admin_endorsers_path, class: "px-4 py-2 border border-ivory-300 text-ivory-700 text-sm font-medium rounded-md hover:bg-ivory-50 transition-colors" %>
+  </div>
+</div>

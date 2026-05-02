@@ -65,6 +65,9 @@
           <%= link_to admin_events_path, class: "sidebar-link #{request.path.starts_with?(admin_events_path) ? 'active' : ''}" do %>
             <span style="margin-right: 8px;">📅</span> Events
           <% end %>
+          <%= link_to admin_endorsers_path, class: "sidebar-link #{request.path.starts_with?(admin_endorsers_path) ? 'active' : ''}" do %>
+            <span style="margin-right: 8px;">⭐</span> Endorsements
+          <% end %>
 
           <div class="sidebar-heading">People</div>
           <%= link_to admin_volunteer_submissions_path, class: "sidebar-link #{request.path.starts_with?(admin_volunteer_submissions_path) ? 'active' : ''}" do %>
