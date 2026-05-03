@@ -73,6 +73,13 @@
           <% end %>
 
           <div class="sidebar-heading">People</div>
+          <%= link_to admin_contact_messages_path, class: "sidebar-link #{request.path.starts_with?(admin_contact_messages_path) ? 'active' : ''}" do %>
+            <span style="margin-right: 8px;">✉️</span> Messages
+            <% unread = ContactMessage.unread.count %>
+            <% if unread > 0 %>
+              <span style="display: inline-flex; align-items: center; justify-content: center; min-width: 20px; height: 20px; padding: 0 6px; border-radius: 10px; background: #DC2626; color: #FFFFFF; font-size: 11px; font-weight: 700; margin-left: 8px;"><%= unread %></span>
+            <% end %>
+          <% end %>
           <%= link_to admin_volunteer_submissions_path, class: "sidebar-link #{request.path.starts_with?(admin_volunteer_submissions_path) ? 'active' : ''}" do %>
             <span style="margin-right: 8px;">🙋</span> Volunteers
           <% end %>

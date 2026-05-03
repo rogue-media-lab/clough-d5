@@ -76,6 +76,29 @@ class HomeController < ApplicationController
     )
   end
 
+  def contact
+    set_meta_tags(
+      title: "Contact Us — Clough for SC5",
+      description: "Get in touch with the Clough for SC5 campaign. Questions, concerns, event invitations — we want to hear from you.",
+      canonical: contact_url
+    )
+  end
+
+  def create_contact_message
+    @message = ContactMessage.new(contact_message_params)
+    if @message.save
+      redirect_to contact_path, notice: "Thank you! Your message has been sent. We'll get back to you soon."
+    else
+      set_meta_tags(
+        title: "Contact Us — Clough for SC5",
+        description: "Get in touch with the Clough for SC5 campaign.",
+        canonical: contact_url
+      )
+      flash[:contact_error] = @message.errors.full_messages.join(", ")
+      render :contact, status: :unprocessable_entity
+    end
+  end
+
   def issues
     @issues = Issue.active.order(:position)
 
@@ -180,5 +203,9 @@ class HomeController < ApplicationController
 
   def volunteer_submission_params
     params.expect(volunteer_submission: [ :name, :last_name, :email, :phone, :message, :area_code, interest_ids: [] ])
+  end
+
+  def contact_message_params
+    params.expect(contact_message: [ :name, :email, :subject, :body ])
   end
 end

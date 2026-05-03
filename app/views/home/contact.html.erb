@@ -1,0 +1,68 @@
+<% content_for :page_title, "Contact Us" %>
+
+<section class="bg-white w-full">
+  <div class="max-w-7xl mx-auto flex flex-col lg:flex-row gap-10 lg:gap-[120px] px-6 py-16 lg:px-20 lg:py-20">
+    <div class="flex-1 flex flex-col gap-7">
+      <div class="flex items-center gap-3">
+        <div class="bg-campaign-gold h-0.5 w-10"></div>
+        <span class="text-campaign-gold font-sans text-xs font-semibold tracking-[0.1em] uppercase">Contact</span>
+      </div>
+      <h1 class="text-navy-900 font-display text-3xl sm:text-4xl lg:text-[46px] font-bold leading-[1.1]">
+        We want to hear from you.
+      </h1>
+      <p class="text-gray-500 font-sans text-base lg:text-lg leading-relaxed max-w-lg">
+        Have a question, concern, or idea? Want to invite Andrew to your event? Drop us a message and a member of the campaign team will get back to you.
+      </p>
+      <div class="flex flex-col gap-4 mt-4">
+        <div class="flex items-center gap-3">
+          <div class="bg-campaign-gold rounded-full w-2 h-2 flex-shrink-0"></div>
+          <span class="text-gray-600 font-sans text-base">We typically respond within 48 hours</span>
+        </div>
+        <div class="flex items-center gap-3">
+          <div class="bg-campaign-gold rounded-full w-2 h-2 flex-shrink-0"></div>
+          <span class="text-gray-600 font-sans text-base">For urgent matters, reach out on social media</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="w-full lg:w-[560px]">
+      <%= form_with model: ContactMessage.new, url: contact_path, method: :post do |form| %>
+        <div class="bg-ivory-50 rounded-xl border border-ivory-200 p-6 sm:p-10 flex flex-col gap-5">
+          <h3 class="text-navy-900 font-display text-2xl font-bold">Send a Message</h3>
+
+          <% if flash[:contact_error] %>
+            <div class="bg-red-50 border border-red-200 rounded-md px-4 py-3 text-sm text-red-800">
+              <%= flash[:contact_error] %>
+            </div>
+          <% end %>
+
+          <div class="flex flex-col sm:flex-row gap-4">
+            <div class="flex-1 flex flex-col gap-1.5">
+              <%= form.label :name, "Name", class: "text-gray-500 font-sans text-[11px] font-semibold uppercase" %>
+              <%= form.text_field :name, required: true, class: "bg-white border border-gray-200 rounded h-11 px-3 w-full" %>
+            </div>
+            <div class="flex-1 flex flex-col gap-1.5">
+              <%= form.label :email, "Email", class: "text-gray-500 font-sans text-[11px] font-semibold uppercase" %>
+              <%= form.email_field :email, required: true, class: "bg-white border border-gray-200 rounded h-11 px-3 w-full" %>
+            </div>
+          </div>
+
+          <div class="flex flex-col gap-1.5">
+            <%= form.label :subject, "Subject", class: "text-gray-500 font-sans text-[11px] font-semibold uppercase" %>
+            <%= form.text_field :subject, required: true, class: "bg-white border border-gray-200 rounded h-11 px-3 w-full", placeholder: "How can we help?" %>
+          </div>
+
+          <div class="flex flex-col gap-1.5">
+            <%= form.label :body, "Message", class: "text-gray-500 font-sans text-[11px] font-semibold uppercase" %>
+            <%= form.text_area :body, required: true, rows: 6, class: "bg-white border border-gray-200 rounded px-3 py-2 w-full", placeholder: "Tell us what's on your mind..." %>
+          </div>
+
+          <div>
+            <%= form.submit "Send Message", class: "bg-campaign-gold hover:bg-campaign-gold-dark text-white font-sans text-sm font-bold tracking-wider uppercase border-0 rounded px-6 py-[18px] w-full cursor-pointer transition-colors" %>
+          </div>
+          <p class="text-gray-400 font-sans text-xs text-center">Your information is private. <%= link_to "Privacy Policy", privacy_path, class: "text-campaign-gold hover:underline" %></p>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>

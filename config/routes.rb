@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   get "/about", to: "home#about", as: :about
   get "/privacy", to: "home#privacy", as: :privacy
   get "/terms", to: "home#terms", as: :terms
+  get "/contact", to: "home#contact", as: :contact
+  post "/contact", to: "home#create_contact_message"
   get "/issues", to: "home#issues", as: :issues
   get "/issues/:id", to: "home#show_issue", as: :issue
   get "/events", to: "home#events", as: :events
@@ -32,6 +34,12 @@ Rails.application.routes.draw do
     resources :events
     resources :endorsers
     resources :priorities
+    resources :contact_messages, only: [ :index, :show, :destroy ] do
+      member do
+        post :mark_read
+        post :mark_replied
+      end
+    end
     resources :volunteer_interests
     resources :volunteer_submissions do
       member do

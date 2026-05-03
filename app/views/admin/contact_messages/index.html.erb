@@ -1,0 +1,58 @@
+<% content_for :page_title, "Contact Messages" %>
+
+<div class="flex items-center justify-between mb-6">
+  <div class="flex items-center gap-3">
+    <p class="text-sm text-ivory-500"><%= @messages.count %> messages</p>
+    <% if @unread_count > 0 %>
+      <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-red-100 text-red-700"><%= @unread_count %> unread</span>
+    <% end %>
+  </div>
+</div>
+
+<div class="bg-white rounded-lg border border-ivory-200 overflow-hidden">
+  <% if @messages.empty? %>
+    <p class="px-6 py-8 text-center text-sm text-ivory-400">No messages yet.</p>
+  <% else %>
+    <table class="w-full text-sm">
+      <thead>
+        <tr class="border-b border-ivory-100 bg-ivory-50">
+          <th class="px-6 py-3 text-left text-xs font-semibold text-ivory-500 uppercase tracking-wider">Status</th>
+          <th class="px-6 py-3 text-left text-xs font-semibold text-ivory-500 uppercase tracking-wider">From</th>
+          <th class="px-6 py-3 text-left text-xs font-semibold text-ivory-500 uppercase tracking-wider">Subject</th>
+          <th class="px-6 py-3 text-left text-xs font-semibold text-ivory-500 uppercase tracking-wider">Received</th>
+          <th class="px-6 py-3"></th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-ivory-100">
+        <% @messages.each do |msg| %>
+          <tr class="<%= msg.unread? ? 'bg-ivory-50 font-medium' : 'hover:bg-ivory-50' %>">
+            <td class="px-6 py-4">
+              <% if msg.unread? %>
+                <span class="inline-block w-2 h-2 rounded-full bg-campaign-gold"></span>
+              <% elsif msg.read? %>
+                <span class="text-ivory-400 text-xs">Read</span>
+              <% else %>
+                <span class="text-green-600 text-xs">Replied</span>
+              <% end %>
+            </td>
+            <td class="px-6 py-4">
+              <p class="<%= msg.unread? ? 'text-ivory-900' : 'text-ivory-700' %>"><%= msg.name %></p>
+              <p class="text-xs text-ivory-400"><%= msg.email %></p>
+            </td>
+            <td class="px-6 py-4">
+              <p class="<%= msg.unread? ? 'text-ivory-900' : 'text-ivory-600' %>"><%= truncate(msg.subject, length: 50) %></p>
+              <p class="text-xs text-ivory-400 mt-0.5"><%= truncate(msg.body, length: 80) %></p>
+            </td>
+            <td class="px-6 py-4 text-ivory-500 text-xs whitespace-nowrap"><%= msg.created_at.strftime("%b %-d, %Y") %></td>
+            <td class="px-6 py-4 text-right">
+              <div class="flex items-center gap-2 justify-end">
+                <%= link_to "Read", admin_contact_message_path(msg), class: "text-xs text-navy-900 hover:underline" %>
+                <%= button_to "Delete", admin_contact_message_path(msg), method: :delete, style: "padding: 6px 12px; background: #FEE2E2; color: #DC2626; border-radius: 6px; font-size: 13px; border: none; cursor: pointer; font-weight: 500;", data: { turbo_confirm: "Delete this message?" } %>
+              </div>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+</div>
