@@ -60,6 +60,22 @@ class HomeController < ApplicationController
     )
   end
 
+  def privacy
+    set_meta_tags(
+      title: "Privacy Policy — Clough for SC5",
+      description: "Privacy policy for the Clough for SC5 campaign website. Learn how we collect, use, and protect your information.",
+      canonical: privacy_url
+    )
+  end
+
+  def terms
+    set_meta_tags(
+      title: "Terms of Service — Clough for SC5",
+      description: "Terms of service for the Clough for SC5 campaign website.",
+      canonical: terms_url
+    )
+  end
+
   def issues
     @issues = Issue.active.order(:position)
 

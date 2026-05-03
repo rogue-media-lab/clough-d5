@@ -27,7 +27,7 @@
         <h4 class="font-semibold mb-4">Quick Links</h4>
         <ul class="space-y-2">
           <li><%= link_to "Home", root_path, class: "text-ivory-300 hover:text-white transition-colors" %></li>
-          <li><%= link_to "Issues", "#issues", class: "text-ivory-300 hover:text-white transition-colors" %></li>
+          <li><%= link_to "Issues", issues_path, class: "text-ivory-300 hover:text-white transition-colors" %></li>
           <li><%= link_to "News", news_path, class: "text-ivory-300 hover:text-white transition-colors" %></li>
           <li><%= link_to "Events", events_path, class: "text-ivory-300 hover:text-white transition-colors" %></li>
           <li><%= link_to "About", about_path, class: "text-ivory-300 hover:text-white transition-colors" %></li>
@@ -38,16 +38,19 @@
         <h4 class="font-semibold mb-4">Get Involved</h4>
         <ul class="space-y-2">
           <li><%= link_to "Volunteer", volunteer_path, class: "text-ivory-300 hover:text-white transition-colors" %></li>
-          <li><a href="#" class="text-ivory-300 hover:text-white transition-colors">Request Yard Sign</a></li>
+          <li><%= link_to "Contact Us", about_path, class: "text-ivory-300 hover:text-white transition-colors" %></li>
           <li><a href="https://secure.actblue.com/donate/andrew-clough-1" target="_blank" rel="noopener" class="text-ivory-300 hover:text-white transition-colors">Donate</a></li>
-          <li><a href="#" class="text-ivory-300 hover:text-white transition-colors">Contact Us</a></li>
         </ul>
       </div>
     </div>
 
     <div class="mt-12 pt-8 border-t border-navy-800 text-center text-ivory-400 text-sm">
       <p>© 2026 Clough for SC5. Paid for by Clough for SC5.</p>
-      <p class="mt-2">Built by <a href="https://roguemedialab.com" target="_blank" rel="noopener" class="text-ivory-300 hover:text-white transition-colors underline">Rogue Media Lab</a></p>
+      <div class="mt-4 mb-4 flex justify-center gap-4 text-xs">
+        <%= link_to "Privacy Policy", privacy_path, class: "text-ivory-400 hover:text-white transition-colors" %>
+        <%= link_to "Terms of Service", terms_path, class: "text-ivory-400 hover:text-white transition-colors" %>
+      </div>
+      <p>Built by <a href="https://roguemedialab.com" target="_blank" rel="noopener" class="text-ivory-300 hover:text-white transition-colors underline">Rogue Media Lab</a></p>
     </div>
   </div>
 </footer>

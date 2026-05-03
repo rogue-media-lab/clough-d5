@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   get "/volunteer", to: "home#volunteer", as: :volunteer
   post "/volunteer", to: "home#create_volunteer_submission", as: :volunteer_submissions
   get "/about", to: "home#about", as: :about
+  get "/privacy", to: "home#privacy", as: :privacy
+  get "/terms", to: "home#terms", as: :terms
   get "/issues", to: "home#issues", as: :issues
   get "/issues/:id", to: "home#show_issue", as: :issue
   get "/events", to: "home#events", as: :events
