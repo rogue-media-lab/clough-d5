@@ -26,7 +26,7 @@
   </div>
 
   <div class="flex gap-3 mt-6">
-    <a href="mailto:<%= @message.email %>?subject=Re: <%= @message.subject %>" class="px-4 py-2 bg-navy-900 text-white text-sm font-medium rounded-md hover:bg-navy-800 transition-colors" onclick="fetch('<%= mark_replied_admin_contact_message_path(@message) %>', {method: 'POST', headers: {'X-CSRF-Token': document.querySelector('meta[name=csrf-token]').content}})">
+    <a href="mailto:<%= @message.email %>?subject=Re: <%= @message.subject %>" target="_blank" rel="noopener" class="px-4 py-2 bg-navy-900 text-white text-sm font-medium rounded-md hover:bg-navy-800 transition-colors" onclick="fetch('<%= mark_replied_admin_contact_message_path(@message) %>', {method: 'POST', headers: {'X-CSRF-Token': document.querySelector('meta[name=csrf-token]').content}})">
       Reply via Email
     </a>
     <% if @message.unread? || @message.read? %>
