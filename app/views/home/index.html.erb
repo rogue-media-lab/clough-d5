@@ -45,10 +45,13 @@
         A neighbor.<br />A voice.<br />A leader.
       </h2>
       <p class="text-gray-600 font-sans text-base lg:text-lg leading-[1.8] mb-5">
-        Andrew Clough has lived and worked in District 5 for over a decade. He understands the challenges families face because he faces them too — rising costs, underfunded schools, and a government that too often feels out of reach.
+        I'm Andrew Clough. A proud stepfather, dedicated airline worker, and community advocate. Though I wasn't raised in the Carolinas, I chose to build my life and family here in South Carolina's 5th District because I believe in its people, its promise, and its future.
       </p>
       <p class="text-gray-600 font-sans text-base lg:text-lg leading-[1.8] mb-10">
-        Andrew believes in transparent government, investing in education, and building an economy that works for everyone — not just those at the top.
+        I'm not a career politician, I'm one of us. I've worked hard, faced challenges, and I know what it means to fight for a better life. I'm running for Congress because we need leadership that listens, serves, and acts with compassion and courage.
+      </p>
+      <p class="text-gray-600 font-sans text-base lg:text-lg leading-[1.8] mb-10">
+        My campaign is rooted in one idea: People Over Politics. That means putting working families, veterans, small businesses, and our communities first, always.
       </p>
       <div class="flex flex-wrap gap-6 sm:gap-12">
         <div class="flex flex-col gap-1">
@@ -70,13 +73,13 @@
   </div>
 </section>
 
-<%# Issues Section %>
-<section id="issues" class="bg-ivory-100 w-full">
+<%# Priorities Section %>
+<section id="priorities" class="bg-ivory-100 w-full">
   <div class="max-w-7xl mx-auto px-6 py-16 lg:px-20 lg:py-[120px]">
     <div class="flex flex-col items-center mb-12 lg:mb-16">
       <div class="flex items-center gap-3 mb-5">
         <div class="bg-campaign-gold h-0.5 w-10"></div>
-        <span class="text-campaign-gold font-sans text-xs font-semibold tracking-[0.15em] uppercase">The Issues</span>
+        <span class="text-campaign-gold font-sans text-xs font-semibold tracking-[0.15em] uppercase">Core Priorities</span>
         <div class="bg-campaign-gold h-0.5 w-10"></div>
       </div>
       <h2 class="text-navy-900 font-display text-3xl sm:text-4xl lg:text-5xl font-bold leading-[1.1] mb-4 text-center">What Andrew Stands For</h2>
@@ -84,20 +87,36 @@
     </div>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      <% @active_issues.each do |issue| %>
-        <a href="<%= issue_path(issue) %>" class="block bg-white rounded-lg border-t-4 <%= issue.featured? ? 'border-campaign-gold' : 'border-navy-900' %> p-8 lg:p-9 hover:shadow-lg transition-shadow no-underline text-inherit">
-          <div class="bg-navy-900 rounded w-12 h-12 flex items-center justify-center mb-6">
-            <% if issue.icon.present? %>
-              <%= issue_icon(issue.icon) %>
-            <% end %>
+      <% @priorities.each do |priority| %>
+        <% card_tag = priority.linked_issue ? "a" : "div" %>
+        <% card_href = priority.linked_issue ? issue_path(priority.linked_issue) : nil %>
+        <% card_class = "block bg-white rounded-lg border-t-4 border-campaign-gold p-8 lg:p-9 hover:shadow-lg transition-shadow no-underline text-inherit" %>
+
+        <% if priority.linked_issue %>
+          <a href="<%= card_href %>" class="<%= card_class %>">
+        <% else %>
+          <div class="<%= card_class %>">
+        <% end %>
+          <% if priority.show_icon? && priority.icon.present? %>
+            <div class="bg-navy-900 rounded w-12 h-12 flex items-center justify-center mb-6">
+              <%= issue_icon(priority.icon) %>
+            </div>
+          <% end %>
+          <h3 class="text-navy-900 font-display text-xl lg:text-2xl font-bold mb-3"><%= priority.title %></h3>
+          <% if priority.description.present? %>
+            <p class="text-gray-500 font-sans text-sm leading-[1.8] mb-5"><%= priority.description %></p>
+          <% end %>
+          <% if priority.linked_issue %>
+            <div class="flex items-center gap-2 mt-auto">
+              <div class="bg-campaign-gold h-0.5 w-6"></div>
+              <span class="text-campaign-gold font-sans text-xs font-semibold tracking-[0.1em] uppercase">Learn More</span>
+            </div>
+          <% end %>
+        <% if priority.linked_issue %>
+          </a>
+        <% else %>
           </div>
-          <h3 class="text-navy-900 font-display text-xl lg:text-2xl font-bold mb-3"><%= issue.title %></h3>
-          <p class="text-gray-500 font-sans text-sm leading-[1.8] mb-5"><%= truncate(strip_tags(issue.description.to_s), length: 150) %></p>
-          <div class="flex items-center gap-2 mt-auto">
-            <div class="bg-campaign-gold h-0.5 w-6"></div>
-            <span class="text-campaign-gold font-sans text-xs font-semibold tracking-[0.1em] uppercase">Learn More</span>
-          </div>
-        </a>
+        <% end %>
       <% end %>
     </div>
   </div>

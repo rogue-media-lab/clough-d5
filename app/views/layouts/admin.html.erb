@@ -53,6 +53,9 @@
           <%= link_to admin_issues_path, class: "sidebar-link #{request.path.starts_with?(admin_issues_path) ? 'active' : ''}" do %>
             <span style="margin-right: 8px;">📋</span> Issues
           <% end %>
+          <%= link_to admin_priorities_path, class: "sidebar-link #{request.path.starts_with?(admin_priorities_path) ? 'active' : ''}" do %>
+            <span style="margin-right: 8px;">🎯</span> Priorities
+          <% end %>
           <%= link_to admin_posts_path, class: "sidebar-link #{request.path.starts_with?(admin_posts_path) ? 'active' : ''}" do %>
             <span style="margin-right: 8px;">📝</span> Blog
           <% end %>

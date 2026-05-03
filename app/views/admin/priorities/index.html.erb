@@ -1,0 +1,68 @@
+<% content_for :page_title, "Priorities" %>
+
+<div class="flex items-center justify-between mb-6">
+  <p class="text-sm text-ivory-500"><%= @priorities.count %> priorities</p>
+  <%= link_to "Add Priority", new_admin_priority_path,
+        class: "px-4 py-2 bg-navy-900 text-white text-sm font-medium rounded-md hover:bg-navy-800 transition-colors" %>
+</div>
+
+<div class="bg-white rounded-lg border border-ivory-200 overflow-hidden">
+  <% if @priorities.empty? %>
+    <p class="px-6 py-8 text-center text-sm text-ivory-400">No priorities yet. Add your first one!</p>
+  <% else %>
+    <table class="w-full text-sm">
+      <thead>
+        <tr class="border-b border-ivory-100 bg-ivory-50">
+          <th class="px-6 py-3 text-left text-xs font-semibold text-ivory-500 uppercase tracking-wider">Pos</th>
+          <th class="px-6 py-3 text-left text-xs font-semibold text-ivory-500 uppercase tracking-wider">Icon</th>
+          <th class="px-6 py-3 text-left text-xs font-semibold text-ivory-500 uppercase tracking-wider">Title</th>
+          <th class="px-6 py-3 text-left text-xs font-semibold text-ivory-500 uppercase tracking-wider">Linked Issue</th>
+          <th class="px-6 py-3 text-left text-xs font-semibold text-ivory-500 uppercase tracking-wider">Status</th>
+          <th class="px-6 py-3"></th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-ivory-100">
+        <% @priorities.each do |priority| %>
+          <tr class="hover:bg-ivory-50">
+            <td class="px-6 py-4 text-ivory-500 text-sm"><%= priority.position %></td>
+            <td class="px-6 py-4">
+              <% if priority.icon.present? && priority.show_icon? %>
+                <div class="bg-navy-900 rounded w-8 h-8 flex items-center justify-center">
+                  <%= issue_icon(priority.icon) %>
+                </div>
+              <% else %>
+                <span class="text-ivory-300 text-xs">—</span>
+              <% end %>
+            </td>
+            <td class="px-6 py-4">
+              <p class="font-medium text-ivory-900"><%= priority.title %></p>
+              <% if priority.description.present? %>
+                <p class="text-xs text-ivory-400 mt-0.5 max-w-md truncate"><%= truncate(priority.description, length: 80) %></p>
+              <% end %>
+            </td>
+            <td class="px-6 py-4 text-ivory-600 text-sm">
+              <% if priority.linked_issue %>
+                <%= priority.linked_issue.title %>
+              <% else %>
+                <span class="text-ivory-300">—</span>
+              <% end %>
+            </td>
+            <td class="px-6 py-4">
+              <% if priority.active? %>
+                <span class="inline-block px-2 py-0.5 rounded-full text-xs font-semibold bg-green-100 text-green-700">Active</span>
+              <% else %>
+                <span class="inline-block px-2 py-0.5 rounded-full text-xs font-semibold bg-gray-100 text-gray-500">Hidden</span>
+              <% end %>
+            </td>
+            <td class="px-6 py-4 text-right">
+              <div class="flex items-center gap-2 justify-end">
+                <%= link_to "Edit", edit_admin_priority_path(priority), class: "text-xs text-navy-900 hover:underline" %>
+                <%= button_to "Delete", admin_priority_path(priority), method: :delete, style: "padding: 6px 12px; background: #FEE2E2; color: #DC2626; border-radius: 6px; font-size: 13px; border: none; cursor: pointer; font-weight: 500;", data: { turbo_confirm: "Remove this priority?" } %>
+              </div>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+</div>

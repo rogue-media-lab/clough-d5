@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_05_02_221248) do
+ActiveRecord::Schema[8.1].define(version: 2026_05_03_003159) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -177,6 +177,19 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_02_221248) do
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
+  create_table "priorities", force: :cascade do |t|
+    t.boolean "active", default: true
+    t.datetime "created_at", null: false
+    t.text "description"
+    t.string "icon"
+    t.bigint "linked_issue_id"
+    t.integer "position"
+    t.boolean "show_icon", default: true
+    t.string "title"
+    t.datetime "updated_at", null: false
+    t.index ["linked_issue_id"], name: "index_priorities_on_linked_issue_id"
+  end
+
   create_table "sessions", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.string "ip_address"
@@ -242,6 +255,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_02_221248) do
   add_foreign_key "issue_news_articles", "issues"
   add_foreign_key "issue_news_articles", "news_articles"
   add_foreign_key "posts", "users"
+  add_foreign_key "priorities", "issues", column: "linked_issue_id"
   add_foreign_key "sessions", "users"
   add_foreign_key "volunteer_interests_volunteer_submissions", "volunteer_interests", name: "fk_volunteer_interests"
   add_foreign_key "volunteer_interests_volunteer_submissions", "volunteer_submissions", name: "fk_volunteer_submissions"

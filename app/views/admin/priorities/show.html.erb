@@ -1,0 +1,37 @@
+<% content_for :page_title, @priority.title %>
+
+<div class="max-w-2xl">
+  <div class="bg-white rounded-lg border border-ivory-200 p-6 space-y-4">
+    <div class="grid grid-cols-2 gap-4">
+      <div>
+        <p class="text-xs font-semibold text-ivory-500 uppercase mb-1">Position</p>
+        <p class="text-ivory-800"><%= @priority.position %></p>
+      </div>
+      <div>
+        <p class="text-xs font-semibold text-ivory-500 uppercase mb-1">Icon</p>
+        <p class="text-ivory-800"><%= @priority.icon.present? ? @priority.icon_label : "None" %></p>
+      </div>
+    </div>
+    <% if @priority.description.present? %>
+      <div>
+        <p class="text-xs font-semibold text-ivory-500 uppercase mb-1">Description</p>
+        <p class="text-ivory-800"><%= @priority.description %></p>
+      </div>
+    <% end %>
+    <div class="grid grid-cols-2 gap-4">
+      <div>
+        <p class="text-xs font-semibold text-ivory-500 uppercase mb-1">Show Icon</p>
+        <p class="text-ivory-800"><%= @priority.show_icon? ? "Yes" : "No" %></p>
+      </div>
+      <div>
+        <p class="text-xs font-semibold text-ivory-500 uppercase mb-1">Linked Issue</p>
+        <p class="text-ivory-800"><%= @priority.linked_issue&.title || "None" %></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="flex gap-3 mt-6">
+    <%= link_to "Edit", edit_admin_priority_path(@priority), class: "px-4 py-2 bg-navy-900 text-white text-sm font-medium rounded-md hover:bg-navy-800 transition-colors" %>
+    <%= link_to "Back to Priorities", admin_priorities_path, class: "px-4 py-2 border border-ivory-300 text-ivory-700 text-sm font-medium rounded-md hover:bg-ivory-50 transition-colors" %>
+  </div>
+</div>
