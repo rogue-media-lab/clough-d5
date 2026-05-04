@@ -11,10 +11,10 @@ class NewsArticlesController < ApplicationController
     article_desc = @article.body.presence || "Read the latest coverage about Andrew Clough for Congress in SC District 5."
     set_meta_tags(
       title: "#{@article.title} — Clough for SC5",
-      description: truncate(strip_tags(article_desc.to_s), length: 160),
+      description: truncate(helpers.strip_tags(article_desc.to_s), length: 160),
       og: {
         title: @article.title,
-        description: truncate(strip_tags(article_desc.to_s), length: 160),
+        description: truncate(helpers.strip_tags(article_desc.to_s), length: 160),
         url: news_article_url(@article)
       }
     )
